@@ -39,3 +39,5 @@
 # the following code in the Terminal:
 # find . -size +100M | sed 's|^\./||g' | cat >> .gitignore; awk '!NF || !seen[$0]++' .gitignore
 
+# ignoring dataset at path data/shark_tank_us_data.csv
+data/shark_tank_us_data.csv

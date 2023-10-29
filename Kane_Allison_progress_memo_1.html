@@ -3045,20 +3045,6 @@ Github Repo Link
 <p><a href="https://github.com/stat301-1-2023-fall/final-project-1-akane2460.git">Allison Kane Final Project Repo Link</a></p>
 </div>
 </div>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>GitHub (free account) cannot store large files. If you try to commit and push a large dataset you will have an ERROR! Any file over 100 MB (100,000 KB) needs to be added to the <code>.gitignore</code> file BEFORE committing.</p>
-<p><strong>We may need to do that for files in your final project!</strong></p>
-</div>
-</div>
 <section id="data-source" class="level2">
 <h2 class="anchored" data-anchor-id="data-source">Data source</h2>
 <p>The data to be analyzed is information from seasons 1-14 of the US series of the reality TV show <em>Shark Tank</em><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, a show where entrepreneurs pitch their emerging businesses to a panel of investors called <em>sharks</em>. This dataset includes information about the entrepreneurs, their businesses, and their deals with the sharks.</p>
@@ -3069,21 +3055,48 @@ Warning
 </section>
 <section id="data-quality-complexity-check" class="level2">
 <h2 class="anchored" data-anchor-id="data-quality-complexity-check">Data quality &amp; complexity check</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 50
+  `Season Number` `Season Start` `Season End` `Episode Number` `Pitch Number`
+            &lt;dbl&gt; &lt;chr&gt;          &lt;chr&gt;                   &lt;dbl&gt;          &lt;dbl&gt;
+1               1 9-Aug-09       5-Feb-10                    1              1
+2               1 9-Aug-09       5-Feb-10                    1              2
+3               1 9-Aug-09       5-Feb-10                    1              3
+4               1 9-Aug-09       5-Feb-10                    1              4
+5               1 9-Aug-09       5-Feb-10                    1              5
+6               1 9-Aug-09       5-Feb-10                    2              6
+# ℹ 45 more variables: `Original Air Date` &lt;chr&gt;, `Startup Name` &lt;chr&gt;,
+#   Industry &lt;chr&gt;, `Business Description` &lt;chr&gt;, `Pitchers Gender` &lt;chr&gt;,
+#   `Pitchers City` &lt;chr&gt;, `Pitchers State` &lt;chr&gt;,
+#   `Pitchers Average Age` &lt;chr&gt;, `Entrepreneur Names` &lt;chr&gt;,
+#   `Company Website` &lt;chr&gt;, `Multiple Entrepreneurs` &lt;dbl&gt;,
+#   `US Viewership` &lt;dbl&gt;, `Original Ask Amount` &lt;dbl&gt;,
+#   `Original Offered Equity` &lt;dbl&gt;, `Valuation Requested` &lt;dbl&gt;, …</code></pre>
+</div>
+</div>
+<p>In this dataset, there are 50 variables, 13 of which are categorical and 37 of which are numeric. There are 1274 observations, corresponding to each entrepreneur’s pitch in an episode of Shark Tank<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+<p>In this data, there are some missingness issues. Specifically, 509 observations lack <code>Total Deal Amount</code>, <code>Deal Valuation</code>, <code>Number of sharks in deal</code>, <code>Investment Amount Per Shark</code>, and <code>Equity Per Shark</code> indicating that they did not receive a deal from any of the sharks. 407 observations are missing <code>Multiple Entrepreneurs</code>, indicating that there is one entrepreneur that is pitching the business. 1199 observations are missing <code>Royalty Deal</code>, indicating that if they received an investment it did not include a royalty deal on the product with the shark. 1222 observations are missing a <code>Loan</code>, indicating that if they received an investment it did not include a loan from the shark. For variables describing if the sharks were present (i.e. <code>Barbara Corcoran Present</code>, <code>Mark Cuban Present</code>, etc.), there is an approximate 70% complete rate, indicating that each shark is not present in about 30% of pitches. Finally, each shark (and guest) has two variables describing their specific investment amount and equity, with the number of observations missing these variables indicating the number of pitches that the shark did not invest in. Barbara Corcoran is missing in 1154 pitches, Mark Cuban is missing in 1044 pitches, Lori Greiner is missing in 1075 pitches, Robert Herjavec is missing in 1153 pitches, Daymond John is missing in 1163 pitches, Kevin O’Leary is missing in 1157 pitches.</p>
+<p>Additionally, the pitcher’s city, state, average age (indicating the average age if there are multiple pitchers or individual’s age if there is a solo pitcher), and name are missing 772, 528, 936, and 495 times, respectively. These missingness issues are less by the dataset’s design and more a reflection of the dataset’s failure to collect all information about the entrepreneurs who are pitching. <code>Company website</code> is missing 758 times, indicating that they either do not have a website or the website was not collected. <code>Guest Name</code> is missing 1169 times, likely indicating that there was no guest shark on the show during that pitch. Pitcher’s <code>gender</code> is a critical aspect for this analysis and does not have significant missigness issues, being collected 99% of the time. The <code>Business Description</code> and <code>Industry</code> are both critical to this analysis and do not have any missigness issues.</p>
 </section>
 <section id="potential-data-issues" class="level2">
 <h2 class="anchored" data-anchor-id="potential-data-issues">Potential data issues</h2>
-<p>Blah blah blah</p>
+<p>There are potential issues in this dataset, particularly missingness issues. Specifically, in the dataset when specific investments do not occur, they are left as <em>NA</em>. However, in cleaning the data, I might find that replacing these <em>NA</em> values with <strong>0</strong> to indicate that 0 dollars were invested for that specific variable.</p>
+<p>Additionally, there are missingness issues with the sharks’ attendance for each pitch. Generally in the dataset, if a shark is not present they are listed as <em>NA</em> for their respective attendance variable. It might be better to change this variable structure to read <em>TRUE</em> when the shark is present and <em>FALSE</em> when they are not.</p>
+<p>The dataset will need to undergo cleaning prior to making any analyses. The names of the variables specifically will need to be cleaned using the <code>clean_names()</code> function in the <code>janitor</code> package.</p>
+<p>Additional time may be needed to examine the differences between pitches by solo entrepreneurs compared to teams and how gender might play a role in their perceived competence or the perceived value of their business. The behavior of sharks will also need to be investigated, determining if female sharks invest differently than their male counterparts. Finally, handling guest sharks might take more time, as their presence rotates each episode, so their individual activity will not reveal much about the trends I wish to investigate. These guests could be included in broader analyses, like investigating if female sharks invest more often in female entrepreneurs compared to male sharks.</p>
 </section>
 <section id="misc" class="level2">
 <h2 class="anchored" data-anchor-id="misc">Misc</h2>
-<p>Blah Blah</p>
+<p>There are seven instances where the pitcher’s gender is not included in the dataset. This might be an instance where the pitcher did not identify with a binary option of gender (might identify as non-binary, genderqueer, etc.). It could also be an instance where their gender identity was not collected. I can potentially investigate to see which is the case and how that might impact investment opportunities. However, given that there are only seven of these observations, there could be limited conclusions to be made.</p>
 </section>
 
 
 <div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>CITATION<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p> <a href="https://www.kaggle.com/datasets/thirumani/shark-tank-us-dataset">Thirumani, S., Rehman, A.U., and Molagoda, J., 2023, Shark Tank US dataset, https://www.kaggle.com/datasets/thirumani/shark-tank-us-dataset</a> <a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>The values obtained in this section were found in the output from <code>skim_without_charts(shark_tank_us)</code><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main>
 <!-- /main column -->
