@@ -3,7 +3,7 @@ title: "Progress Memo 1"
 subtitle: |
   | Final Project 
   | Data Science 1 with R (STAT 301-1)
-author: "YOUR NAME"
+author: "Allison Kane"
 date: today
 
 format:
@@ -18,22 +18,11 @@ execute:
 from: markdown+emoji 
 ---
 
-::: {.callout-important}
-## Memo format
-
-Like all other submissions for this course, we expect the memo to be neat and well organized.
-
-You should make this document your own. This is a template. To help with this we have added a date to the yaml above (good whenever writing memos). You should remove this block when making this document your own.
-
-:::
-
 ::: {.callout-tip icon=false}
 
 ## Github Repo Link
 
-To link to your github **repo**sitory, appropriately edit the example link below. Meaning replace `https://your-github-repo-url` with your github repo url. Suggest verifying the link works before submitting.
-
-[https://your-github-repo-url](https://your-github-repo-url)
+[Allison Kane Final Project Repo Link](https://github.com/stat301-1-2023-fall/final-project-1-akane2460.git)
 
 :::
 
@@ -45,15 +34,20 @@ GitHub (free account) cannot store large files. If you try to commit and push a 
 
 ## Data source
 
-Blah blah blah^[where blah blah came from, an example of footnote]
+The data to be analyzed is information from seasons 1-14 of the US series of the reality TV show *Shark Tank*^[CITATION], a show where entrepreneurs pitch their emerging businesses to a panel of investors called *sharks*. This dataset includes information about the entrepreneurs, their businesses, and their deals with the sharks. 
 
 ## Why this data
 
-Blah blah blah^[another footnote]
+In investigating this data, I intend to find if there are differences between the investment and pitching trends of female and male entrepreneurs and sharks. Outside of reality TV, female entrepreneurs tend to face greater barriers and often have their businesses undervalued. Industries typically thought to be female-dominated or feminine are often less respected. In this dataset, I specifically aim to investigate if female entrepreneurs receive investment as often as male entrepreneurs, if that investment aligns with their initial demands, which sharks invest in female entrepreneurs more often, and if specific sharks undervalue businesses started by women compared to men. 
 
 ## Data quality & complexity check
 
-Blah blah blah
+```{r}
+#| label: data quality check
+# read_csv()
+
+```
+
 
 ## Potential data issues
 
