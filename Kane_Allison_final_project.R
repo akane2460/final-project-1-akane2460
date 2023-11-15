@@ -28,7 +28,6 @@ shark_tank_us <- shark_tank_us |>
 
 # replace NAs in `Total Deal Amount`, `Deal Valuation`,
 # `Number of sharks in deal`, `Deal Valuation `, `Investment Amount Per Shark`, `Loan` and `Equity Per Shark`
-
 shark_tank_us <- shark_tank_us |> 
   mutate(
     total_deal_amount = ifelse(is.na(total_deal_amount) == TRUE, 0, total_deal_amount),
@@ -42,4 +41,92 @@ shark_tank_us <- shark_tank_us |>
   )
 
 # replace NAs for each investor
+shark_tank_us <- shark_tank_us |> 
+  mutate(
+    # barbara corcoran
+    barbara_corcoran_investment_amount = ifelse(is.na(barbara_corcoran_investment_amount) == TRUE, 0, barbara_corcoran_investment_amount),
+    barbara_corcoran_investment_equity = ifelse(is.na(barbara_corcoran_investment_equity) == TRUE, 0, barbara_corcoran_investment_equity),
+    barbara_corcoran_present = ifelse(barbara_corcoran_present == 1, TRUE, FALSE),
+    # mark cuban
+    mark_cuban_investment_amount = ifelse(is.na(mark_cuban_investment_amount) == TRUE, 0, mark_cuban_investment_amount),
+    mark_cuban_investment_equity = ifelse(is.na(mark_cuban_investment_equity) == TRUE, 0, mark_cuban_investment_equity),
+    mark_cuban_present = ifelse( mark_cuban_present == 1, TRUE, FALSE),
+    # lori greiner
+    lori_greiner_investment_amount = ifelse(is.na(lori_greiner_investment_amount) == TRUE, 0, lori_greiner_investment_amount),
+    lori_greiner_investment_equity = ifelse(is.na(lori_greiner_investment_equity) == TRUE, 0, lori_greiner_investment_equity),
+    lori_greiner_present = ifelse(lori_greiner_present == 1, TRUE, FALSE),
+    # robert herjavec
+    robert_herjavec_investment_amount = ifelse(is.na(robert_herjavec_investment_amount) == TRUE, 0, robert_herjavec_investment_amount),
+    robert_herjavec_investment_equity = ifelse(is.na(robert_herjavec_investment_equity) == TRUE, 0, robert_herjavec_investment_equity),
+    robert_herjavec_present = ifelse(robert_herjavec_present == 1, TRUE, FALSE),
+    # daymond john 
+    daymond_john_investment_amount = ifelse(is.na(daymond_john_investment_amount) == TRUE, 0, daymond_john_investment_amount),
+    daymond_john_investment_equity = ifelse(is.na(daymond_john_investment_equity) == TRUE, 0, daymond_john_investment_equity),
+    daymond_john_present = ifelse(daymond_john_present == 1, TRUE, FALSE),
+    # kevin oleary
+    kevin_o_leary_investment_amount = ifelse(is.na(kevin_o_leary_investment_amount) == TRUE, 0, kevin_o_leary_investment_amount),
+    kevin_o_leary_investment_equity = ifelse(is.na(kevin_o_leary_investment_equity) == TRUE, 0, kevin_o_leary_investment_equity),
+    kevin_o_leary_present = ifelse(kevin_o_leary_present == 1, TRUE, FALSE),
+    # guest
+    guest_investment_amount = ifelse(is.na(guest_investment_amount) == TRUE, 0, guest_investment_amount),
+    guest_investment_equity = ifelse(is.na(guest_investment_equity) == TRUE, 0, guest_investment_equity)
+  )
+
+
+# fix mistake in Daniel Lubetzsky (spelled incorrectly some places, correctly in others)
+shark_tank_us <- shark_tank_us |> 
+  mutate(
+    guest_name = ifelse(guest_name == "Daniel Lubetzsky", "Daniel Lubetzky", guest_name)
+  )
+
+# fix mistake in Nirv Tolia (spelled incorrectly here)
+shark_tank_us <- shark_tank_us |> 
+  mutate(
+    guest_name = ifelse(guest_name == "Nirv Tolia", "Nirav Tolia", guest_name)
+  )
+
+
+# handling the rotating guests-- what is their gender? did they invest? how much? etc.
+
+guest_names <- shark_tank_us |> 
+  filter(is.na(guest_name) == FALSE) |> 
+  select(guest_name) |> 
+  unique()
+
+view(guest_names)
+
+
+shark_tank_us <- shark_tank_us |> 
+  mutate(
+    guest_gender = case_when(
+      guest_name == "Kevin Harrington" ~ "M",
+      guest_name == "Jeff Foxworthy" ~ "M",
+      guest_name == "John Paul DeJoria" ~ "M",
+      guest_name == "Steve Tisch" ~ "M",
+      guest_name == "Nick Woodman" ~ "M",
+      guest_name == "Ashton Kutcher" ~ "M",
+      guest_name == "Troy Carter" ~ "M",
+      guest_name == "Chris Sacca" ~ "M",
+      guest_name == "Richard Branson" ~ "M",
+      guest_name == "Rohan Oza" ~ "M",
+      guest_name == "Alex Rodriguez" ~ "M",
+      guest_name == "Sara Blakely" ~ "F",
+      guest_name == "Jamie Siminoff" ~ "M",
+      guest_name == "Matt Higgins" ~ "M",
+      guest_name == "Charles Barkley" ~ "M",
+      guest_name == "Alli Webb" ~ "F",
+      guest_name == "Daniel Lubetzky" ~ "M",
+      guest_name == "Anne Wojcicki" ~ "F",
+      guest_name == "Maria Sharapova" ~ "F",
+      guest_name == "Katrina Lake" ~ "F",
+      guest_name == "Blake Mycoskie" ~ "M",
+      guest_name == "Kendra Scott" ~ "F",
+      guest_name == "Emma Grede" ~ "F",
+      guest_name == "Peter Jones" ~ "M",
+      guest_name == "Nirav Tolia" ~ "M",
+      guest_name == "Kevin Hart" ~ "M",
+      guest_name == "Gwyneth Paltrow" ~ "F",
+      guest_name == "Tony Xu" ~ "M"
+    )
+    )
 
