@@ -72,6 +72,31 @@ shark_tank_us <- shark_tank_us |>
     guest_investment_equity = ifelse(is.na(guest_investment_equity) == TRUE, 0, guest_investment_equity)
   )
 
+# fix multiple entrepreneurs variable
+shark_tank_us <- shark_tank_us |> 
+  # handle the NA values first
+  mutate(
+    multiple_entrepreneurs = ifelse(is.na(multiple_entrepreneurs) == TRUE & is.na(entrepreneur_names) == TRUE,
+                                    pitchers_gender, multiple_entrepreneurs),
+    
+    # for cases where there could be multiple entrepreneurs, there are some instances where the names are unavailable
+    # and, if the team is not mixed gender, there is no way of telling
+      # these instances will be treated as if there is a single entrepreneur
+    
+    # assign mixed teams to be multiple
+    multiple_entrepreneurs = ifelse(multiple_entrepreneurs == "Mixed Team", 1, multiple_entrepreneurs),
+    
+    # check for any missed NAs
+    multiple_entrepreneurs = ifelse(is.na(multiple_entrepreneurs) == TRUE, entrepreneur_names, multiple_entrepreneurs),
+    
+    # check through if there are any multiple entrepreneur teams missed
+    multiple_entrepreneurs = ifelse(str_detect(multiple_entrepreneurs, pattern = "^and$"))
+
+    #multiple_entrepreneurs = ifelse(multiple_entrepreneurs == 1, TRUE, FALSE)
+  )
+
+
+
 
 # fix mistake in Daniel Lubetzsky (spelled incorrectly some places, correctly in others)
 shark_tank_us <- shark_tank_us |> 
@@ -95,7 +120,7 @@ guest_names <- shark_tank_us |>
 
 view(guest_names)
 
-
+# guest investor genders
 shark_tank_us <- shark_tank_us |> 
   mutate(
     guest_gender = case_when(
@@ -129,4 +154,6 @@ shark_tank_us <- shark_tank_us |>
       guest_name == "Tony Xu" ~ "M"
     )
     )
+
+
 
