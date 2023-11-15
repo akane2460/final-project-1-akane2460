@@ -1,31 +1,24 @@
 # Final project ----
 # Stat 301-1
 
-## load packages ----
+## Load Packages ----
 
 library(tidyverse)
 library(skimr)
 library(janitor)
 
+## Load Data ----
 shark_tank_us <- read_csv("data/shark_tank_us_data.csv")
 
 # skim_without_charts(shark_tank_us)
+# head(shark_tank_us)
 
-head(shark_tank_us)
-
-# cleaning names
-
+### Cleaning Names----
 shark_tank_us <- shark_tank_us |>
   clean_names()
 
-# clean got_deal and multiple_entrepreneurs
 
-shark_tank_us <- shark_tank_us |> 
-  mutate(
-    got_deal = ifelse(got_deal == 1, TRUE, FALSE),
-    royalty_deal = ifelse(is.na(royalty_deal) == TRUE, FALSE, TRUE)
-  )
-
+### Pitched and Made Deals ----
 # replace NAs in `Total Deal Amount`, `Deal Valuation`,
 # `Number of sharks in deal`, `Deal Valuation `, `Investment Amount Per Shark`, `Loan` and `Equity Per Shark`
 shark_tank_us <- shark_tank_us |> 
@@ -40,6 +33,55 @@ shark_tank_us <- shark_tank_us |>
     total_deal_equity = ifelse(is.na(total_deal_equity) == TRUE, 0, total_deal_equity)
   )
 
+# clean got_deal and multiple_entrepreneurs
+shark_tank_us <- shark_tank_us |> 
+  mutate(
+    got_deal = ifelse(got_deal == 1, TRUE, FALSE),
+    royalty_deal = ifelse(is.na(royalty_deal) == TRUE, FALSE, TRUE)
+  )
+
+
+# Multiple Entrepreneurs ----
+shark_tank_us <- shark_tank_us |> 
+  # handle the NA values first
+  mutate(
+    multiple_entrepreneurs = ifelse(is.na(multiple_entrepreneurs) == TRUE & is.na(entrepreneur_names) == TRUE,
+                                    pitchers_gender, multiple_entrepreneurs),
+    
+    # for cases where there could be multiple entrepreneurs, there are some instances where the names are unavailable
+    # and, if the team is not mixed gender, there is no way of telling
+    # these instances will be treated as if there is a single entrepreneur
+    
+    # assign mixed teams to be multiple
+    multiple_entrepreneurs = ifelse(multiple_entrepreneurs == "Mixed Team", 1, multiple_entrepreneurs),
+    
+    # check for any missed NAs
+    multiple_entrepreneurs = ifelse(is.na(multiple_entrepreneurs) == TRUE, entrepreneur_names, multiple_entrepreneurs)
+  )
+
+# check to see if these missed NAs are single entrepreneurs or teams
+missed_NAs <- shark_tank_us |> 
+  filter(multiple_entrepreneurs == entrepreneur_names) |> 
+  select(entrepreneur_names, multiple_entrepreneurs)
+
+missed_NAs$multiple_entrepreneurs <- toString(missed_NAs$multiple_entrepreneurs)
+
+missed_NAs |> filter(str_detect(multiple_entrepreneurs, pattern = "^and$"))
+
+# since none of these entrepreneurs contain "and" in their name (indicative of a team)
+# all the "missed NAs" are single entrepreneurs
+
+# convert to TRUE and FALSE for multiple entrepreneur teams
+shark_tank_us <- shark_tank_us |> 
+  mutate(
+    # address the missing NAs first
+    multiple_entrepreneurs = ifelse(is.na(multiple_entrepreneurs) == TRUE, FALSE, multiple_entrepreneurs),
+    # then the remaining observations
+    multiple_entrepreneurs = ifelse(multiple_entrepreneurs == 1, TRUE, FALSE)
+  )
+
+
+### Series Regular Investors ----
 # replace NAs for each investor
 shark_tank_us <- shark_tank_us |> 
   mutate(
@@ -72,32 +114,8 @@ shark_tank_us <- shark_tank_us |>
     guest_investment_equity = ifelse(is.na(guest_investment_equity) == TRUE, 0, guest_investment_equity)
   )
 
-# fix multiple entrepreneurs variable
-shark_tank_us <- shark_tank_us |> 
-  # handle the NA values first
-  mutate(
-    multiple_entrepreneurs = ifelse(is.na(multiple_entrepreneurs) == TRUE & is.na(entrepreneur_names) == TRUE,
-                                    pitchers_gender, multiple_entrepreneurs),
-    
-    # for cases where there could be multiple entrepreneurs, there are some instances where the names are unavailable
-    # and, if the team is not mixed gender, there is no way of telling
-      # these instances will be treated as if there is a single entrepreneur
-    
-    # assign mixed teams to be multiple
-    multiple_entrepreneurs = ifelse(multiple_entrepreneurs == "Mixed Team", 1, multiple_entrepreneurs),
-    
-    # check for any missed NAs
-    multiple_entrepreneurs = ifelse(is.na(multiple_entrepreneurs) == TRUE, entrepreneur_names, multiple_entrepreneurs),
-    
-    # check through if there are any multiple entrepreneur teams missed
-    multiple_entrepreneurs = ifelse(str_detect(multiple_entrepreneurs, pattern = "^and$"))
 
-    #multiple_entrepreneurs = ifelse(multiple_entrepreneurs == 1, TRUE, FALSE)
-  )
-
-
-
-
+### Guest Names and Genders----
 # fix mistake in Daniel Lubetzsky (spelled incorrectly some places, correctly in others)
 shark_tank_us <- shark_tank_us |> 
   mutate(
@@ -109,7 +127,6 @@ shark_tank_us <- shark_tank_us |>
   mutate(
     guest_name = ifelse(guest_name == "Nirv Tolia", "Nirav Tolia", guest_name)
   )
-
 
 # handling the rotating guests-- what is their gender? did they invest? how much? etc.
 
@@ -154,6 +171,46 @@ shark_tank_us <- shark_tank_us |>
       guest_name == "Tony Xu" ~ "M"
     )
     )
+
+
+### Investors continued----
+
+## REVISIT THIS LATER
+
+
+# # handle deals with only 1 investor first
+# shark_tank_us |> 
+#   filter(number_of_sharks_in_deal == 1) |> 
+#   mutate(
+#     deal_investors = case_when(
+#       barbara_corcoran_investment_amount != 0 ~ "Barbara Corcoran",
+#       mark_cuban_investment_amount != 0 ~ "Mark Cuban",
+#       lori_greiner_investment_amount != 0 ~ "Lori Greiner",
+#       robert_herjavec_investment_amount != 0 ~ "Robert Herjavec",
+#       daymond_john_investment_amount != 0 ~ "Daymond John",
+#       kevin_o_leary_investment_amount != 0 ~ "Kevin OLeary",
+#       guest_investment_amount != 0 ~ "Guest" 
+#     )
+#   )
+# 
+# # handle deals with multiple investors 
+# shark_tank_us |> 
+#   filter(number_of_sharks_in_deal > 1) |> 
+#   mutate(
+#     deal_investors = c(
+#       ifelse(barbara_corcoran_investment_amount != 0, "Barbara Corcoran", ""),
+#       ifelse(mark_cuban_investment_amount != 0, "Mark Cuban", ""),
+#       ifelse(lori_greiner_investment_amount != 0, "Lori Greiner", ""),
+#       ifelse(robert_herjavec_investment_amount != 0, "Robert Herjavec", ""),
+#       ifelse(daymond_john_investment_amount != 0, "Daymond John", ""),
+#       ifelse(kevin_o_leary_investment_amount != 0, "Kevin OLeary",),
+#       ifelse(guest_investment_amount != 0, "Guest", "")
+#     )
+#     ) |>
+#   select(deal_investors, number_of_sharks_in_deal)
+#   # pull(deal_investors)
+
+
 
 
 
