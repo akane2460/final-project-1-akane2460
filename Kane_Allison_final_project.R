@@ -27,7 +27,7 @@ shark_tank_us <- shark_tank_us |>
   )
 
 # replace NAs in `Total Deal Amount`, `Deal Valuation`,
-# `Number of sharks in deal`, `Investment Amount Per Shark`, and `Equity Per Shark`
+# `Number of sharks in deal`, `Deal Valuation `, `Investment Amount Per Shark`, `Loan` and `Equity Per Shark`
 
 shark_tank_us <- shark_tank_us |> 
   mutate(
@@ -35,6 +35,11 @@ shark_tank_us <- shark_tank_us |>
     deal_valuation = ifelse(is.na(deal_valuation) == TRUE, 0, deal_valuation),
     number_of_sharks_in_deal = ifelse(is.na(number_of_sharks_in_deal) == TRUE, 0, number_of_sharks_in_deal),
     investment_amount_per_shark = ifelse(is.na(investment_amount_per_shark) == TRUE, 0, investment_amount_per_shark),
-    equity_per_shark = ifelse(is.na(equity_per_shark) == TRUE, 0, equity_per_shark)
+    equity_per_shark = ifelse(is.na(equity_per_shark) == TRUE, 0, equity_per_shark),
+    loan = ifelse(is.na(loan) == TRUE, 0, loan),
+    deal_valuation = ifelse(is.na(deal_valuation) == TRUE, 0, deal_valuation),
+    total_deal_equity = ifelse(is.na(total_deal_equity) == TRUE, 0, total_deal_equity)
   )
+
+# replace NAs for each investor
 
