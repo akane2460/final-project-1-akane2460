@@ -18,6 +18,30 @@ execute:
 from: markdown+emoji 
 ---
 
+::: {.callout-tip icon=false}
+
+## Github Repo Link
+
+[Allison Kane Final Project Repo Link](https://github.com/stat301-1-2023-fall/final-project-1-akane2460.git)
+
+:::
+
+## Data source
+
+The data to be analyzed is information from seasons 1-14 of the US series of the reality TV show *Shark Tank*^[ [Thirumani, S., Rehman, A.U., and Molagoda, J., 2023, Shark Tank US dataset, https://www.kaggle.com/datasets/thirumani/shark-tank-us-dataset](https://www.kaggle.com/datasets/thirumani/shark-tank-us-dataset) ], a show where entrepreneurs pitch their emerging businesses to a panel of investors called *sharks*. This dataset includes information about the entrepreneurs, their businesses, and their deals with the sharks. 
+
+## Research Questions
+
+In investigating this data, I intend to find if there are differences between the investment and pitching trends of female and male entrepreneurs and sharks. Outside of reality TV, female entrepreneurs tend to face greater barriers and often have their businesses undervalued. Industries typically thought to be female-dominated or feminine are often less respected. 
+
+In this dataset, I specifically aim to investigate if (1) female entrepreneurs are represented as often as male entrepreneurs in the show, (2) if female entrepreneurs ask for similar amounts of investment and equity in their businesses as male entrepreneurs, (3)female entrepreneurs receive investment as often as male entrepreneurs, (4) if that investment aligns with their initial demands (i.e. quality of investment), (5) which sharks invest in female entrepreneurs more often, and (6) if specific sharks undervalue businesses started by women compared to men. Additionally, I plan to investigate (7) which types of businesses attract more female entreprenurs, (8) if these businesses receive investment as often by investors, and (9) which sharks invest most often in these industries. 
+
+## Initial Analyses
 
 
+## Misc and Self-Assessment
+
+There is still quite a bit to do in getting this project together. I have completed some univariate analyses of the sharks' behavior and general distributions of gender, types of businesses, and typical investment amounts and equities seen for each investment. I next plan to investigate the relationships between shark, the entrepreneur's gender, their business, and quality of investment received. These will require bivariate and multivariate analyses. Additional data cleaning might be required although I do not anticipate needing it at this time. 
+
+There are specific issues within the dataset for seasons 11-14 which I am unsure of how to resolve. Each shark is listed as `NA` for their attendance. It is clear that this is an issue of missing data, not a replacement for whether or not they were present at the pitch (as there are pitches where sharks have invested that their attendance is listed as `NA` for). Moving forward, I plan to not use these seasons as a measure of a shark's typical behavior (i.e. I will exclude seasons 11-14 for answering questions like "How often does Barbara Corcoran invest in businesses led by female entrepreneurs?").
 

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Allison Kane">
-<meta name="dcterms.date" content="2023-11-14">
+<meta name="dcterms.date" content="2023-11-22">
 
 <title>Final Project</title>
 <style>
@@ -2987,7 +2987,16 @@ vertical-align: -.125em;
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
 <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-  
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#data-source" id="toc-data-source" class="nav-link active" data-scroll-target="#data-source">Data source</a></li>
+  <li><a href="#research-questions" id="toc-research-questions" class="nav-link" data-scroll-target="#research-questions">Research Questions</a></li>
+  <li><a href="#initial-analyses" id="toc-initial-analyses" class="nav-link" data-scroll-target="#initial-analyses">Initial Analyses</a></li>
+  <li><a href="#misc-and-self-assessment" id="toc-misc-and-self-assessment" class="nav-link" data-scroll-target="#misc-and-self-assessment">Misc and Self-Assessment</a></li>
+  </ul>
+</nav>
 </div>
 <main class="content" id="quarto-document-content">
 
@@ -3012,7 +3021,7 @@ Data Science 1 with R (STAT 301-1)</p><p></p>
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 14, 2023</p>
+      <p class="date">November 22, 2023</p>
     </div>
   </div>
   
@@ -3022,9 +3031,44 @@ Data Science 1 with R (STAT 301-1)</p><p></p>
 
 </header>
 
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Github Repo Link
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><a href="https://github.com/stat301-1-2023-fall/final-project-1-akane2460.git">Allison Kane Final Project Repo Link</a></p>
+</div>
+</div>
+<section id="data-source" class="level2">
+<h2 class="anchored" data-anchor-id="data-source">Data source</h2>
+<p>The data to be analyzed is information from seasons 1-14 of the US series of the reality TV show <em>Shark Tank</em><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, a show where entrepreneurs pitch their emerging businesses to a panel of investors called <em>sharks</em>. This dataset includes information about the entrepreneurs, their businesses, and their deals with the sharks.</p>
+</section>
+<section id="research-questions" class="level2">
+<h2 class="anchored" data-anchor-id="research-questions">Research Questions</h2>
+<p>In investigating this data, I intend to find if there are differences between the investment and pitching trends of female and male entrepreneurs and sharks. Outside of reality TV, female entrepreneurs tend to face greater barriers and often have their businesses undervalued. Industries typically thought to be female-dominated or feminine are often less respected.</p>
+<p>In this dataset, I specifically aim to investigate if (1) female entrepreneurs are represented as often as male entrepreneurs in the show, (2) if female entrepreneurs ask for similar amounts of investment and equity in their businesses as male entrepreneurs, (3)female entrepreneurs receive investment as often as male entrepreneurs, (4) if that investment aligns with their initial demands (i.e. quality of investment), (5) which sharks invest in female entrepreneurs more often, and (6) if specific sharks undervalue businesses started by women compared to men. Additionally, I plan to investigate (7) which types of businesses attract more female entreprenurs, (8) if these businesses receive investment as often by investors, and (9) which sharks invest most often in these industries.</p>
+</section>
+<section id="initial-analyses" class="level2">
+<h2 class="anchored" data-anchor-id="initial-analyses">Initial Analyses</h2>
+</section>
+<section id="misc-and-self-assessment" class="level2">
+<h2 class="anchored" data-anchor-id="misc-and-self-assessment">Misc and Self-Assessment</h2>
+<p>There is still quite a bit to do in getting this project together. I have completed some univariate analyses of the sharks’ behavior and general distributions of gender, types of businesses, and typical investment amounts and equities seen for each investment. I next plan to investigate the relationships between shark, the entrepreneur’s gender, their business, and quality of investment received. These will require bivariate and multivariate analyses. Additional data cleaning might be required although I do not anticipate needing it at this time.</p>
+<p>There are specific issues within the dataset for seasons 11-14 which I am unsure of how to resolve. Each shark is listed as <code>NA</code> for their attendance. It is clear that this is an issue of missing data, not a replacement for whether or not they were present at the pitch (as there are pitches where sharks have invested that their attendance is listed as <code>NA</code> for). Moving forward, I plan to not use these seasons as a measure of a shark’s typical behavior (i.e. I will exclude seasons 11-14 for answering questions like “How often does Barbara Corcoran invest in businesses led by female entrepreneurs?”).</p>
+</section>
 
 
-</main>
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p> <a href="https://www.kaggle.com/datasets/thirumani/shark-tank-us-dataset">Thirumani, S., Rehman, A.U., and Molagoda, J., 2023, Shark Tank US dataset, https://www.kaggle.com/datasets/thirumani/shark-tank-us-dataset</a> <a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
