@@ -44,6 +44,10 @@ In this dataset, I specifically aim to investigate if (1) female entrepreneurs a
 
 In the plot above, it is clear that female entrepreneurs and all female teams are underrepresented when compared to male entrepreneurs and all male teams. Mixed teams are underrepresented when compared to both. There seems to be some bias in the gender balance of the show, which is to be expected since female entrepreneurs tend to face more obstacles in building their businesses and are underrepresented in leadership positions. 
 
+![Businesses Types Represented](plots/businesses_represented_plot.png)
+In the plot above, it is seen that Food/Beverage, Fashion/Beauty, and Lifestyle/Home are represented the most. Some of these industries tend to be more associated with stereotypical "feminine" interests like Fashion and Beauty. Further investigation should be conducted to see if there is a bias for more female entrepreneurs to work in these industries. 
+
+
 
 ## Misc and Self-Assessment
 

@@ -207,8 +207,32 @@ ggplot(aes(x = pitchers_gender, fill = pitchers_gender)) +
     caption = "Source: Thirumani et al"
   )
 
-# ggsave(filename = "plots/gender_ratios_plot",
-#        plot = gender_ratios_plot
-#        )
+ggsave(filename = "plots/gender_ratios_plot.png",
+       plot = gender_ratios_plot,
+       width = 8,
+       height = 6,
+       units = "in"
+       )
 
+# types of businesses represented
 
+businesses_represented_plot <-
+shark_tank_us |> 
+  ggplot(aes(x = industry, fill = industry)) +
+    geom_bar() +
+    theme_light() +
+    theme(axis.text.x = element_text(angle = 50, hjust = 1, size = 7)) +
+    labs(
+      x = "Type of Business",
+      y = "Count",
+      title = "Shark Tank Types of Businesses and Industries",
+      subtitle = "The most represented industries are Food/Beverage, Fashion/Beauty, and Lifestyle/Home.",
+      caption = "Source: Thirumani et al"
+      )
+
+ggsave(filename = "plots/businesses_represented_plot.png",
+       plot = businesses_represented_plot,
+       width = 8,
+       height = 10,
+       units = "in"
+)
