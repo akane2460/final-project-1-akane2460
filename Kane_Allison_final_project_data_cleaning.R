@@ -80,6 +80,10 @@ shark_tank_us <- shark_tank_us |>
     multiple_entrepreneurs = ifelse(multiple_entrepreneurs == 1, TRUE, FALSE)
   )
 
+# remove NAs for pitcher gender
+
+shark_tank_us <- shark_tank_us |> 
+  filter(is.na(pitchers_gender) == FALSE)
 
 ### Series Regular Investors ----
 # replace NAs for each investor
@@ -135,7 +139,6 @@ guest_names <- shark_tank_us |>
   select(guest_name) |> 
   unique()
 
-view(guest_names)
 
 # guest investor genders
 shark_tank_us <- shark_tank_us |> 
@@ -168,49 +171,44 @@ shark_tank_us <- shark_tank_us |>
       guest_name == "Nirav Tolia" ~ "M",
       guest_name == "Kevin Hart" ~ "M",
       guest_name == "Gwyneth Paltrow" ~ "F",
-      guest_name == "Tony Xu" ~ "M"
+      guest_name == "Tony Xu" ~ "M",
+      guest_name == NA ~ NA
     )
-    )
+  )
 
 
-### Investors continued----
+### removing irrelevant variables ----
 
-## REVISIT THIS LATER
+shark_tank_us <- shark_tank_us |> 
+  select(!pitchers_city)
 
+shark_tank_us <- shark_tank_us |> 
+  select(!pitchers_state)
 
-# # handle deals with only 1 investor first
-# shark_tank_us |> 
-#   filter(number_of_sharks_in_deal == 1) |> 
-#   mutate(
-#     deal_investors = case_when(
-#       barbara_corcoran_investment_amount != 0 ~ "Barbara Corcoran",
-#       mark_cuban_investment_amount != 0 ~ "Mark Cuban",
-#       lori_greiner_investment_amount != 0 ~ "Lori Greiner",
-#       robert_herjavec_investment_amount != 0 ~ "Robert Herjavec",
-#       daymond_john_investment_amount != 0 ~ "Daymond John",
-#       kevin_o_leary_investment_amount != 0 ~ "Kevin OLeary",
-#       guest_investment_amount != 0 ~ "Guest" 
-#     )
-#   )
-# 
-# # handle deals with multiple investors 
-# shark_tank_us |> 
-#   filter(number_of_sharks_in_deal > 1) |> 
-#   mutate(
-#     deal_investors = c(
-#       ifelse(barbara_corcoran_investment_amount != 0, "Barbara Corcoran", ""),
-#       ifelse(mark_cuban_investment_amount != 0, "Mark Cuban", ""),
-#       ifelse(lori_greiner_investment_amount != 0, "Lori Greiner", ""),
-#       ifelse(robert_herjavec_investment_amount != 0, "Robert Herjavec", ""),
-#       ifelse(daymond_john_investment_amount != 0, "Daymond John", ""),
-#       ifelse(kevin_o_leary_investment_amount != 0, "Kevin OLeary",),
-#       ifelse(guest_investment_amount != 0, "Guest", "")
-#     )
-#     ) |>
-#   select(deal_investors, number_of_sharks_in_deal)
-#   # pull(deal_investors)
+shark_tank_us <- shark_tank_us |> 
+  select(!company_website)
 
 
+### Univariate Analysis Plots----
 
+# male/female/mixed team ratio
+gender_colors <- c("Male" = "#5484FF", "Female" = "#EC837D", "Mixed Team" = "#11B642")
+
+gender_ratios_plot <- shark_tank_us |> 
+ggplot(aes(x = pitchers_gender, fill = pitchers_gender)) +
+  geom_bar() +
+  scale_fill_manual(values = gender_colors) +
+  theme_light() +
+  labs(
+    x = "Pitcher's Gender",
+    y = "Count",
+    title = "Shark Tank Entrepreneur Teams by Gender",
+    subtitle = "There are substantially more male entrepreneurs and all male teams than female entrepreneurs and mixed teams.",
+    caption = "Source: Thirumani et al"
+  )
+
+# ggsave(filename = "plots/gender_ratios_plot",
+#        plot = gender_ratios_plot
+#        )
 
 
