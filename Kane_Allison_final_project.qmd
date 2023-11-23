@@ -38,6 +38,12 @@ In this dataset, I specifically aim to investigate if (1) female entrepreneurs a
 
 ## Initial Analyses
 
+# Gender Balance
+
+![Gender Ratios Plot](plots/gender_ratios_plot.png)
+
+In the plot above, it is clear that female entrepreneurs and all female teams are underrepresented when compared to male entrepreneurs and all male teams. Mixed teams are underrepresented when compared to both. There seems to be some bias in the gender balance of the show, which is to be expected since female entrepreneurs tend to face more obstacles in building their businesses and are underrepresented in leadership positions. 
+
 
 ## Misc and Self-Assessment
 
