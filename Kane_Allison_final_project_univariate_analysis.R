@@ -270,17 +270,20 @@ ggsave(filename = "plots/frequency_plot.png",
 
 ## Individual investor frequencies of deals
 
+# will have to filter out seasons 11-14 due to missingness issues
+
+# barbara corcoran
+
 deals_summary <- shark_tank_us |>
+  filter(season_number < 11)
   summarize(
     bc_deals_made = sum(barbara_corcoran_invested == TRUE),
     bc_deals_passed = sum(barbara_corcoran_invested == FALSE),
     bc_total_pitches = n(),
-    pct_made = deals_made / total_pitches,
-    pct_passed = deals_passed / total_pitches
+    bc_pct_made = deals_made / total_pitches,
+    bc_pct_passed = deals_passed / total_pitches
   )
 
-
-# barbara corcoran
 
 # frequency of investing
 
