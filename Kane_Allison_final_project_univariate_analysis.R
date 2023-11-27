@@ -94,6 +94,8 @@ ggsave(filename = "plots/frequency_plot.png",
 )
 
 
+
+
 ### Initial Asks----
 
 # typical investments asked for
