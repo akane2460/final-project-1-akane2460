@@ -118,6 +118,27 @@ shark_tank_us <- shark_tank_us |>
     guest_investment_equity = ifelse(is.na(guest_investment_equity) == TRUE, 0, guest_investment_equity)
   )
 
+## Frequency of investing for individual investors
+shark_tank_us <- shark_tank_us |> 
+  mutate(
+    # barbara corcoran
+    barbara_corcoran_invested = ifelse(barbara_corcoran_investment_amount > 0, TRUE, FALSE),
+    # mark cuban
+    mark_cuban_invested = ifelse(mark_cuban_investment_amount > 0, TRUE, FALSE),
+    # lori greiner
+    lori_greiner_invested = ifelse(lori_greiner_investment_amount > 0, TRUE, FALSE),
+    # robert herjavec
+    robert_herjavec_invested = ifelse(robert_herjavec_investment_amount > 0, TRUE, FALSE),
+    # daymond john 
+    daymond_john_invested = ifelse(daymond_john_investment_amount > 0, TRUE, FALSE),
+    # kevin oleary
+    kevin_o_leary_invested = ifelse(kevin_o_leary_investment_amount > 0, TRUE, FALSE),
+    # guest
+    guest_invested = ifelse(guest_investment_amount > 0, TRUE, FALSE)
+  )
+
+
+
 
 ### Guest Names and Genders----
 # fix mistake in Daniel Lubetzsky (spelled incorrectly some places, correctly in others)

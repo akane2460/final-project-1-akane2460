@@ -55,47 +55,6 @@ ggsave(filename = "plots/businesses_represented_plot.png",
        units = "in"
 )
 
-# how often deals are made
-
-deals_summary <- shark_tank_us |>
-  summarize(
-    deals_made = sum(got_deal == TRUE),
-    deals_passed = sum(got_deal == FALSE),
-    total_pitches = n(),
-    pct_made = deals_made / total_pitches,
-    pct_passed = deals_passed / total_pitches
-  )
-
-frequency_colors <- c("FALSE" = "#EF664F", "TRUE" = "#5FBF53")
-
-frequency_plot <-
-  shark_tank_us |> 
-  ggplot(aes(x = got_deal, fill = got_deal)) +
-  geom_bar() +
-  scale_fill_manual(name = "Deal Made?", values = frequency_colors, labels = c("No Deal", "Deal")) +
-  annotate(geom = "text", x = 2, y = 785, label = "60%", fontface = 2) +
-  annotate(geom = "text", x = 1, y = 535, label = "40%", fontface = 2) +
-  scale_x_discrete(labels =  c("No Deal", "Deal")) +
-  coord_cartesian(ylim = c(0, 800)) +
-  theme_light() +
-  labs(
-    x = "",
-    y = "Count",
-    title = "Frequency of deals made on Shark Tank (US)",
-    subtitle = "Deals are made approximately 60% and not made 40% of the time.",
-    caption = "Source: Thirumani et al"
-  )
-
-ggsave(filename = "plots/frequency_plot.png",
-       plot = frequency_plot,
-       width = 6,
-       height = 4,
-       units = "in"
-)
-
-
-
-
 ### Initial Asks----
 
 # typical investments asked for
@@ -267,3 +226,48 @@ ggsave(filename = "plots/typical_valuation_plot.png",
        units = "in"
 )
 
+
+### Deal Frequencies and Investors----
+
+# how often deals are made
+deals_summary <- shark_tank_us |>
+  summarize(
+    deals_made = sum(got_deal == TRUE),
+    deals_passed = sum(got_deal == FALSE),
+    total_pitches = n(),
+    pct_made = deals_made / total_pitches,
+    pct_passed = deals_passed / total_pitches
+  )
+
+frequency_colors <- c("FALSE" = "#EF664F", "TRUE" = "#5FBF53")
+
+frequency_plot <-
+  shark_tank_us |> 
+  ggplot(aes(x = got_deal, fill = got_deal)) +
+  geom_bar() +
+  scale_fill_manual(name = "Deal Made?", values = frequency_colors, labels = c("No Deal", "Deal")) +
+  annotate(geom = "text", x = 2, y = 785, label = "60%", fontface = 2) +
+  annotate(geom = "text", x = 1, y = 535, label = "40%", fontface = 2) +
+  scale_x_discrete(labels =  c("No Deal", "Deal")) +
+  coord_cartesian(ylim = c(0, 800)) +
+  theme_light() +
+  labs(
+    x = "",
+    y = "Count",
+    title = "Frequency of deals made on Shark Tank (US)",
+    subtitle = "Deals are made approximately 60% and not made 40% of the time.",
+    caption = "Source: Thirumani et al"
+  )
+
+ggsave(filename = "plots/frequency_plot.png",
+       plot = frequency_plot,
+       width = 6,
+       height = 4,
+       units = "in"
+)
+
+## Individual investor frequencies of deals
+
+# barbara corcoran
+
+# frequency of investing
