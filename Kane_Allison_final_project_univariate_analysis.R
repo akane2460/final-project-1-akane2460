@@ -10,9 +10,6 @@ library(janitor)
 ## Load Data ----
 shark_tank_us <- read_csv("data/shark_tank_us.csv")
 
-
-### Univariate Analysis Plots----
-
 # male/female/mixed team ratio
 gender_colors <- c("Male" = "#5484FF", "Female" = "#EC837D", "Mixed Team" = "#11B642")
 
@@ -60,22 +57,85 @@ ggsave(filename = "plots/businesses_represented_plot.png",
 
 # how often deals are made
 
+deals_summary <- shark_tank_us |>
+  summarize(
+    deals_made = sum(got_deal == TRUE),
+    deals_passed = sum(got_deal == FALSE),
+    total_pitches = n(),
+    pct_made = deals_made / total_pitches,
+    pct_passed = deals_passed / total_pitches
+  )
+# 
+# frequency_deal <- 
+#   shark_tank_us |> 
+#   ggplot(aes(x = ))
+
 ### Initial Asks----
 
 # typical investments asked for
+shark_tank_us |> 
+  skim_without_charts(original_ask_amount)
+
+investments_asked_plot <-
+  shark_tank_us |> 
+  ggplot(aes(x = original_ask_amount)) +
+  geom_histogram(binwidth = 50000, color = "white") +
+  geom_vline(xintercept = 200000, color = "#D52514") +
+  annotate("text", x = 215000, y = 200, label = "Median Requested", angle = 90, size = 3) +
+  theme_light() +
+  theme(axis.text.x = element_text(angle = 50, hjust = 1, size = 7)) +
+  coord_cartesian(xlim = c(0, 1000000)) +
+  labs(
+    x = "Valuation Requested (USD)",
+    y = "Count", 
+    title = "Typical Requested Investment on Shark Tank",
+    subtitle = "The typical investment requested originally is approximately 200,000 USD",
+    caption = "Source: Thirumani et al"
+  )
+
+ggsave(filename = "plots/investments_asked_plot.png",
+       plot = investments_asked_plot,
+       width = 8,
+       height = 6,
+       units = "in"
+)
 
 # typical equity asked for
+shark_tank_us |> 
+  skim_without_charts(original_offered_equity)
+
+equity_asked_plot <-
+  shark_tank_us |> 
+  ggplot(aes(x = original_offered_equity)) +
+  geom_histogram(binwidth = 5, color = "white") +
+  geom_vline(xintercept = 10, color = "#D52514") +
+  annotate("text", x = 14, y = 325, label = "Median Equity Offered", angle = 90, size = 3) +
+  theme_light() +
+  labs(
+    x = "Equity Originally Offered (in %)",
+    title = "Typical Originally Offered Equity (in %) on Shark Tank",
+    subtitle = "The typical equity offered is approximately 10 percent",
+    caption = "Source: Thirumani et al"
+  )
+
+ggsave(filename = "plots/equity_asked_plot.png",
+       plot = equity_asked_plot,
+       width = 8,
+       height = 6,
+       units = "in"
+)
+
 
 # typical valuation requested
 shark_tank_us |> 
   skim_without_charts(valuation_requested)
 
-typical_valuation_plot <-
+valuation_requested_plot <-
   shark_tank_us |> 
   ggplot(aes(x = valuation_requested)) +
   geom_histogram(binwidth = 500000, color = "white") +
   geom_vline(xintercept = 1500000, color = "#D52514") +
-  annotate("text", x = 1850000, y = 200, label = "Median Valuation", angle = 90, size = 3) +
+  annotate("text", x = 1650000, y = 200, label = "Median Valuation", angle = 90, size = 3) +
   theme_light() +
   theme(axis.text.x = element_text(angle = 50, hjust = 1, size = 7)) +
   coord_cartesian(xlim = c(0, 10000000)) +
@@ -86,8 +146,8 @@ typical_valuation_plot <-
     caption = "Source: Thirumani et al"
   )
 
-ggsave(filename = "plots/typical_valuation_plot.png",
-       plot = typical_valuation_plot,
+ggsave(filename = "plots/valuation_requested_plot.png",
+       plot = valuation_requested_plot,
        width = 8,
        height = 6,
        units = "in"
@@ -140,7 +200,7 @@ typical_equity_plot <-
   theme_light() +
   labs(
     x = "Typical Equity Received (in %)",
-    title = "Typical Equity Received (in %)",
+    title = "Typical Equity Received (in %) on Shark Tank",
     subtitle = "The typical equity received is approximately 20 percent",
     caption = "Source: Thirumani et al"
   )
@@ -152,6 +212,32 @@ ggsave(filename = "plots/typical_equity_plot.png",
        units = "in"
 )
 
-
 # typical valuation received
+shark_tank_us |> 
+  filter(deal_valuation > 0) |> # filter to only include those who received deals
+  skim_without_charts(deal_valuation)
+
+typical_valuation_plot <-
+  shark_tank_us |> 
+  filter(deal_valuation > 0) |> 
+  ggplot(aes(x = valuation_requested)) +
+  geom_histogram(binwidth = 500000, color = "white") +
+  geom_vline(xintercept = 1000000, color = "#D52514") +
+  annotate("text", x = 1150000, y = 160, label = "Median Valuation", angle = 90, size = 3) +
+  theme_light() +
+  theme(axis.text.x = element_text(angle = 50, hjust = 1, size = 7)) +
+  coord_cartesian(xlim = c(0, 10000000), ylim = c(0, 225)) +
+  labs(
+    x = "Valuation Requested (USD)",
+    title = "Typical Business Valuation Received on Shark Tank",
+    subtitle = "The typical valuation received is approximately 1,000,000 USD",
+    caption = "Source: Thirumani et al"
+  )
+
+ggsave(filename = "plots/typical_valuation_plot.png",
+       plot = typical_valuation_plot,
+       width = 8,
+       height = 6,
+       units = "in"
+)
 
