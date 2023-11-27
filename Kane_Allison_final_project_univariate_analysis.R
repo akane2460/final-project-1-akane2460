@@ -63,14 +63,13 @@ ggsave(filename = "plots/businesses_represented_plot.png",
 shark_tank_us |> 
   skim_without_charts(valuation_requested)
 
-
 typical_valuation_plot <-
   shark_tank_us |> 
   ggplot(aes(x = valuation_requested)) +
-  geom_histogram(binwidth = 500000) +
+  geom_histogram(binwidth = 500000, color = "white") +
   geom_vline(xintercept = 1500000, color = "#D52514") +
   annotate("text", x = 1850000, y = 200, label = "Median Valuation", angle = 90, size = 3) +
-theme_light() +
+  theme_light() +
   theme(axis.text.x = element_text(angle = 50, hjust = 1, size = 7)) +
   coord_cartesian(xlim = c(0, 10000000)) +
   labs(
@@ -96,7 +95,9 @@ typical_investment_plot <-
   shark_tank_us |> 
   filter(total_deal_amount > 0) |> 
   ggplot(aes(x = total_deal_amount)) +
-  geom_boxplot() +
+  geom_histogram(binwidth = 65000, color = "white") +
+  annotate("text", x = 225000, y = 150, label = "Median Investment", angle = 90, size = 3) +
+  geom_vline(xintercept = 200000, color = "#D52514") +
   theme_light() +
   theme(axis.text.x = element_text(angle = 50, hjust = 1, size = 7)) +
   coord_cartesian(xlim = c(0, 1000000)) +
@@ -123,7 +124,9 @@ typical_equity_plot <-
   shark_tank_us |> 
   filter(total_deal_equity > 0) |> 
   ggplot(aes(x = total_deal_equity)) +
-  geom_boxplot() +
+  geom_histogram(binwidth = 5, color = "white") +
+  geom_vline(xintercept = 20, color = "#D52514") +
+  annotate("text", x = 15, y = 125, label = "Median Equity", angle = 90, size = 3) +
   theme_light() +
   labs(
     x = "Typical Equity Received (in %)",
