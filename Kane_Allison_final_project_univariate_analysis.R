@@ -37,7 +37,6 @@ ggsave(filename = "plots/gender_ratios_plot.png",
 )
 
 # types of businesses represented
-
 businesses_represented_plot <-
   shark_tank_us |> 
   ggplot(aes(x = industry, fill = industry)) +
@@ -59,7 +58,15 @@ ggsave(filename = "plots/businesses_represented_plot.png",
        units = "in"
 )
 
-# typical valuation
+# how often deals are made
+
+### Initial Asks----
+
+# typical investments asked for
+
+# typical equity asked for
+
+# typical valuation requested
 shark_tank_us |> 
   skim_without_charts(valuation_requested)
 
@@ -86,7 +93,10 @@ ggsave(filename = "plots/typical_valuation_plot.png",
        units = "in"
 )
 
-# typical investments
+
+### Received from Deal----
+
+# typical investments received
 shark_tank_us |> 
   filter(total_deal_amount > 0) |> 
   skim_without_charts(total_deal_amount)
@@ -115,7 +125,7 @@ ggsave(filename = "plots/typical_investment_plot.png",
        units = "in"
 )
 
-# typical equities
+# typical equities received
 shark_tank_us |> 
   filter(total_deal_equity > 0) |> 
   skim_without_charts(total_deal_equity)
@@ -143,5 +153,5 @@ ggsave(filename = "plots/typical_equity_plot.png",
 )
 
 
-
+# typical valuation received
 
