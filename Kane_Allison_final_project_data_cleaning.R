@@ -197,6 +197,7 @@ shark_tank_us <- shark_tank_us |>
     )
   )
 
+  
 
 ### creating difference in asked for vs received investment (per shark), equity (per shark), valuation variables----
 shark_tank_us <- shark_tank_us |> 
