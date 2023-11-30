@@ -286,6 +286,8 @@ deals_summary <- shark_tank_us |>
 
 
 # frequency of investing
+  
+  
 
 
 
