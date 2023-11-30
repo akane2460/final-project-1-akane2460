@@ -357,7 +357,7 @@ shark_tank_us |>
     lg_pct_passed = lg_deals_passed / lg_total_pitches,
   )
 
-# how often mark cuban invests when someone pitches
+# how often lori greiner invests when someone pitches
 lg_invest_frequency <- shark_tank_us |> 
   ggplot(aes(x = lori_greiner_invested, fill = lori_greiner_invested)) +
   geom_bar() +
@@ -382,7 +382,7 @@ ggsave(filename = "plots/lg_invest_frequency.png",
        units = "in"
 )
 
-# lori greiner
+# robert herjavec
 shark_tank_us |>
   summarize(
     rh_deals_made = sum(robert_herjavec_invested == TRUE),
@@ -392,7 +392,7 @@ shark_tank_us |>
     rh_pct_passed = rh_deals_passed / rh_total_pitches,
   )
 
-# how often mark cuban invests when someone pitches
+# how often robert herjavec invests when someone pitches
 rh_invest_frequency <- shark_tank_us |> 
   ggplot(aes(x = robert_herjavec_invested, fill = robert_herjavec_invested)) +
   geom_bar() +
@@ -416,6 +416,77 @@ ggsave(filename = "plots/rh_invest_frequency.png",
        height = 4,
        units = "in"
 )
+
+# daymond john
+shark_tank_us |>
+  summarize(
+    dj_deals_made = sum(daymond_john_invested == TRUE),
+    dj_deals_passed = sum(daymond_john_invested == FALSE),
+    dj_total_pitches = n(),
+    dj_pct_made = dj_deals_made / dj_total_pitches,
+    dj_pct_passed = dj_deals_passed / dj_total_pitches,
+  )
+
+# how often daymond john invests when someone pitches
+dj_invest_frequency <- shark_tank_us |> 
+  ggplot(aes(x = daymond_john_invested, fill = daymond_john_invested)) +
+  geom_bar() +
+  scale_fill_manual(name = "Deal Made?", values = frequency_colors, labels = c("No Deal", "Deal")) +
+  annotate(geom = "text", x = 2, y = 145, label = "8.8%", fontface = 2) +
+  annotate(geom = "text", x = 1, y = 1200, label = "91.2%", fontface = 2) +
+  scale_x_discrete(labels =  c("No Deal", "Deal")) +
+  coord_cartesian(ylim = c(0, 1250)) +
+  theme_light() +
+  labs(
+    x = "",
+    y = "Count",
+    title = "Frequency of deals made by Daymond John on Shark Tank (US)",
+    subtitle = "When pitched to, John makes deals approximately 9% of the time.",
+    caption = "Source: Thirumani et al"
+  )
+
+ggsave(filename = "plots/dj_invest_frequency.png",
+       plot = dj_invest_frequency,
+       width = 6,
+       height = 4,
+       units = "in"
+)
+
+# kevin o leary
+shark_tank_us |>
+  summarize(
+    kol_deals_made = sum(kevin_o_leary_invested == TRUE),
+    kol_deals_passed = sum(kevin_o_leary_invested == FALSE),
+    kol_total_pitches = n(),
+    kol_pct_made = kol_deals_made / kol_total_pitches,
+    kol_pct_passed = kol_deals_passed / kol_total_pitches,
+  )
+
+# how often kevin o'leary invests when someone pitches
+kol_invest_frequency <- shark_tank_us |> 
+  ggplot(aes(x = kevin_o_leary_invested, fill = kevin_o_leary_invested)) +
+  geom_bar() +
+  scale_fill_manual(name = "Deal Made?", values = frequency_colors, labels = c("No Deal", "Deal")) +
+  annotate(geom = "text", x = 2, y = 145, label = "9.2%", fontface = 2) +
+  annotate(geom = "text", x = 1, y = 1190, label = "90.8%", fontface = 2) +
+  scale_x_discrete(labels =  c("No Deal", "Deal")) +
+  coord_cartesian(ylim = c(0, 1250)) +
+  theme_light() +
+  labs(
+    x = "",
+    y = "Count",
+    title = "Frequency of deals made by Kevin O'Leary on Shark Tank (US)",
+    subtitle = "When pitched to, O'Leary makes deals approximately 9% of the time.",
+    caption = "Source: Thirumani et al"
+  )
+
+ggsave(filename = "plots/kol_invest_frequency.png",
+       plot = kol_invest_frequency,
+       width = 6,
+       height = 4,
+       units = "in"
+)
+
 
 ### Investor Deal Quality----
 
