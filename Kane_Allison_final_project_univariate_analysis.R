@@ -267,6 +267,10 @@ ggsave(filename = "plots/frequency_plot.png",
 )
 
 
+
+
+# proportion each individual investor contributes to all deals made
+
 ## Individual investor frequencies of deals
 
 # barbara corcoran
@@ -306,7 +310,6 @@ ggsave(filename = "plots/bc_invest_frequency.png",
 
 
 # mark cuban
-
 shark_tank_us |>
   summarize(
     mc_deals_made = sum(mark_cuban_invested == TRUE),
@@ -316,7 +319,7 @@ shark_tank_us |>
     mc_pct_passed = mc_deals_passed / mc_total_pitches,
   )
 
-# how often barbara invests when someone pitches
+# how often mark cuban invests when someone pitches
 mc_invest_frequency <- shark_tank_us |> 
   ggplot(aes(x = mark_cuban_invested, fill = mark_cuban_invested)) +
   geom_bar() +
@@ -342,4 +345,15 @@ ggsave(filename = "plots/mc_invest_frequency.png",
 )
 
 
+### Investor Deal Quality----
+
+# Compare asked for investment, equity, valuation to the actual
+
+# barbara corcoran deal quality 
+# shark_tank_us |>
+#   filter(barbara_corcoran_invested == TRUE) |>
+#   ggplot(aes(x = ))
+
+
+# mark cuban deal quality 
 

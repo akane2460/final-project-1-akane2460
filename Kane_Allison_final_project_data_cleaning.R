@@ -198,6 +198,19 @@ shark_tank_us <- shark_tank_us |>
   )
 
 
+### creating difference in asked for vs received investment (per shark), equity (per shark), valuation variables----
+shark_tank_us <- shark_tank_us |> 
+  mutate(
+    investment_difference = ifelse(got_deal == TRUE, investment_amount_per_shark - original_ask_amount, NA),
+    
+    equity_difference = ifelse(got_deal == TRUE, equity_per_shark - original_offered_equity, NA),
+    
+    valuation_difference = ifelse(got_deal == TRUE, deal_valuation - valuation_requested, NA)) |> 
+  relocate(
+    investment_difference:valuation_difference,
+    .after = equity_per_shark
+  )
+
 ### removing irrelevant variables ----
 
 shark_tank_us <- shark_tank_us |> 
