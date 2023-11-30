@@ -267,27 +267,79 @@ ggsave(filename = "plots/frequency_plot.png",
 )
 
 
-
 ## Individual investor frequencies of deals
 
-# will have to filter out seasons 11-14 due to missingness issues
-
 # barbara corcoran
-
-deals_summary <- shark_tank_us |>
-  filter(season_number < 11)
+shark_tank_us |>
   summarize(
     bc_deals_made = sum(barbara_corcoran_invested == TRUE),
     bc_deals_passed = sum(barbara_corcoran_invested == FALSE),
     bc_total_pitches = n(),
-    bc_pct_made = deals_made / total_pitches,
-    bc_pct_passed = deals_passed / total_pitches
+    bc_pct_made = bc_deals_made / bc_total_pitches,
+    bc_pct_passed = bc_deals_passed / bc_total_pitches,
   )
 
+# how often barbara invests when someone pitches
+bc_invest_frequency <- shark_tank_us |> 
+  ggplot(aes(x = barbara_corcoran_invested, fill = barbara_corcoran_invested)) +
+  geom_bar() +
+  scale_fill_manual(name = "Deal Made?", values = frequency_colors, labels = c("No Deal", "Deal")) +
+  annotate(geom = "text", x = 2, y = 150, label = "9.3%", fontface = 2) +
+  annotate(geom = "text", x = 1, y = 1200, label = "90.7%", fontface = 2) +
+  scale_x_discrete(labels =  c("No Deal", "Deal")) +
+  coord_cartesian(ylim = c(0, 1250)) +
+  theme_light() +
+  labs(
+    x = "",
+    y = "Count",
+    title = "Frequency of deals made by Barbara Corcoran on Shark Tank (US)",
+    subtitle = "When pitched to, Corcoran makes deals less than 10% of the time.",
+    caption = "Source: Thirumani et al"
+  )
+  
+ggsave(filename = "plots/bc_invest_frequency.png",
+       plot = bc_invest_frequency,
+       width = 6,
+       height = 4,
+       units = "in"
+)
 
-# frequency of investing
-  
-  
+
+# mark cuban
+
+shark_tank_us |>
+  summarize(
+    mc_deals_made = sum(mark_cuban_invested == TRUE),
+    mc_deals_passed = sum(mark_cuban_invested == FALSE),
+    mc_total_pitches = n(),
+    mc_pct_made = mc_deals_made / mc_total_pitches,
+    mc_pct_passed = mc_deals_passed / mc_total_pitches,
+  )
+
+# how often barbara invests when someone pitches
+mc_invest_frequency <- shark_tank_us |> 
+  ggplot(aes(x = mark_cuban_invested, fill = mark_cuban_invested)) +
+  geom_bar() +
+  scale_fill_manual(name = "Deal Made?", values = frequency_colors, labels = c("No Deal", "Deal")) +
+  annotate(geom = "text", x = 2, y = 265, label = "18.1%", fontface = 2) +
+  annotate(geom = "text", x = 1, y = 1075, label = "81.9%", fontface = 2) +
+  scale_x_discrete(labels =  c("No Deal", "Deal")) +
+  coord_cartesian(ylim = c(0, 1250)) +
+  theme_light() +
+  labs(
+    x = "",
+    y = "Count",
+    title = "Frequency of deals made by Mark Cuban on Shark Tank (US)",
+    subtitle = "When pitched to, Cuban makes deals nearly 20% of the time.",
+    caption = "Source: Thirumani et al"
+  )
+
+ggsave(filename = "plots/mc_invest_frequency.png",
+       plot = mc_invest_frequency,
+       width = 6,
+       height = 4,
+       units = "in"
+)
 
 
 
