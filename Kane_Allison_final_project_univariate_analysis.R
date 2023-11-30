@@ -271,6 +271,9 @@ ggsave(filename = "plots/frequency_plot.png",
 
 # proportion each individual investor contributes to all deals made
 
+
+
+
 ## Individual investor frequencies of deals
 
 # barbara corcoran
@@ -344,6 +347,75 @@ ggsave(filename = "plots/mc_invest_frequency.png",
        units = "in"
 )
 
+# lori greiner
+shark_tank_us |>
+  summarize(
+    lg_deals_made = sum(lori_greiner_invested == TRUE),
+    lg_deals_passed = sum(lori_greiner_invested == FALSE),
+    lg_total_pitches = n(),
+    lg_pct_made = lg_deals_made / lg_total_pitches,
+    lg_pct_passed = lg_deals_passed / lg_total_pitches,
+  )
+
+# how often mark cuban invests when someone pitches
+lg_invest_frequency <- shark_tank_us |> 
+  ggplot(aes(x = lori_greiner_invested, fill = lori_greiner_invested)) +
+  geom_bar() +
+  scale_fill_manual(name = "Deal Made?", values = frequency_colors, labels = c("No Deal", "Deal")) +
+  annotate(geom = "text", x = 2, y = 230, label = "15.6%", fontface = 2) +
+  annotate(geom = "text", x = 1, y = 1100, label = "84.4%", fontface = 2) +
+  scale_x_discrete(labels =  c("No Deal", "Deal")) +
+  coord_cartesian(ylim = c(0, 1250)) +
+  theme_light() +
+  labs(
+    x = "",
+    y = "Count",
+    title = "Frequency of deals made by Lori Greiner on Shark Tank (US)",
+    subtitle = "When pitched to, Greiner makes deals approximately 15% of the time.",
+    caption = "Source: Thirumani et al"
+  )
+
+ggsave(filename = "plots/lg_invest_frequency.png",
+       plot = lg_invest_frequency,
+       width = 6,
+       height = 4,
+       units = "in"
+)
+
+# lori greiner
+shark_tank_us |>
+  summarize(
+    rh_deals_made = sum(robert_herjavec_invested == TRUE),
+    rh_deals_passed = sum(robert_herjavec_invested == FALSE),
+    rh_total_pitches = n(),
+    rh_pct_made = rh_deals_made / rh_total_pitches,
+    rh_pct_passed = rh_deals_passed / rh_total_pitches,
+  )
+
+# how often mark cuban invests when someone pitches
+rh_invest_frequency <- shark_tank_us |> 
+  ggplot(aes(x = robert_herjavec_invested, fill = robert_herjavec_invested)) +
+  geom_bar() +
+  scale_fill_manual(name = "Deal Made?", values = frequency_colors, labels = c("No Deal", "Deal")) +
+  annotate(geom = "text", x = 2, y = 150, label = "9.6%", fontface = 2) +
+  annotate(geom = "text", x = 1, y = 1175, label = "90.4%", fontface = 2) +
+  scale_x_discrete(labels =  c("No Deal", "Deal")) +
+  coord_cartesian(ylim = c(0, 1250)) +
+  theme_light() +
+  labs(
+    x = "",
+    y = "Count",
+    title = "Frequency of deals made by Robert Herjavec on Shark Tank (US)",
+    subtitle = "When pitched to, Herjavec makes deals less than 10% of the time.",
+    caption = "Source: Thirumani et al"
+  )
+
+ggsave(filename = "plots/rh_invest_frequency.png",
+       plot = rh_invest_frequency,
+       width = 6,
+       height = 4,
+       units = "in"
+)
 
 ### Investor Deal Quality----
 
