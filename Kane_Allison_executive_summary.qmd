@@ -1,0 +1,21 @@
+---
+title: "Girl Power? Investment Trends for Female Entrepreneurs on Shark Tank (US)"
+subtitle: |
+  | Final Project 
+  | Data Science 1 with R (STAT 301-1)
+author: "Allison Kane"
+date: today
+
+format:
+  html:
+    toc: true
+    embed-resources: true
+    
+execute:
+  echo: false
+  warning: false
+
+from: markdown+emoji 
+---
+
+## Executive summary
