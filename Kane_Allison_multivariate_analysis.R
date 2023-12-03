@@ -27,6 +27,13 @@ shark_tank_us <- read_csv("data/shark_tank_us.csv")
 shark_tank_us |> 
   group_by(pitchers_gender) |> 
   skim_without_charts(original_ask_amount)
+
+median_investment_asked_gender <- shark_tank_us |> 
+  group_by(pitchers_gender) |> 
+  summarise(median_value = median(original_ask_amount), 
+            median_label = str_c("Median Investment Requested: $", median_value))
+
+
 # mixed team median both 200000 but female only 150000
 gender_colors <- c("Male" = "#5484FF", "Female" = "#EC837D", "Mixed Team" = "#11B642")
 
@@ -39,13 +46,16 @@ gender_investments_asked_plot <-
   theme_light() +
   theme(axis.text.x = element_text(angle = 50, hjust = 1, size = 7)) +
   coord_cartesian(xlim = c(0, 1000000)) +
+  geom_vline(data = median_investment_asked_gender, aes(xintercept = median_value), color = "red") +
+  geom_text(data = median_investment_asked_gender,
+            aes(x = median_value , y = 105, label = "Median Investment \nRequested"), vjust = 1.25, size = 2.5, angle = 90) +
   labs(
     x = "Investment Requested (USD)",
     y = "Count", 
     title = "Typical Requested Investment on Shark Tank",
     subtitle = "The typical investment requested by all male and mixed teams is approximately 50,000 greater than female teams",
     caption = "Source: Thirumani et al"
-  )
+  ) 
 
 ggsave(filename = "plots/gender_investments_asked_plot.png",
        plot = gender_investments_asked_plot,
@@ -54,16 +64,29 @@ ggsave(filename = "plots/gender_investments_asked_plot.png",
        units = "in"
 )
 
-# typical equity asked for
+# typical equity asked for by gender
 shark_tank_us |> 
+  group_by(pitchers_gender) |> 
   skim_without_charts(original_offered_equity)
 
-equity_asked_plot <-
+median_equity_offered_gender <- shark_tank_us |> 
+  group_by(pitchers_gender) |> 
+  summarise(median_value = median(original_offered_equity), 
+            median_label = str_c("Median Equity Offered: ", median_value, "%"))
+
+equity_asked_plot_gender <-
   shark_tank_us |> 
-  ggplot(aes(x = original_offered_equity)) +
-  geom_histogram(binwidth = 5, color = "white") +
-  geom_vline(xintercept = 10, color = "#D52514") +
-  annotate("text", x = 14, y = 325, label = "Median Equity Offered", angle = 90, size = 3) +
+  ggplot(aes(x = original_offered_equity, fill = pitchers_gender)) +
+  geom_histogram(binwidth = 5, color = "white", show.legend = FALSE) +
+  facet_wrap(~ pitchers_gender) +
+  geom_vline(data = median_investment_asked_gender, 
+             aes(xintercept = median_value), 
+             color = "red") +
+  geom_text(data = median_investment_asked_gender,
+            aes(x = median_value , y = 105, label = median_label),
+            vjust = 1.25, 
+            size = 2.5, 
+            angle = 90) +
   theme_light() +
   labs(
     x = "Equity Originally Offered (in %)",
@@ -72,8 +95,8 @@ equity_asked_plot <-
     caption = "Source: Thirumani et al"
   )
 
-ggsave(filename = "plots/equity_asked_plot.png",
-       plot = equity_asked_plot,
+ggsave(filename = "plots/equity_asked_plot_gender.png",
+       plot = equity_asked_plot_gender,
        width = 8,
        height = 6,
        units = "in"
