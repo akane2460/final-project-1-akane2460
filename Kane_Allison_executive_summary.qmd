@@ -19,3 +19,15 @@ from: markdown+emoji
 ---
 
 ## Executive summary
+
+
+::: {.callout-tip icon=false}
+
+## Github Repo Link
+
+[Allison Kane Final Project Repo Link](https://github.com/stat301-1-2023-fall/final-project-1-akane2460.git)
+
+:::
+
+
+
