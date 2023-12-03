@@ -71,7 +71,7 @@ investments_asked_plot <-
   theme(axis.text.x = element_text(angle = 50, hjust = 1, size = 7)) +
   coord_cartesian(xlim = c(0, 1000000)) +
   labs(
-    x = "Valuation Requested (USD)",
+    x = "Investment Requested (USD)",
     y = "Count", 
     title = "Typical Requested Investment on Shark Tank",
     subtitle = "The typical investment requested originally is approximately 200,000 USD",
