@@ -72,7 +72,7 @@ median_equity_offered_gender <- shark_tank_us |>
   summarise(median_value = median(original_offered_equity), 
             median_label = str_c("Median Equity Offered: ", median_value, "%"))
 
-equity_asked_plot_gender <-
+gender_equity_asked_plot <-
   shark_tank_us |> 
   ggplot(aes(x = original_offered_equity, fill = pitchers_gender)) +
   geom_histogram(binwidth = 5, color = "white", show.legend = FALSE) +
@@ -95,8 +95,8 @@ equity_asked_plot_gender <-
     caption = "Source: Thirumani et al"
   )
 
-ggsave(filename = "plots/equity_asked_plot_gender.png",
-       plot = equity_asked_plot_gender,
+ggsave(filename = "plots/gender_equity_asked_plot.png",
+       plot = gender_equity_asked_plot,
        width = 8,
        height = 6,
        units = "in"
@@ -104,26 +104,40 @@ ggsave(filename = "plots/equity_asked_plot_gender.png",
 
 # typical valuation requested
 shark_tank_us |> 
-  skim_without_charts(valuation_requested)
+  group_by(pitchers_gender) |> 
+  skim_without_charts(valuation_requested) 
 
-valuation_requested_plot <-
+median_valuation_requested_gender <- shark_tank_us |> 
+  group_by(pitchers_gender) |> 
+  summarise(median_value = median(valuation_requested), 
+            median_label = str_c("Median Valuation: ", median_value))
+
+gender_valuation_requested_plot <-
   shark_tank_us |> 
-  ggplot(aes(x = valuation_requested)) +
-  geom_histogram(binwidth = 500000, color = "white") +
-  geom_vline(xintercept = 1500000, color = "#D52514") +
-  annotate("text", x = 1650000, y = 200, label = "Median Valuation", angle = 90, size = 3) +
+  ggplot(aes(x = valuation_requested, fill = pitchers_gender)) +
+  geom_histogram(binwidth = 500000, color = "white", show.legend = FALSE) +
+  facet_wrap(~ pitchers_gender) +
+  geom_vline(data = median_valuation_requested_gender, 
+             aes(xintercept = median_value), 
+             color = "red") +
+  geom_text(data = median_valuation_requested_gender,
+            aes(x = median_value , y = 100, label = "Median Initial Valuation"),
+            vjust = 1.5, 
+            size = 3, 
+            angle = 90) +
+  scale_fill_manual(values = gender_colors) + 
   theme_light() +
   theme(axis.text.x = element_text(angle = 50, hjust = 1, size = 7)) +
   coord_cartesian(xlim = c(0, 10000000)) +
   labs(
     x = "Valuation Requested (USD)",
-    title = "Typical Business Valuation Requested on Shark Tank",
-    subtitle = "The typical valuation requested is approximately 1,500,000 USD",
+    title = "Typical Business Valuation Requested on Shark Tank By Gender",
+    subtitle = "Female run businesses are initially valued over 600,000 USD less than male-run businesses.",
     caption = "Source: Thirumani et al"
   )
 
-ggsave(filename = "plots/valuation_requested_plot.png",
-       plot = valuation_requested_plot,
+ggsave(filename = "plots/gender_valuation_requested_plot.png",
+       plot = gender_valuation_requested_plot,
        width = 8,
        height = 6,
        units = "in"
