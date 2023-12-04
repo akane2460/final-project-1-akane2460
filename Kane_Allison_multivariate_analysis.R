@@ -10,8 +10,6 @@ library(janitor)
 ## Load Data ----
 shark_tank_us <- read_csv("data/shark_tank_us.csv")
 
-
-# (1) female entrepreneurs are represented as often as male entrepreneurs in the show, 
 # (2) if female entrepreneurs ask for similar amounts of investment, valuation, and equity in their businesses as male entrepreneurs, 
 # (3) female entrepreneurs receive investment as often as male entrepreneurs, 
 # (4) if that investment aligns with their initial demands (i.e. quality of investment),
@@ -79,19 +77,21 @@ equity_asked_plot_gender <-
   ggplot(aes(x = original_offered_equity, fill = pitchers_gender)) +
   geom_histogram(binwidth = 5, color = "white", show.legend = FALSE) +
   facet_wrap(~ pitchers_gender) +
-  geom_vline(data = median_investment_asked_gender, 
+  coord_cartesian(xlim = c(0, 50)) +
+  geom_vline(data = median_equity_offered_gender, 
              aes(xintercept = median_value), 
              color = "red") +
-  geom_text(data = median_investment_asked_gender,
-            aes(x = median_value , y = 105, label = median_label),
-            vjust = 1.25, 
+  geom_text(data = median_equity_offered_gender,
+            aes(x = median_value , y = 175, label = "Median Equity Offered"),
+            vjust = 2.5, 
             size = 2.5, 
-            angle = 90) +
+            angle = 90 
+            ) +
   theme_light() +
   labs(
     x = "Equity Originally Offered (in %)",
     title = "Typical Originally Offered Equity (in %) on Shark Tank",
-    subtitle = "The typical equity offered is approximately 10 percent",
+    subtitle = "Female teams typically offer 2% more equity than male and mixed teams.",
     caption = "Source: Thirumani et al"
   )
 
@@ -101,7 +101,6 @@ ggsave(filename = "plots/equity_asked_plot_gender.png",
        height = 6,
        units = "in"
 )
-
 
 # typical valuation requested
 shark_tank_us |> 
