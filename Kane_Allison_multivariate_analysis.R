@@ -56,8 +56,6 @@ ggsave(filename = "plots/gender_freq_of_investments_plot.png",
        units = "in"
 )
 
-
-
 ### typical requested investment, equity and valuation by gender----
 
 # typical investments asked for by gender
@@ -510,6 +508,42 @@ ggsave(filename = "plots/women_dominated_industries_plot.png",
 )
 
 
-### do female dominanted industries if these businesses receive investment as often ----
+### do female dominated industries if these businesses receive investment as often ----
+
+industry_investment_frequencies_summary <- shark_tank_us |> 
+  group_by(industry) |> 
+  summarize(
+    deals_made = sum(got_deal == TRUE),
+    deals_passed = sum(got_deal == FALSE),
+    total_pitches = n(),
+    prop_made = deals_made / total_pitches,
+    prop_passed = deals_passed / total_pitches,
+    pct_made = deals_made / total_pitches * 100,
+    pct_passed = deals_passed / total_pitches * 100
+  ) |> 
+  arrange(desc(pct_made))
+
+industry_investment_frequency_plot <- shark_tank_us |> 
+  ggplot(aes(x = industry, fill = got_deal)) +
+  geom_bar(position = "fill") +
+  theme(axis.text.x = element_text(angle = 50, hjust = 1, size = 7)) +
+  scale_fill_manual(name = "Deal Made?", values = frequency_colors, labels = c("No Deal", "Deal")) +
+  labs(
+    x = "Industry",
+    y = "",
+    fill = "Got deal?",
+    title = "Percent of Deals Made by Industry on Shark Tank (US)",
+    subtitle = "Industries with deals made most often include Automotive, Lifestyle/Home and Uncertain/Other.",
+    caption = "Source: Thirumani et al"
+  )
+
+ggsave(filename = "plots/industry_investment_frequency_plot.png",
+       plot = industry_investment_frequency_plot,
+       width = 8,
+       height = 6,
+       units = "in"
+)
+
+
 
 ### which sharks invest more in female-dominated industries ----
