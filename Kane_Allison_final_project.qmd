@@ -84,11 +84,25 @@ The typical investment requested on Shark Tank (US) is approximately 200,000 USD
 In analyzing how requested investment on Shark Tank (US) varies by gender, it is clear that male entrepreneurs and mixed gender entrepreneur teams typically request 50,000 USD more than their female entrepreneur counterparts. Female entrepreneurs also request 50,000 USD less than the general population. This difference in requested investment might be explained by different equities offered or different typical valuations of their businesses that are to be analyzed. 
 
 ![Typical Equity Offered](plots/equity_asked_plot.png)
+The typical offered equity during a pitch on Shark Tank (US) is approximately 10 percent. There is some slight variation, with the most offered being 100 percent (indicating the business owner would like to be bought out) and lease offered being 1 percent. The distribution of equity offered is skewed right, with a peak at approximately 10 percent. It is important to investigate, however, if this offered equity is uniform across all genders.
 
+![Typical Equity Offered by Gender](plots/gender_equity_asked_plot.png)
+The typical offered equity during a pitch on Shark Tank (US) for female entrepreneurs is 12%, while the typical offered equity for both male and mixed gender entrepreneur teams is 10%. Female entrepreneurs typically offer 2% more in equity than both the general population and their male and mixed gender entrepreneur counterparts. The general distribution of offered equity appears to be the same across all genders, with a peak around the median equity offered and a slight right skew. Given that female entrepreneurs both offer more equity and request less in investment, it is likely that they undervalue their businesses compared to male and mixed team entrepreneurs. 
 
+![Typical Valuation Requested Initially](plots/valuation_requested_plot.png)
+The typical initial valuation requested on Shark Tank is approximately 1,500,000 USD. The distribution of the requested valuation is skewed somewhat right with a peak slightly below this typical valuation. The greatest valuation requested is approximately 100,000,000 USD, while the lowest is approximately 40,000 USD. Given the differences in requested investment and equity offered across entrepreneur gender, it is expected that this requested valuation should differ for female, male and mixed gender entrepreneur teams.
 
+![Typical Initial Valuation Requested by Gender](plots/gender_valuation_requested_plot.png)
+Businesses run by female entrepreneurs are valued typically at 1,000,000 USD, while male-run businesses are valued at 1,666,667 USD and mixed gender-run businesses are valued at 2,000,000 USD. The distributions of these businesses are similar, each with a right skew and a peak slightly below the median valuation. The range of valuations requested are somewhat similar, with male-run businesses having a lowest requested valuation value of 40,000 USD and highest of 100,000,000 USD. Female-run businesses have 85,714 USD and 25,000,000 USD respectively. Mixed-gender teams have 100,000 USD and 25,000,000 USD respectively.
+
+Overall, it is clear that female entrepreneurs typically request less in investment, offer more in equity and value their businesses less than their male and mixed-gender team entrepreneur counterparts. However, it is unclear *why* exactly. Is it because female entrepreneurs are more conservative in their assessment of their company's worth? Do male and mixed gender entrepreneurs overvalue their companies? Exploring what investment, equity and valuation these entrepreneurs receive when they make deals can provide some insight.
 
 ### Received Investment, Equity and Valuation
+
+The investment received after a deal on Shark Tank is a strong indicator of the success of a pitch on the show. 
+
+![Typical Investment](plots/typical_investment_plot.png)
+The typical investment for entrepreneurs that received deals on Shark Tank (US) is approximately 200,000 USD. 
 
 
 ## Shark Trends
@@ -101,9 +115,6 @@ In analyzing how requested investment on Shark Tank (US) varies by gender, it is
 
 
 
-A thoughtful exploration weaves together prose, figures, and tables to help a reader build understanding. It is a guided tour that should have clear motivations for each step in the process (think guiding curiosities or research questions). It should be clear how things build of of each other and why we are looking at what is being presented. Should also be letting the reader know whether what is shown is as expected or is it surprising (maybe some of each).
-
-You could imagine structuring this section around analysis type: univariate, bivariate, and multivariate. Can be a little harder to build a narrative with this structure. Could build sections that are dedicated to important variables: variable 1, variable 2, etc. In this case the sections would thoroughly explore the section’s variable through univariate, bivariate, and multivariate analyses. Alternatively, could build your sections around broad curiosities/research questions. Some of which probably inspired the project, and others that were developed through conducting the EDA.
 
 ## Conclusions
 

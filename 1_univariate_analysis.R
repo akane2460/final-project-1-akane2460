@@ -523,13 +523,4 @@ ggsave(filename = "plots/kol_invest_frequency.png",
 
 ### Investor Deal Quality----
 
-# Compare asked for investment, equity, valuation to the actual
-
-# barbara corcoran deal quality 
-# shark_tank_us |>
-#   filter(barbara_corcoran_invested == TRUE) |>
-#   ggplot(aes(x = ))
-
-
-# mark cuban deal quality 
 
