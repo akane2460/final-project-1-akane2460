@@ -424,11 +424,8 @@ ggsave(filename = "plots/industries_preferred_female_sharks_plot.png",
        units = "in"
 )
 
-
-
-
 # male sharks industries preferred 
-male_sharks |> 
+industries_preferred_male_sharks_plot <- male_sharks |> 
   ggplot(aes(x = industry, fill = industry)) +
   geom_bar() +
   theme_light() +
@@ -436,10 +433,15 @@ male_sharks |>
   labs(
     x = "Type of Business",
     y = "Count",
-    title = "Types of Businesses and Industries Invested in by Female Sharks on Shark Tank (US).",
-    subtitle = "The most represented industries are Food/Beverage, Fashion/Beauty, Children/Education and Lifestyle/Home.",
+    title = "Types of Businesses and Industries Invested in by Male Sharks on Shark Tank (US).",
+    subtitle = "The most represented industries are Food/Beverage, Lifestyle/Home, Fashion/Beauty, and Fitness/Sports/Outdoors.",
     caption = "Source: Thirumani et al",
     fill = "Industry"
   )
 
-
+ggsave(filename = "plots/industries_preferred_male_sharks_plot.png",
+       plot = industries_preferred_male_sharks_plot,
+       width = 10,
+       height = 6,
+       units = "in"
+)
