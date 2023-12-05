@@ -119,7 +119,12 @@ The typical valuation received after a deal on Shark Tank is 1,000,000 USD. The 
 ![Typical Valuation Received By Gender](plots/gender_valuation_received_plot.png)
 The typical valuation received for female entrepreneurs (666,667 USD) is less than that of male entrepreneurs (1,000,000 USD) and mixed gender teams (1,035,714 USD). This is in alignment with the gender differences seen in equity (more equity given for female entrepreneurs) and investment (less investment received for female entrepreneurs). Why does this occur? Are female entrepreneurs undervaluing their businesses or do male entrepreneurs and mixed teams overvalue their businesses? Perhaps it is an instance where female entrepreneurs ask for less and therefore receive less? Exploring the differences in requested and received investment, equity and valuation for each pitch could provide some insight. 
 
+### Pitch Success
 
+The success of a pitch can often be measured by how in line with the pitcher's expectations the investment, equity and valuation agreed upon are. Given the differences across gender with the typical requested investment, equity and valuation and typical received investment, equity and valuation, investigating how these values align or differ for each pitch is critical.
+
+![Difference in Investment Requested and Received on Shark Tank](plots/gender_investment_difference_plot.png)
+The typical difference in investment received and requested in USD is approximately 0 across all genders, indicating that most investments received are in line with expectations set out in the pitch. The distribution of investment differences are similar across all genders, with peaks at approximately 0 USD and some greater variation below 0 USD and very few investment differences above 0 USD. This indicates that perhaps in instances where female entrepreneurs are receiving less investment, it could be because their typical investment expectations are less than that of male entrepreneurs. However, further analysis is to be conducted on whether this lower investment amount impacts equity and valuation differences.
 
 
 

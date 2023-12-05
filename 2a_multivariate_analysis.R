@@ -341,7 +341,7 @@ gender_investment_difference_plot <-
   coord_cartesian(xlim = c(-100000, 100000)) +
   geom_vline(data = median_investment_difference_gender, aes(xintercept = median_value), color = "red") +
   geom_text(data = median_investment_difference_gender,
-            aes(x = median_value , y = 150, label = median_label), vjust = 2.25, size = 3, angle = 90) +
+            aes(x = median_value , y = 175, label = median_label), vjust = 3, size = 3, angle = 90) +
   labs(
     x = "Investment Difference (USD)",
     y = "Count", 
@@ -352,7 +352,7 @@ gender_investment_difference_plot <-
 
 ggsave(filename = "plots/gender_investment_difference_plot.png",
        plot = gender_investment_difference_plot,
-       width = 8,
+       width = 10,
        height = 6,
        units = "in"
 )
@@ -375,6 +375,7 @@ gender_equity_difference_plot <-
   ggplot(aes(x = equity_difference, fill = pitchers_gender)) +
   geom_histogram(binwidth = 5, color = "white", show.legend = FALSE) +
   facet_wrap(~ pitchers_gender) +
+  scale_fill_manual(values = gender_colors) +
   coord_cartesian(xlim = c(-50, 50), ylim = c(0, 110)) +
   geom_vline(data = median_equity_difference_gender, 
              aes(xintercept = median_value), 
