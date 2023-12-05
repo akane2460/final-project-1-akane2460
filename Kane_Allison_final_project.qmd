@@ -110,10 +110,18 @@ Typical investment for male entrepreneurs is approximately 50,000 USD more than 
 ![Typical Equity Received](plots/typical_equity_plot.png)
 For all deals made on Shark Tank (US), the typical equity received by the shark is approximately 20%, much greater than the typical equity requested, with a peak at 20% and a very slight skew to the right. The greatest equity received is approximately 100% (complete buy-out) and lowest is approximately 2%. Since the typical investment received approximately matches the typical investment requested, this discrepancy in equity received and equity offered might indicate that many sharks overvalue their businesses. This will be further explored in their valuations. 
 
+![Typical Equity Received by Gender](plots/gender_equity_received_plot.png)
+In investigating typical equity received by gender, it is clear that female entrepreneurs typically give more equity (25%) than the general population (20%), male entrepreneurs (20%), and mixed entrepreneur teams (22%). The distributions of these equity values are fairly similar, with peaks around the median equity values and very little skew. The highest equity given for all genders is 100%, indicating a buy-out. The lowest equity given for female entrepreneurs was 2.5%, for male entrepeneurs was 2% and for mixed gender teams was 3%. This difference in equity indicates that while female entrepreneurs receive less investment than their male counterparts, they actually give *more* equity. Additionally mixed gender teams receive much more investment than female entrepreneurs but only offer slightly less equity. This indicates that female-run businesses could be valued differently than male-run or mixed-team run businesses. Futher analysis is required.
+
+![Typical Valuation Received](plots/typical_valuation_plot.png)
+The typical valuation received after a deal on Shark Tank is 1,000,000 USD. The lowest valuation received is approximately 14,286 USD and highest 36,000,000 USD. The distribution of valuation received is skewed to the right with a peak slightly below 1,000,000 USD. This differs substantially from the typical requested valuation of 1,500,000 USD, indicating that perhaps many entrepreneurs overvalue their businesses while pitching.
+
+![Typical Valuation Received By Gender](plots/gender_valuation_received_plot.png)
+The typical valuation received for female entrepreneurs (666,667 USD) is less than that of male entrepreneurs (1,000,000 USD) and mixed gender teams (1,035,714 USD). This is in alignment with the gender differences seen in equity (more equity given for female entrepreneurs) and investment (less investment received for female entrepreneurs). Why does this occur? Are female entrepreneurs undervaluing their businesses or do male entrepreneurs and mixed teams overvalue their businesses? Perhaps it is an instance where female entrepreneurs ask for less and therefore receive less? Exploring the differences in requested and received investment, equity and valuation for each pitch could provide some insight. 
 
 
 
-Perhaps it is an instance where female entrepreneurs ask for less and therefore receive less?
+
 
 ## Shark Trends
 
