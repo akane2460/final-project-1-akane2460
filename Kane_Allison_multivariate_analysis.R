@@ -10,10 +10,6 @@ library(janitor)
 ## Load Data ----
 shark_tank_us <- read_csv("data/shark_tank_us.csv")
 
-# (5) which sharks invest in female entrepreneurs more often, and 
-# (6) if specific sharks undervalue businesses started by women compared to men. Additionally, I plan to investigate 
-
-
 ### frequency of investments in women run businesses----
 
 frequency_colors <- c("FALSE" = "#EF664F", "TRUE" = "#5FBF53")
@@ -545,5 +541,156 @@ ggsave(filename = "plots/industry_investment_frequency_plot.png",
 )
 
 
+## INDIVIDUAL SHARKS
+
+### which sharks invest in female entrepreneurs more often----
+
+bc_freq_invest_women_summary <- shark_tank_us |> 
+  filter(barbara_corcoran_invested == TRUE) |> 
+  summarize(
+    shark_name = "Barbara Corcoran",
+      total = n(),
+      count_women = sum(pitchers_gender == "Female"),
+      count_men = sum(pitchers_gender == "Male"),
+      count_mixed = sum(pitchers_gender == "Mixed Team"),
+      pct_women = count_women/total * 100,
+      pct_men = count_men/total * 100,
+      pct_mixed = count_mixed/total * 100,
+      ) |> 
+      arrange(desc(pct_women))
+
+mc_freq_invest_women_summary <- shark_tank_us |> 
+  filter(mark_cuban_invested == TRUE) |> 
+  summarize(
+    shark_name = "Mark Cuban",
+    total = n(),
+    count_women = sum(pitchers_gender == "Female"),
+    count_men = sum(pitchers_gender == "Male"),
+    count_mixed = sum(pitchers_gender == "Mixed Team"),
+    pct_women = count_women/total * 100,
+    pct_men = count_men/total * 100,
+    pct_mixed = count_mixed/total * 100,
+  ) |> 
+  arrange(desc(pct_women))
+
+lg_freq_invest_women_summary <- shark_tank_us |> 
+  filter(lori_greiner_invested == TRUE) |> 
+  summarize(
+    shark_name = "Lori Greiner",
+    total = n(),
+    count_women = sum(pitchers_gender == "Female"),
+    count_men = sum(pitchers_gender == "Male"),
+    count_mixed = sum(pitchers_gender == "Mixed Team"),
+    pct_women = count_women/total * 100,
+    pct_men = count_men/total * 100,
+    pct_mixed = count_mixed/total * 100,
+  ) |> 
+  arrange(desc(pct_women))
+
+rh_freq_invest_women_summary <- shark_tank_us |> 
+  filter(robert_herjavec_invested == TRUE) |> 
+  summarize(
+    shark_name = "Robert Herjavec",
+    total = n(),
+    count_women = sum(pitchers_gender == "Female"),
+    count_men = sum(pitchers_gender == "Male"),
+    count_mixed = sum(pitchers_gender == "Mixed Team"),
+    pct_women = count_women/total * 100,
+    pct_men = count_men/total * 100,
+    pct_mixed = count_mixed/total * 100,
+  ) |> 
+  arrange(desc(pct_women))
+
+dj_freq_invest_women_summary <- shark_tank_us |> 
+  filter(daymond_john_invested == TRUE) |> 
+  summarize(
+    shark_name = "Daymond John",
+    total = n(),
+    count_women = sum(pitchers_gender == "Female"),
+    count_men = sum(pitchers_gender == "Male"),
+    count_mixed = sum(pitchers_gender == "Mixed Team"),
+    pct_women = count_women/total * 100,
+    pct_men = count_men/total * 100,
+    pct_mixed = count_mixed/total * 100,
+  ) |> 
+  arrange(desc(pct_women))
+
+kol_freq_invest_women_summary <- shark_tank_us |> 
+  filter(kevin_o_leary_invested == TRUE) |> 
+  summarize(
+    shark_name = "Kevin O'Leary",
+    total = n(),
+    count_women = sum(pitchers_gender == "Female"),
+    count_men = sum(pitchers_gender == "Male"),
+    count_mixed = sum(pitchers_gender == "Mixed Team"),
+    pct_women = count_women/total * 100,
+    pct_men = count_men/total * 100,
+    pct_mixed = count_mixed/total * 100,
+  ) |> 
+  arrange(desc(pct_women))
+
+female_guest_freq_invest_women_summary <- shark_tank_us |> 
+  filter(guest_invested == TRUE) |> 
+  filter(guest_gender == "F") |> 
+  summarize(
+    shark_name = "Female Guest",
+    total = n(),
+    count_women = sum(pitchers_gender == "Female"),
+    count_men = sum(pitchers_gender == "Male"),
+    count_mixed = sum(pitchers_gender == "Mixed Team"),
+    pct_women = count_women/total * 100,
+    pct_men = count_men/total * 100,
+    pct_mixed = count_mixed/total * 100,
+  ) |> 
+  arrange(desc(pct_women))
+
+male_guest_freq_invest_women_summary <- shark_tank_us |> 
+  filter(guest_invested == TRUE) |> 
+  filter(guest_gender == "M") |> 
+  summarize(
+    shark_name = "Male Guest",
+    total = n(),
+    count_women = sum(pitchers_gender == "Female"),
+    count_men = sum(pitchers_gender == "Male"),
+    count_mixed = sum(pitchers_gender == "Mixed Team"),
+    pct_women = count_women/total * 100,
+    pct_men = count_men/total * 100,
+    pct_mixed = count_mixed/total * 100,
+  ) |> 
+  arrange(desc(pct_women))
+
+freq_invest_women_summary_by_shark <- 
+  bind_rows(male_guest_freq_invest_women_summary, 
+          female_guest_freq_invest_women_summary,
+          kol_freq_invest_women_summary,
+          dj_freq_invest_women_summary,
+          rh_freq_invest_women_summary,
+          lg_freq_invest_women_summary,
+          mc_freq_invest_women_summary, 
+          bc_freq_invest_women_summary) |> 
+  arrange(desc(pct_women))
+
+freq_invest_women_plot_by_shark <- freq_invest_women_summary_by_shark |> 
+  ggplot(aes(reorder(x = shark_name, desc(pct_women)), y = pct_women, fill = reorder(x = shark_name, desc(pct_women)))) +
+  geom_col() +
+  theme(axis.text.x = element_blank()) +
+  labs(
+    x = "Shark",
+    y = "Percent of Investments in Female-Led Businesses",
+    title = "Percent of Investments in Female-Led Businesses Per Shark on Shark Tank (US)",
+    subtitle = "Female sharks invest in female-led businesses more often than male sharks.",
+    caption = "Source: Thirumani et al",
+    fill = "Shark"
+  ) 
+
+ggsave(filename = "plots/freq_invest_women_plot_by_shark.png",
+       plot = freq_invest_women_plot_by_shark,
+       width = 8,
+       height = 6,
+       units = "in"
+)
+
 
 ### which sharks invest more in female-dominated industries ----
+
+# d
