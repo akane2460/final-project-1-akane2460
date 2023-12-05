@@ -8,7 +8,7 @@ library(skimr)
 library(janitor)
 
 ## Load Data ----
-shark_tank_us <- read_csv("data/shark_tank_us_data.csv")
+shark_tank_us <- read_csv("data/raw/shark_tank_us_data.csv")
 
 # skim_without_charts(shark_tank_us)
 # head(shark_tank_us)
