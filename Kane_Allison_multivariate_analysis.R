@@ -10,8 +10,6 @@ library(janitor)
 ## Load Data ----
 shark_tank_us <- read_csv("data/shark_tank_us.csv")
 
-# (3) female entrepreneurs receive investment as often as male entrepreneurs, 
-# (4) if that investment aligns with their initial demands (i.e. quality of investment),
 # (5) which sharks invest in female entrepreneurs more often, and 
 # (6) if specific sharks undervalue businesses started by women compared to men. Additionally, I plan to investigate 
 # (7) which types of businesses attract more female entreprenurs, 
@@ -143,11 +141,10 @@ ggsave(filename = "plots/gender_valuation_requested_plot.png",
 )
 
 
+
 ### typical investments, equity, and valuation received by gender----
 
-### typical requested investment, equity and valuation by gender----
-
-# typical investments asked for by gender
+# typical investments received by gender
 shark_tank_us |> 
   filter(total_deal_amount > 0) |> 
   group_by(pitchers_gender) |> 
@@ -193,7 +190,7 @@ ggsave(filename = "plots/gender_investments_received_plot.png",
        units = "in"
 )
 
-# typical equity asked for by gender
+# typical equity received by gender
 shark_tank_us |> 
   filter(total_deal_equity > 0) |> 
   group_by(pitchers_gender) |> 
@@ -236,7 +233,7 @@ ggsave(filename = "plots/gender_equity_received_plot.png",
        units = "in"
 )
 
-# typical valuation requested
+# typical valuation received by gender
 shark_tank_us |> 
   filter(deal_valuation > 0) |> 
   group_by(pitchers_gender) |> 
@@ -278,6 +275,138 @@ ggsave(filename = "plots/gender_valuation_received_plot.png",
        height = 6,
        units = "in"
 )
+
+
+
+### quality of investment----
+
+# difference in investments by gender
+shark_tank_us |> 
+  filter(total_deal_amount > 0) |> 
+  group_by(pitchers_gender) |> 
+  skim_without_charts(investment_difference)
+
+median_investment_difference_gender <- shark_tank_us |> 
+  filter(total_deal_amount > 0) |> 
+  group_by(pitchers_gender) |> 
+  summarise(median_value = median(investment_difference), 
+            median_label = str_c("Median Difference: $", format(median_value, scientific = FALSE)))
+
+gender_investment_difference_plot <-
+  shark_tank_us |> 
+  filter(total_deal_amount > 0) |> 
+  ggplot(aes(x = investment_difference, fill = pitchers_gender)) +
+  geom_histogram(binwidth = 25000, color = "white", show.legend = FALSE) +
+  facet_wrap(~ pitchers_gender) +
+  scale_fill_manual(values = gender_colors) +
+  theme_light() +
+  theme(axis.text.x = element_text(angle = 50, hjust = 1, size = 7)) +
+  coord_cartesian(xlim = c(-100000, 100000)) +
+  geom_vline(data = median_investment_difference_gender, aes(xintercept = median_value), color = "red") +
+  geom_text(data = median_investment_difference_gender,
+            aes(x = median_value , y = 150, label = median_label), vjust = 2.25, size = 3, angle = 90) +
+  labs(
+    x = "Investment Difference (USD)",
+    y = "Count", 
+    title = "Difference in Investment Requested and Investment Received (USD) by Gender on Shark Tank (US)",
+    subtitle = "Median investment difference is approximately the same across all genders.",
+    caption = "Source: Thirumani et al"
+  ) 
+
+ggsave(filename = "plots/gender_investment_difference_plot.png",
+       plot = gender_investment_difference_plot,
+       width = 8,
+       height = 6,
+       units = "in"
+)
+
+# difference in equity by gender
+shark_tank_us |> 
+  filter(total_deal_equity > 0) |> 
+  group_by(pitchers_gender) |> 
+  skim_without_charts(total_deal_equity)
+
+median_equity_received_gender <- shark_tank_us |> 
+  filter(total_deal_equity > 0) |> 
+  group_by(pitchers_gender) |> 
+  summarise(median_value = median(total_deal_equity), 
+            median_label = str_c("Median Equity: ", median_value, "%"))
+
+gender_equity_received_plot <-
+  shark_tank_us |> 
+  filter(total_deal_equity > 0) |> 
+  ggplot(aes(x = total_deal_equity, fill = pitchers_gender)) +
+  geom_histogram(binwidth = 5, color = "white", show.legend = FALSE) +
+  facet_wrap(~ pitchers_gender) +
+  coord_cartesian(xlim = c(0, 100), ylim = c(0, 95)) +
+  geom_vline(data = median_equity_received_gender, 
+             aes(xintercept = median_value), 
+             color = "red") +
+  geom_text(data = median_equity_received_gender,
+            aes(x = median_value , y = 80, label = median_label),
+            vjust = 1.75, 
+            size = 3, 
+            angle = 90 
+  ) +
+  theme_light() +
+  labs(
+    x = "Equity Received (in %)",
+    title = "Typical Received Equity (in %) on Shark Tank",
+    subtitle = "Female teams typically give 5% more equity than male teams.",
+    caption = "Source: Thirumani et al"
+  )
+
+ggsave(filename = "plots/gender_equity_received_plot.png",
+       plot = gender_equity_received_plot,
+       width = 8,
+       height = 6,
+       units = "in"
+)
+
+# difference in valuation by gender
+shark_tank_us |> 
+  filter(deal_valuation > 0) |> 
+  group_by(pitchers_gender) |> 
+  skim_without_charts(deal_valuation) 
+
+median_valuation_received_gender <- shark_tank_us |> 
+  filter(deal_valuation > 0) |> 
+  group_by(pitchers_gender) |> 
+  summarise(median_value = median(deal_valuation), 
+            median_label = str_c("Median Valuation: ", format(round(median_value, -3), scientific = FALSE)))
+
+gender_valuation_received_plot <-
+  shark_tank_us |> 
+  ggplot(aes(x = deal_valuation, fill = pitchers_gender)) +
+  geom_histogram(binwidth = 500000, color = "white", show.legend = FALSE) +
+  facet_wrap(~ pitchers_gender) +
+  geom_vline(data = median_valuation_received_gender, 
+             aes(xintercept = median_value), 
+             color = "red") +
+  geom_text(data = median_valuation_received_gender,
+            aes(x = median_value , y = 200, label = median_label),
+            vjust = 1.5, 
+            size = 3, 
+            angle = 90) +
+  scale_fill_manual(values = gender_colors) + 
+  theme_light() +
+  theme(axis.text.x = element_text(angle = 50, hjust = 1, size = 7)) +
+  coord_cartesian(xlim = c(0, 5000000)) +
+  labs(
+    x = "Valuation Received (USD)",
+    title = "Typical Business Valuation Received on Shark Tank By Gender",
+    subtitle = "Female run businesses are valued over 40,000 USD less than male-run businesses.",
+    caption = "Source: Thirumani et al"
+  )
+
+ggsave(filename = "plots/gender_valuation_received_plot.png",
+       plot = gender_valuation_received_plot,
+       width = 8,
+       height = 6,
+       units = "in"
+)
+
+
 
 
 ### frequency of investments in women run businesses----
@@ -323,4 +452,5 @@ ggsave(filename = "plots/gender_freq_of_investments_plot.png",
 )
 
 
-### investments and equity requested vs received----
+
+
