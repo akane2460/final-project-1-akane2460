@@ -384,4 +384,62 @@ ggsave(filename = "plots/valuation_diff_female_entrepreneurs_male_sharks_plot.pn
        height = 6,
        units = "in"
 )
-### which industries do sharks invest in more often (female dominated?)----
+### do female sharks prefer to invest in female dominated industries vs male sharks?----
+
+# note:
+# three industries have no women AT ALL: automotive, electronics, liquor/alcohol (the worst bc no mixed teams either)
+# one industry has more women than men and mixed teams: children/education
+# fashion/beauty has a high number of women (still more men though)
+# health/wellness has a high number of women (still more men though)
+
+female_sharks <- shark_tank_us |> 
+  filter(total_deal_amount > 0) |> 
+  filter(barbara_corcoran_invested == TRUE | lori_greiner_invested == TRUE | guest_gender == "F")
+
+male_sharks <- shark_tank_us |> 
+  filter(total_deal_amount > 0) |> 
+  filter(mark_cuban_invested == TRUE | robert_herjavec_invested == TRUE | daymond_john_invested == TRUE | kevin_o_leary_invested == TRUE| guest_gender == "M")
+
+# female sharks industries preferred 
+industries_preferred_female_sharks_plot <- female_sharks |> 
+  ggplot(aes(x = industry, fill = industry)) +
+  geom_bar() +
+  theme_light() +
+  theme(axis.text.x = element_text(angle = 50, hjust = 1, size = 7)) +
+  labs(
+    x = "Type of Business",
+    y = "Count",
+    title = "Types of Businesses and Industries Invested in by Female Sharks on Shark Tank (US).",
+    subtitle = "The most invested in industries are  Lifestyle/Home, Food/Beverage, Fashion/Beauty, and Children/Education.",
+    caption = "Source: Thirumani et al",
+    fill = "Industry"
+  )
+
+# most favored include: lifestyle/home, food and beverage, fashion/beauty and children/education
+
+ggsave(filename = "plots/industries_preferred_female_sharks_plot.png",
+       plot = industries_preferred_female_sharks_plot,
+       width = 10,
+       height = 6,
+       units = "in"
+)
+
+
+
+
+# male sharks industries preferred 
+male_sharks |> 
+  ggplot(aes(x = industry, fill = industry)) +
+  geom_bar() +
+  theme_light() +
+  theme(axis.text.x = element_text(angle = 50, hjust = 1, size = 7)) +
+  labs(
+    x = "Type of Business",
+    y = "Count",
+    title = "Types of Businesses and Industries Invested in by Female Sharks on Shark Tank (US).",
+    subtitle = "The most represented industries are Food/Beverage, Fashion/Beauty, Children/Education and Lifestyle/Home.",
+    caption = "Source: Thirumani et al",
+    fill = "Industry"
+  )
+
+

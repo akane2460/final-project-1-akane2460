@@ -445,7 +445,7 @@ ggsave(filename = "plots/gender_valuation_difference_plot.png",
 
 
 ### what industries attract more women----
-# what industries do female teams work in
+# what industries do female teams work in 
 industries_of_women_plot <- shark_tank_us |> 
   filter(pitchers_gender == "Female") |> 
   ggplot(aes(x = industry, fill = industry)) +
@@ -481,6 +481,11 @@ women_dominated_industries_summary <- shark_tank_us |>
     pct_mixed = count_mixed/total * 100,
   ) |> 
   arrange(desc(pct_women))
+
+# three industries have no women AT ALL: automotive, electronics, liquor/alcohol (the worst bc no mixed teams either)
+# one industry has more women than men and mixed teams: children/education
+# fashion/beauty has a high number of women (still more men though)
+# health/wellness has a high number of women (still more men though)
 
 women_dominated_industries_plot <- shark_tank_us |> 
 ggplot(aes(x = industry, fill = factor(pitchers_gender, levels = c("Mixed Team", "Male", "Female")))) +
@@ -533,6 +538,9 @@ industry_investment_frequency_plot <- shark_tank_us |>
     subtitle = "Industries with deals made most often include Automotive, Lifestyle/Home and Uncertain/Other.",
     caption = "Source: Thirumani et al"
   )
+
+# industries with most frequent deals made: automotive, lifestyle/home, other 
+# one of these attracts more women, one has no women at all (automotive)
 
 ggsave(filename = "plots/industry_investment_frequency_plot.png",
        plot = industry_investment_frequency_plot,
