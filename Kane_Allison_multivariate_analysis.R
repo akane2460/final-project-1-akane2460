@@ -239,40 +239,42 @@ ggsave(filename = "plots/gender_equity_received_plot.png",
 
 # typical valuation requested
 shark_tank_us |> 
+  filter(deal_valuation > 0) |> 
   group_by(pitchers_gender) |> 
-  skim_without_charts(valuation_requested) 
+  skim_without_charts(deal_valuation) 
 
-median_valuation_requested_gender <- shark_tank_us |> 
+median_valuation_received_gender <- shark_tank_us |> 
+  filter(deal_valuation > 0) |> 
   group_by(pitchers_gender) |> 
-  summarise(median_value = median(valuation_requested), 
-            median_label = str_c("Median Valuation: ", median_value))
+  summarise(median_value = median(deal_valuation), 
+            median_label = str_c("Median Valuation: ", format(round(median_value, -3), scientific = FALSE)))
 
-gender_valuation_requested_plot <-
+gender_valuation_received_plot <-
   shark_tank_us |> 
-  ggplot(aes(x = valuation_requested, fill = pitchers_gender)) +
+  ggplot(aes(x = deal_valuation, fill = pitchers_gender)) +
   geom_histogram(binwidth = 500000, color = "white", show.legend = FALSE) +
   facet_wrap(~ pitchers_gender) +
-  geom_vline(data = median_valuation_requested_gender, 
+  geom_vline(data = median_valuation_received_gender, 
              aes(xintercept = median_value), 
              color = "red") +
-  geom_text(data = median_valuation_requested_gender,
-            aes(x = median_value , y = 100, label = "Median Initial Valuation"),
+  geom_text(data = median_valuation_received_gender,
+            aes(x = median_value , y = 200, label = median_label),
             vjust = 1.5, 
             size = 3, 
             angle = 90) +
   scale_fill_manual(values = gender_colors) + 
   theme_light() +
   theme(axis.text.x = element_text(angle = 50, hjust = 1, size = 7)) +
-  coord_cartesian(xlim = c(0, 10000000)) +
+  coord_cartesian(xlim = c(0, 5000000)) +
   labs(
-    x = "Valuation Requested (USD)",
-    title = "Typical Business Valuation Requested on Shark Tank By Gender",
-    subtitle = "Female run businesses are initially valued over 600,000 USD less than male-run businesses.",
+    x = "Valuation Received (USD)",
+    title = "Typical Business Valuation Received on Shark Tank By Gender",
+    subtitle = "Female run businesses are valued over 40,000 USD less than male-run businesses.",
     caption = "Source: Thirumani et al"
   )
 
-ggsave(filename = "plots/gender_valuation_requested_plot.png",
-       plot = gender_valuation_requested_plot,
+ggsave(filename = "plots/gender_valuation_received_plot.png",
+       plot = gender_valuation_received_plot,
        width = 8,
        height = 6,
        units = "in"
