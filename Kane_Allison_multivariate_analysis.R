@@ -691,6 +691,9 @@ ggsave(filename = "plots/freq_invest_women_plot_by_shark.png",
 )
 
 
-### which sharks invest more in female-dominated industries ----
 
-# d
+### how are these female entrepreneurs treated by female vs. male sharks
+
+
+
+
