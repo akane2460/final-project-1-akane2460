@@ -23,7 +23,8 @@ gender_ratios_plot <- shark_tank_us |>
     y = "Count",
     title = "Shark Tank Entrepreneur Teams by Gender",
     subtitle = "There are substantially more male entrepreneurs and all male teams than female entrepreneurs and mixed teams.",
-    caption = "Source: Thirumani et al"
+    caption = "Source: Thirumani et al",
+    fill = "Pitcher's Gender"
   )
 
 ggsave(filename = "plots/gender_ratios_plot.png",
@@ -32,6 +33,9 @@ ggsave(filename = "plots/gender_ratios_plot.png",
        height = 6,
        units = "in"
 )
+
+
+
 
 # types of businesses represented
 businesses_represented_plot <-
@@ -74,7 +78,7 @@ investments_asked_plot <-
   labs(
     x = "Investment Requested (USD)",
     y = "Count", 
-    title = "Typical Requested Investment on Shark Tank",
+    title = "Typical Requested Investment on Shark Tank (US)",
     subtitle = "The typical investment requested originally is approximately 200,000 USD",
     caption = "Source: Thirumani et al"
   )
@@ -266,13 +270,6 @@ ggsave(filename = "plots/frequency_plot.png",
        height = 4,
        units = "in"
 )
-
-
-
-
-# proportion each individual investor contributes to all deals made
-
-
 
 
 ## Individual investor frequencies of deals

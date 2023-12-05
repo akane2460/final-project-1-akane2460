@@ -34,9 +34,71 @@ Overview of the EDA. What was the motivation for this analysis? What initial cur
 
 A concise high level overview of the dataset(s) being explored. Description of the dataset(s) that covers basics: size, number of observations, number, of variables, variable types, and discussion of any quality issues (especially missingness and how it may impact the analysis). Highlight any important data collection issues or concerns. If over-technical, but important, then place technical details in Appendix: technical info.
 
-## Explorations
+## Demographics
 
-This is the heart or main body of the the report. The structure of this portion can look VERY different depending on narrative choices and organization choices made to guide readers through the project EDA. Could decide to make sections for major parts of the EDA and not used an Explorations header. The key is that you have sections that are clearly organized and guide the reader through a systematic and thoughtful exploration of the dataset(s).
+![Gender Ratios](plots/gender_ratios_plot.png)
+
+Women are often underrepresented in positions of authority, especially as entrepreneurs. In Shark Tank (US) seasons 1-14, it is clear that women-led businesses are outnumbered by male-led businesses. Mixed gender entrepreneur teams are represented even less. This gender imbalance might limit viewers' exposure to female entrepreneurs and hinder their acceptance of women in positions of power, especially in business.
+
+Often, women find entering specific, male-dominated fields more difficult. Additionally, industries with greater representations of women are often viewed as less lucrative, less serious and less deserving of investment.  
+
+![Businesses Represented](plots/businesses_represented_plot.png)
+
+In shark tank (US) seasons 1-14, the industries most represented include Food/Beverage, Fashion/Beauty, and Lifestyle/Home. Some of these businesses are typically associated with women, like Fashion/Beauty, but representation in leadership roles is rarely dominated by women.
+
+![Industries Represented with Female Entrepreneurs](plots/industries_of_women_plot.png)
+
+Industries with female entrepreneurs represented on shark tank (US) seasons 1-14 show that women are most involved in Food/Beverage, Fashion/Beauty, Children/Education and Lifestyle/Home industries. Three industries do not have *any* female-run businesses represented: Automotive, Electronics, Liquor/Alcohol. 
+
+![Industry Leadership Gender Representation](plots/women_dominated_industries_plot.png)
+
+SHOW HTML TABLE HERE
+
+Further analysis indicates that only one industry on Shark Tank (US) has more female-led businesses represented than male or mixed team led businesses: children/education. All other industries have a greater representation of male entrepreneurs than female entrepeneurs and mixed teams. Representation of female entrepeneurs is better in Fashion/Beauty, Health/Wellness and Pet Products industries, but male-entrepeneurs are still represented more often. Representation of female entrepreneurs is the worst in the Automotive, Electronics and Liquor/Alcohol industries. In particular, Liquor/Alcohol does not have any female-led or mixed-team led businesses represented at all. 
+
+The bias in gender-representation in Shark Tank (US) could have additional effects, including how frequently deals are made for different genders, the quality of the deal, and how individual sharks behave towards different genders of entrepeneurs.
+
+## General Deal Trends
+
+### Deal Frequency
+![Frequency of Deals Made](plots/frequency_plot.png)
+
+Generally, on Shark Tank (US), deals are made in about 60% of pitches from Season 1-14. However, this frequency of deals made might change based on gender.
+
+![Frequency of Deals Made by Entrepreneur Gender](plots/gender_freq_of_investments_plot.png)
+When examining how often deals are made by gender, female entrepreneurs receive deals *more* often than their male counterparts, approximately 64% and 57% of the time respectively. Mixed gender entrepreneur teams actually make deals more than both female and male entrepreneurs (65% of the time). This imbalance in number of deals made might reflect that women-led and mixed-team led businesses are simply underrepresented on Shark Tank. Since male-led teams are represented more often, they might be more likely to be rejected, lowering their ratio of successful to unsuccessful pitches. This higher rejection rate for male entrepreneurs might also reflect different deal-making strategies that are to be explored further.
+
+### Requested Investment, Equity and Valuation
+
+Before a deal is made on Shark Tank, entrepreneurs have to pitch their business and their requested investment, offered equity, and estimated valuation of their business. 
+
+![Typical Investment Requested](plots/investments_asked_plot.png)
+The typical investment requested on Shark Tank (US) is approximately 200,000 USD. However, there is slight variation in the requested investment's distribution, with the most requested 100,000,000 USD and the least 40,000 USD. The distribution is skewed right somewhat as well. 
+
+
+
+
+
+
+
+
+![Typical Equity Offered](plots/equity_asked_plot.png)
+
+
+
+
+### Received Investment, Equity and Valuation
+
+
+## Shark Trends
+
+
+
+
+## Changes over Time
+
+
+
 
 A thoughtful exploration weaves together prose, figures, and tables to help a reader build understanding. It is a guided tour that should have clear motivations for each step in the process (think guiding curiosities or research questions). It should be clear how things build of of each other and why we are looking at what is being presented. Should also be letting the reader know whether what is shown is as expected or is it surprising (maybe some of each).
 
