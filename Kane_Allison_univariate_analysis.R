@@ -45,7 +45,8 @@ businesses_represented_plot <-
     y = "Count",
     title = "Shark Tank Types of Businesses and Industries",
     subtitle = "The most represented industries are Food/Beverage, Fashion/Beauty, and Lifestyle/Home.",
-    caption = "Source: Thirumani et al"
+    caption = "Source: Thirumani et al",
+    fill = "Industry"
   )
 
 ggsave(filename = "plots/businesses_represented_plot.png",
