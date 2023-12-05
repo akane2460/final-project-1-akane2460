@@ -10,7 +10,6 @@ library(janitor)
 ## Load Data ----
 shark_tank_us <- read_csv("data/shark_tank_us.csv")
 
-# (2) if female entrepreneurs ask for similar amounts of investment, valuation, and equity in their businesses as male entrepreneurs, 
 # (3) female entrepreneurs receive investment as often as male entrepreneurs, 
 # (4) if that investment aligns with their initial demands (i.e. quality of investment),
 # (5) which sharks invest in female entrepreneurs more often, and 
@@ -281,12 +280,47 @@ ggsave(filename = "plots/gender_valuation_received_plot.png",
 )
 
 
+### frequency of investments in women run businesses----
+
+frequency_colors <- c("FALSE" = "#EF664F", "TRUE" = "#5FBF53")
+
+freq_of_investments_gender_summary <- shark_tank_us |> 
+  group_by(pitchers_gender) |> 
+  summarize(
+    deals_made = sum(got_deal == TRUE),
+    deals_passed = sum(got_deal == FALSE),
+    total_pitches = n(),
+    prop_made = deals_made / total_pitches,
+    prop_passed = deals_passed / total_pitches,
+    pct_made = deals_made / total_pitches * 100,
+    pct_passed = deals_passed / total_pitches * 100
+  )
+
+gender_freq_of_investments_plot <- shark_tank_us |> 
+ggplot(aes(x = pitchers_gender, fill = got_deal)) +
+  geom_bar(position = "fill") +
+  annotate(geom = "text", x = 1, y = 0.606, label = "63.6%") +
+  annotate(geom = "text", x = 2, y = 0.535, label = "56.5%") +
+  annotate(geom = "text", x = 3, y = 0.624, label = "65.4%") +
+  annotate(geom = "text", x = 1, y = .97, label = "36.4%") +
+  annotate(geom = "text", x = 2, y = .97, label = "43.5%") +
+  annotate(geom = "text", x = 3, y = .97, label = "34.6%") +
+  scale_fill_manual(name = "Deal Made?", values = frequency_colors, labels = c("No Deal", "Deal")) +
+  labs(
+    x = "Pitcher's Gender",
+    y = "",
+    fill = "Got deal?",
+    title = "Percent of Deals Made by Gender on Shark Tank (US)",
+    subtitle = "Women and mixed gender teams make deals more frequently than all male teams",
+    caption = "Source: Thirumani et al"
+  )
+
+ggsave(filename = "plots/gender_freq_of_investments_plot.png",
+       plot = gender_freq_of_investments_plot,
+       width = 8,
+       height = 6,
+       units = "in"
+)
 
 
-
-
-
-
-
-
-
+### investments and equity requested vs received----
