@@ -324,40 +324,40 @@ ggsave(filename = "plots/gender_investment_difference_plot.png",
 shark_tank_us |> 
   filter(total_deal_equity > 0) |> 
   group_by(pitchers_gender) |> 
-  skim_without_charts(total_deal_equity)
+  skim_without_charts(equity_difference)
 
-median_equity_received_gender <- shark_tank_us |> 
+median_equity_difference_gender <- shark_tank_us |> 
   filter(total_deal_equity > 0) |> 
   group_by(pitchers_gender) |> 
-  summarise(median_value = median(total_deal_equity), 
-            median_label = str_c("Median Equity: ", median_value, "%"))
+  summarise(median_value = median(equity_difference), 
+            median_label = str_c("Median Equity: \n", median_value, "%"))
 
-gender_equity_received_plot <-
+gender_equity_difference_plot <-
   shark_tank_us |> 
   filter(total_deal_equity > 0) |> 
-  ggplot(aes(x = total_deal_equity, fill = pitchers_gender)) +
+  ggplot(aes(x = equity_difference, fill = pitchers_gender)) +
   geom_histogram(binwidth = 5, color = "white", show.legend = FALSE) +
   facet_wrap(~ pitchers_gender) +
-  coord_cartesian(xlim = c(0, 100), ylim = c(0, 95)) +
-  geom_vline(data = median_equity_received_gender, 
+  coord_cartesian(xlim = c(-50, 50), ylim = c(0, 110)) +
+  geom_vline(data = median_equity_difference_gender, 
              aes(xintercept = median_value), 
              color = "red") +
-  geom_text(data = median_equity_received_gender,
-            aes(x = median_value , y = 80, label = median_label),
-            vjust = 1.75, 
+  geom_text(data = median_equity_difference_gender,
+            aes(x = median_value , y = 90, label = median_label),
+            vjust = 1.25, 
             size = 3, 
             angle = 90 
   ) +
   theme_light() +
   labs(
-    x = "Equity Received (in %)",
-    title = "Typical Received Equity (in %) on Shark Tank",
-    subtitle = "Female teams typically give 5% more equity than male teams.",
+    x = "Equity Difference (in %)",
+    title = "Difference in Equity Given and Offered (in %) by Gender on Shark Tank (US)",
+    subtitle = "All genders typically give more equity than originally offered, mixed teams the most.",
     caption = "Source: Thirumani et al"
   )
 
-ggsave(filename = "plots/gender_equity_received_plot.png",
-       plot = gender_equity_received_plot,
+ggsave(filename = "plots/gender_equity_difference_plot.png",
+       plot = gender_equity_difference_plot,
        width = 8,
        height = 6,
        units = "in"
