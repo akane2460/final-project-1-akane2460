@@ -12,9 +12,51 @@ shark_tank_us <- read_csv("data/shark_tank_us.csv")
 
 # (5) which sharks invest in female entrepreneurs more often, and 
 # (6) if specific sharks undervalue businesses started by women compared to men. Additionally, I plan to investigate 
-# (7) which types of businesses attract more female entreprenurs, 
-# (8) if these businesses receive investment as often by investors, and 
-# (9) which sharks invest most often in these industries.
+
+
+### frequency of investments in women run businesses----
+
+frequency_colors <- c("FALSE" = "#EF664F", "TRUE" = "#5FBF53")
+
+freq_of_investments_gender_summary <- shark_tank_us |> 
+  group_by(pitchers_gender) |> 
+  summarize(
+    deals_made = sum(got_deal == TRUE),
+    deals_passed = sum(got_deal == FALSE),
+    total_pitches = n(),
+    prop_made = deals_made / total_pitches,
+    prop_passed = deals_passed / total_pitches,
+    pct_made = deals_made / total_pitches * 100,
+    pct_passed = deals_passed / total_pitches * 100
+  )
+
+gender_freq_of_investments_plot <- shark_tank_us |> 
+  ggplot(aes(x = pitchers_gender, fill = got_deal)) +
+  geom_bar(position = "fill") +
+  annotate(geom = "text", x = 1, y = 0.606, label = "63.6%") +
+  annotate(geom = "text", x = 2, y = 0.535, label = "56.5%") +
+  annotate(geom = "text", x = 3, y = 0.624, label = "65.4%") +
+  annotate(geom = "text", x = 1, y = .97, label = "36.4%") +
+  annotate(geom = "text", x = 2, y = .97, label = "43.5%") +
+  annotate(geom = "text", x = 3, y = .97, label = "34.6%") +
+  scale_fill_manual(name = "Deal Made?", values = frequency_colors, labels = c("No Deal", "Deal")) +
+  labs(
+    x = "Pitcher's Gender",
+    y = "",
+    fill = "Got deal?",
+    title = "Percent of Deals Made by Gender on Shark Tank (US)",
+    subtitle = "Women and mixed gender teams make deals more frequently than all male teams",
+    caption = "Source: Thirumani et al"
+  )
+
+ggsave(filename = "plots/gender_freq_of_investments_plot.png",
+       plot = gender_freq_of_investments_plot,
+       width = 8,
+       height = 6,
+       units = "in"
+)
+
+
 
 ### typical requested investment, equity and valuation by gender----
 
@@ -407,48 +449,67 @@ ggsave(filename = "plots/gender_valuation_difference_plot.png",
 )
 
 
-### frequency of investments in women run businesses----
-
-frequency_colors <- c("FALSE" = "#EF664F", "TRUE" = "#5FBF53")
-
-freq_of_investments_gender_summary <- shark_tank_us |> 
-  group_by(pitchers_gender) |> 
-  summarize(
-    deals_made = sum(got_deal == TRUE),
-    deals_passed = sum(got_deal == FALSE),
-    total_pitches = n(),
-    prop_made = deals_made / total_pitches,
-    prop_passed = deals_passed / total_pitches,
-    pct_made = deals_made / total_pitches * 100,
-    pct_passed = deals_passed / total_pitches * 100
-  )
-
-gender_freq_of_investments_plot <- shark_tank_us |> 
-ggplot(aes(x = pitchers_gender, fill = got_deal)) +
-  geom_bar(position = "fill") +
-  annotate(geom = "text", x = 1, y = 0.606, label = "63.6%") +
-  annotate(geom = "text", x = 2, y = 0.535, label = "56.5%") +
-  annotate(geom = "text", x = 3, y = 0.624, label = "65.4%") +
-  annotate(geom = "text", x = 1, y = .97, label = "36.4%") +
-  annotate(geom = "text", x = 2, y = .97, label = "43.5%") +
-  annotate(geom = "text", x = 3, y = .97, label = "34.6%") +
-  scale_fill_manual(name = "Deal Made?", values = frequency_colors, labels = c("No Deal", "Deal")) +
+### what industries attract more women----
+# what industries do female teams work in
+industries_of_women_plot <- shark_tank_us |> 
+  filter(pitchers_gender == "Female") |> 
+  ggplot(aes(x = industry, fill = industry)) +
+  geom_bar() +
+  theme_light() +
+  theme(axis.text.x = element_text(angle = 50, hjust = 1, size = 7)) +
   labs(
-    x = "Pitcher's Gender",
-    y = "",
-    fill = "Got deal?",
-    title = "Percent of Deals Made by Gender on Shark Tank (US)",
-    subtitle = "Women and mixed gender teams make deals more frequently than all male teams",
-    caption = "Source: Thirumani et al"
+    x = "Type of Business",
+    y = "Count",
+    title = "Shark Tank Types of Businesses and Industries Run by All-Female Teams",
+    subtitle = "The most represented industries are Food/Beverage, Fashion/Beauty, Children/Education and Lifestyle/Home.",
+    caption = "Source: Thirumani et al",
+    fill = "Industry"
   )
 
-ggsave(filename = "plots/gender_freq_of_investments_plot.png",
-       plot = gender_freq_of_investments_plot,
-       width = 8,
+ggsave(filename = "plots/industries_of_women_plot.png",
+       plot = industries_of_women_plot,
+       width = 10,
+       height = 6,
+       units = "in"
+)
+
+# what percentage of each industry is made up of female teams
+women_dominated_industries_summary <- shark_tank_us |> 
+  group_by(industry) |> 
+  summarize(
+    total = n(),
+    count_women = sum(pitchers_gender == "Female"),
+    count_men = sum(pitchers_gender == "Male"),
+    count_mixed = sum(pitchers_gender == "Mixed Team"),
+    pct_women = count_women/total * 100,
+    pct_men = count_men/total * 100,
+    pct_mixed = count_mixed/total * 100,
+  ) |> 
+  arrange(desc(pct_women))
+
+women_dominated_industries_plot <- shark_tank_us |> 
+ggplot(aes(x = industry, fill = factor(pitchers_gender, levels = c("Mixed Team", "Male", "Female")))) +
+  geom_bar(position = "fill") +
+  theme_light() +
+  theme(axis.text.x = element_text(angle = 50, hjust = 1, size = 7)) +
+  scale_fill_manual(values = gender_colors) +
+  labs(
+    x = "Type of Business",
+    y = "Count",
+    title = "Gender Representation in All Industries Featured on Shark Tank (US)",
+    subtitle = "Women are most represented in Children/Education, Fashion/Beauty and Health/Wellness.",
+    caption = "Source: Thirumani et al",
+    fill = "Industry"
+  )
+
+ggsave(filename = "plots/women_dominated_industries_plot.png",
+       plot = women_dominated_industries_plot,
+       width = 10,
        height = 6,
        units = "in"
 )
 
 
+### do female dominanted industries if these businesses receive investment as often ----
 
-
+### which sharks invest more in female-dominated industries ----
