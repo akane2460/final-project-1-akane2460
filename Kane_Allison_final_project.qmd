@@ -68,19 +68,20 @@ Generally, on Shark Tank (US), deals are made in about 60% of pitches from Seaso
 ![Frequency of Deals Made by Entrepreneur Gender](plots/gender_freq_of_investments_plot.png)
 When examining how often deals are made by gender, female entrepreneurs receive deals *more* often than their male counterparts, approximately 64% and 57% of the time respectively. Mixed gender entrepreneur teams actually make deals more than both female and male entrepreneurs (65% of the time). This imbalance in number of deals made might reflect that women-led and mixed-team led businesses are simply underrepresented on Shark Tank. Since male-led teams are represented more often, they might be more likely to be rejected, lowering their ratio of successful to unsuccessful pitches. This higher rejection rate for male entrepreneurs might also reflect different deal-making strategies that are to be explored further.
 
+
+![Frequency of Deals Made by Industry](plots/industry_investment_frequency_plot.png)
+INCLUDE TABLE industry_investment_frequencies_summary
+
+Automotive, Lifestyle/Home and Uncertain/Other industries seem to make deals most often, making deals 77%, 67% and 67% of the time. One of these industries--Lifestyle/Home--has a strong representation of female entrepreneurs. However, the Automotive industry lacks representation of any female entrepreneurs despite making deals the most often out of any industry.
+
 ### Requested Investment, Equity and Valuation
 
 Before a deal is made on Shark Tank, entrepreneurs have to pitch their business and their requested investment, offered equity, and estimated valuation of their business. 
 
 ![Typical Investment Requested](plots/investments_asked_plot.png)
 The typical investment requested on Shark Tank (US) is approximately 200,000 USD. However, there is slight variation in the requested investment's distribution, with the most requested 100,000,000 USD and the least 40,000 USD. The distribution is skewed right somewhat as well. 
-
-
-
-
-
-
-
+![Typical Investment Requested by Gender](plots/gender_investments_asked_plot.png)
+In analyzing how requested investment on Shark Tank (US) varies by gender, it is clear that male entrepreneurs and mixed gender entrepreneur teams typically request 50,000 USD more than their female entrepreneur counterparts. Female entrepreneurs also request 50,000 USD less than the general population. This difference in requested investment might be explained by different equities offered or different typical valuations of their businesses that are to be analyzed. 
 
 ![Typical Equity Offered](plots/equity_asked_plot.png)
 
