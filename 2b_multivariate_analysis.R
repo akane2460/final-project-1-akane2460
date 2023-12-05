@@ -384,3 +384,4 @@ ggsave(filename = "plots/valuation_diff_female_entrepreneurs_male_sharks_plot.pn
        height = 6,
        units = "in"
 )
+### which industries do sharks invest in more often (female dominated?)----
