@@ -102,8 +102,18 @@ Overall, it is clear that female entrepreneurs typically request less in investm
 The investment received after a deal on Shark Tank is a strong indicator of the success of a pitch on the show. 
 
 ![Typical Investment](plots/typical_investment_plot.png)
-The typical investment for entrepreneurs that received deals on Shark Tank (US) is approximately 200,000 USD. 
+The typical investment for entrepreneurs that received deals on Shark Tank (US) is approximately 200,000 USD. The distribution of this typical investment is skewed somewhat to the right, with a peak slightly below this typical value. The greatest investment received is approximately 5,000,000 USD and least investment received is approximately 10,000 USD. 
+![Investments Received by Gender](plots/gender_investments_received_plot.png)
 
+Typical investment for male entrepreneurs is approximately 50,000 USD more than for female entrepreneurs. Mixed gender entrepreneur teams receive a typical investment of 250,000 USD, greater than both female and male entrepreneurs. Female entrepreneurs receive typical investments 50,000 USD less than the general population. The distribution of the typical investments are similar across genders. Is this an instance where female entrepreurs give less equity or have lower business valuations? 
+
+![Typical Equity Received](plots/typical_equity_plot.png)
+For all deals made on Shark Tank (US), the typical equity received by the shark is approximately 20%, much greater than the typical equity requested, with a peak at 20% and a very slight skew to the right. The greatest equity received is approximately 100% (complete buy-out) and lowest is approximately 2%. Since the typical investment received approximately matches the typical investment requested, this discrepancy in equity received and equity offered might indicate that many sharks overvalue their businesses. This will be further explored in their valuations. 
+
+
+
+
+Perhaps it is an instance where female entrepreneurs ask for less and therefore receive less?
 
 ## Shark Trends
 

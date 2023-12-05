@@ -177,7 +177,7 @@ ggsave(filename = "plots/typical_investment_plot.png",
 
 # typical equities received
 shark_tank_us |> 
-  filter(total_deal_equity > 0) |> 
+  filter(total_deal_equity > 0) |> # filter to only include those who received deals
   skim_without_charts(total_deal_equity)
 
 typical_equity_plot <-
