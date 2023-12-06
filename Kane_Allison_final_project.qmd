@@ -28,7 +28,11 @@ from: markdown+emoji
 
 ## Introduction
 
-Overview of the EDA. What was the motivation for this analysis? What initial curiosities or research questions motivated you? Describe the data source(s) you will use to build a predictive model. If you are obtaining information from websites you should cite those in your References.
+  Throughout the corporate sector, female entrepreneurs tend to face greater barriers and often have their businesses undervalued and underrepresented. Many female entrepreneurs find it difficult to break into male-dominated industries, to obtain similar investments to their male counterparts, and to receive the same respect as male entrepreneurs. Additionally, industries with greater representations of women are often viewed as less lucrative, less serious and less deserving of investment.  
+  
+  The reality television show Shark Tank (US) broadcasts real-time deals being made between entrepreneurs pitching their businesses to a panel of investors, called sharks. The show, having run for over a decade, provides a glimpse into the business world for viewers and a wealth of information about how entrepreneurs-- both male and female-- are treated by investors.
+  
+  In this EDA, I intend to find if there are differences between the investment and pitching trends of female entrepreneurs, male entrepreneurs, and sharks. Specifically, I aim to determine if female entrepreneurs are represented as often as male entrepreneurs in the show and which industries featured on the show tend to attract more female entrepreneurs (female-dominated industries). Additionally, I intend to determine if female entrepreneurs ask for similar amounts of investment, valuation, and equity in their businesses as male entrepreneurs, if female entrepreneurs receive investment as often as male entrepreneurs, and if that investment aligns with their initial demands (i.e. quality of investment). Finally, I intend to determine which sharks invest in female entrepreneurs more often and which sharks tend to invest more in *female-dominated* industries.
 
 ## Data overview & quality
 
@@ -40,7 +44,7 @@ A concise high level overview of the dataset(s) being explored. Description of t
 
 Women are often underrepresented in positions of authority, especially as entrepreneurs. In @fig-1 Shark Tank (US) seasons 1-14, it is clear that women-led businesses are outnumbered by male-led businesses. Mixed gender entrepreneur teams are represented even less. This gender imbalance might limit viewers' exposure to female entrepreneurs and hinder their acceptance of women in positions of power, especially in business.
 
-Often, women find entering specific, male-dominated fields more difficult. Additionally, industries with greater representations of women are often viewed as less lucrative, less serious and less deserving of investment.  
+
 
 ![Businesses Represented](plots/businesses_represented_plot.png){#fig-2}
 
@@ -266,6 +270,12 @@ According to @fig-31, the industries preferred by male sharks include: Food and 
 ## Conclusions
 
 State conclusions or insights. Were you surprised by things you found or were they as expected? Why? This is a great place for future work, new research questions, and next steps.
+
+According to this analysis, there are some differences in the experience of female and male entrepreneurs on Shark Tank (US) seasons 1-14. 
+
+
+
+  Follow-up studies may be done to see how these trends change over time. Perhaps in the years the show has been on the air the treatment of female entrepreneurs has changed or the investment trends of sharks has changed. Additionally, I might conduct further study to see if a male partner improves female entrepreneur investment outcomes and if a female partner worsens male entrepreneur investment outcomes.
 
 ## References
 
