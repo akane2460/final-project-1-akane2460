@@ -327,7 +327,7 @@ According to @fig-36, the industries preferred by male sharks include: Food and 
 
 Thirumani, S., Rehman, A.U., and Molagoda, J., 2023, Shark Tank US dataset, https://www.kaggle.com/datasets/thirumani/shark-tank-us-dataset
 
-## Appendix: Technical Info 
+## Appendix: Technical Information
 
 Some instances of missingness were critical for the data collection process. For example, in instances where deals were not made, some missingness was present in variables like `Total Deal Amount` (reflecting that there was no deal made). In the cleaned data, these values were adjusted to limit missingness, often replacing `NA` values with 0. 
 
