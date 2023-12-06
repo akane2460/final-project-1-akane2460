@@ -163,229 +163,234 @@ ggsave(filename = "plots/freq_invest_women_plot_by_shark.png",
 
 ### how are these female entrepreneurs treated by female vs. male sharks----
 
-# female_entrepreneurs_female_sharks <- shark_tank_us |> 
-#   filter(total_deal_amount > 0) |> 
-#   filter(pitchers_gender == "Female") |> 
-#   filter(barbara_corcoran_invested == TRUE | lori_greiner_invested == TRUE | guest_gender == "F")
-# 
-# female_entrepreneurs_male_sharks <- shark_tank_us |> 
-#   filter(total_deal_amount > 0) |> 
-#   filter(pitchers_gender == "Female") |> 
-#   filter(mark_cuban_invested == TRUE | robert_herjavec_invested == TRUE | daymond_john_invested == TRUE | kevin_o_leary_invested == TRUE| guest_gender == "M")
-# 
+female_sharks <- shark_tank_us |> 
+  filter(total_deal_amount > 0) |> 
+  filter(barbara_corcoran_invested == TRUE | lori_greiner_invested == TRUE | guest_gender == "F")
+
+male_sharks <- shark_tank_us |> 
+  filter(total_deal_amount > 0) |> 
+  filter(mark_cuban_invested == TRUE | robert_herjavec_invested == TRUE | daymond_john_invested == TRUE | kevin_o_leary_invested == TRUE| guest_gender == "M")
+
 
 # female entrepreneurs difference in investments female sharks
+median_investment_difference_female_entrepreneurs_female_sharks <- female_sharks |>
+  filter(pitchers_gender == "Female") |> 
+  filter(total_deal_amount > 0) |>
+  summarise(median_value = median(investment_difference),
+            median_label = str_c("Median Difference: $", format(median_value, scientific = FALSE)))
 
-# median_investment_difference_female_entrepreneurs_female_sharks <- female_entrepreneurs_female_sharks |> 
-#   filter(total_deal_amount > 0) |> 
-#   summarise(median_value = median(investment_difference), 
-#             median_label = str_c("Median Difference: $", format(median_value, scientific = FALSE)))
-# 
-# investment_diff_female_entrepeneurs_female_sharks_plot <-
-#   female_entrepreneurs_female_sharks |> 
-#   filter(total_deal_amount > 0) |> 
-#   ggplot(aes(x = investment_difference, fill = pitchers_gender)) +
-#   geom_histogram(binwidth = 25000, color = "white", show.legend = FALSE) +
-#   scale_fill_manual(values = gender_colors) +
-#   theme_light() +
-#   theme(axis.text.x = element_text(angle = 50, hjust = 1, size = 7)) +
-#   coord_cartesian(xlim = c(-100000, 100000), ylim = c(0, 100)) +
-#   geom_vline(data = median_investment_difference_gender, aes(xintercept = median_value), color = "red") +
-#   geom_text(data = median_investment_difference_gender,
-#             aes(x = median_value , y = 85, label = median_label), vjust = 2.25, size = 3, angle = 90) +
-#   labs(
-#     x = "Investment Difference (USD)",
-#     y = "Count", 
-#     title = "Investment Difference (USD) for Female Entrepreneurs with Female Sharks on Shark Tank (US)",
-#     subtitle = "Median investment difference is approximately $0.",
-#     caption = "Source: Thirumani et al"
-#   ) 
+investment_diff_female_entrepeneurs_female_sharks_plot <-
+  female_sharks |>
+  filter(pitchers_gender == "Female") |>
+  filter(total_deal_amount > 0) |>
+  ggplot(aes(x = investment_difference, fill = pitchers_gender)) +
+  geom_histogram(binwidth = 25000, color = "white", show.legend = FALSE) +
+  scale_fill_manual(values = gender_colors) +
+  theme_light() +
+  theme(axis.text.x = element_text(angle = 50, hjust = 1, size = 7)) +
+  coord_cartesian(xlim = c(-100000, 100000), ylim = c(0, 110)) +
+  geom_vline(data = median_investment_difference_female_entrepreneurs_female_sharks, aes(xintercept = median_value), color = "red") +
+  geom_text(aes(x = 0, y = 90, label = "Median Difference: $0"), vjust = 2.25, size = 3, angle = 90) +
+  labs(
+    x = "Investment Difference (USD)",
+    y = "Deals",
+    title = "Investment Difference (USD) for Female Entrepreneurs with Female Sharks on Shark Tank (US)",
+    subtitle = "Median investment difference is approximately $0.",
+    caption = "Source: Thirumani et al"
+  )
 
-# ggsave(filename = "plots/investment_diff_female_entrepeneurs_female_sharks_plot.png",
-#        plot = investment_diff_female_entrepeneurs_female_sharks_plot,
-#        width = 8,
-#        height = 6,
-#        units = "in"
-# )
+ggsave(filename = "plots/investment_diff_female_entrepeneurs_female_sharks_plot.png",
+       plot = investment_diff_female_entrepeneurs_female_sharks_plot,
+       width = 8,
+       height = 6,
+       units = "in"
+)
 
 # female entrepreneurs difference in investments male sharks
-# median_investment_difference_female_entrepreneurs_male_sharks <- female_entrepreneurs_male_sharks |> 
-#   filter(total_deal_amount > 0) |> 
-#   summarise(median_value = median(investment_difference), 
-#             median_label = str_c("Median Difference: $", format(median_value, scientific = FALSE)))
-# 
-# investment_diff_female_entrepeneurs_male_sharks_plot <-
-#   female_entrepreneurs_male_sharks |> 
-#   filter(total_deal_amount > 0) |> 
-#   ggplot(aes(x = investment_difference, fill = pitchers_gender)) +
-#   geom_histogram(binwidth = 25000, color = "white", show.legend = FALSE) +
-#   scale_fill_manual(values = gender_colors) +
-#   theme_light() +
-#   theme(axis.text.x = element_text(angle = 50, hjust = 1, size = 7)) +
-#   coord_cartesian(xlim = c(-100000, 100000), ylim = c(0, 105)) +
-#   geom_vline(data = median_investment_difference_gender, aes(xintercept = median_value), color = "red") +
-#   geom_text(data = median_investment_difference_gender,
-#             aes(x = median_value , y = 90, label = median_label), vjust = 2.25, size = 3, angle = 90) +
-#   labs(
-#     x = "Investment Difference (USD)",
-#     y = "Count", 
-#     title = "Investment Difference (USD) for Female Entrepreneurs with Male Sharks on Shark Tank (US)",
-#     subtitle = "Median investment difference is approximately $0.",
-#     caption = "Source: Thirumani et al"
-#   ) 
-# 
-# ggsave(filename = "plots/investment_diff_female_entrepeneurs_male_sharks_plot.png",
-#        plot = investment_diff_female_entrepeneurs_male_sharks_plot,
-#        width = 8,
-#        height = 6,
-#        units = "in"
-# )
+median_investment_difference_female_entrepreneurs_male_sharks <- male_sharks |>
+  filter(pitchers_gender == "Female") |>
+  filter(total_deal_amount > 0) |>
+  summarise(median_value = median(investment_difference),
+            median_label = str_c("Median Difference: $", format(median_value, scientific = FALSE)))
+
+investment_diff_female_entrepeneurs_male_sharks_plot <-
+  male_sharks |>
+  filter(pitchers_gender == "Female") |>
+  filter(total_deal_amount > 0) |>
+  ggplot(aes(x = investment_difference, fill = pitchers_gender)) +
+  geom_histogram(binwidth = 25000, color = "white", show.legend = FALSE) +
+  scale_fill_manual(values = gender_colors) +
+  theme_light() +
+  theme(axis.text.x = element_text(angle = 50, hjust = 1, size = 7)) +
+  coord_cartesian(xlim = c(-100000, 100000), ylim = c(0, 120)) +
+  geom_vline(data = median_investment_difference_female_entrepreneurs_male_sharks, aes(xintercept = median_value), color = "red") +
+  geom_text(aes(x = 0 , y = 100, label = "Median Difference: $0"), vjust = 2.25, size = 3, angle = 90) +
+  labs(
+    x = "Investment Difference (USD)",
+    y = "Deals",
+    title = "Investment Difference (USD) for Female Entrepreneurs with Male Sharks on Shark Tank (US)",
+    subtitle = "Median investment difference is approximately $0.",
+    caption = "Source: Thirumani et al"
+  )
+
+ggsave(filename = "plots/investment_diff_female_entrepeneurs_male_sharks_plot.png",
+       plot = investment_diff_female_entrepeneurs_male_sharks_plot,
+       width = 8,
+       height = 6,
+       units = "in"
+)
+
+# female entrepreneurs difference in equity female sharks
+median_equity_diff_female_entrepreneurs_female_sharks <- female_sharks |>
+  filter(pitchers_gender == "Female") |>
+  filter(total_deal_equity > 0) |>
+  summarise(median_value = median(equity_difference),
+            median_label = str_c("Median Equity Difference: ", median_value, "%"))
+
+equity_diff_female_entrepreneurs_female_sharks <-
+  female_sharks |>
+  filter(pitchers_gender == "Female") |>
+  filter(total_deal_equity > 0) |>
+  ggplot(aes(x = equity_difference, fill = pitchers_gender)) +
+  geom_histogram(binwidth = 5, color = "white", show.legend = FALSE) +
+  coord_cartesian(xlim = c(-50, 50), ylim = c(0, 95)) +
+  geom_vline(data = median_equity_diff_female_entrepreneurs_female_sharks,
+             aes(xintercept = median_value),
+             color = "red") +
+  geom_text(aes(x = 5 , y = 70, label = "Median Equity Difference: 5%"),
+            vjust = 1.25,
+            size = 3,
+            angle = 90
+  ) +
+  theme_light() +
+  labs(
+    x = "Equity Difference (in %)",
+    title = "Difference in Equity for Female Entrepreneurs with Female Sharks on Shark Tank (US)",
+    subtitle = "Typically 5% more equity given than initially offered.",
+    caption = "Source: Thirumani et al",
+    y = "Deals"
+  )
+
+ggsave(filename = "plots/equity_diff_female_entrepreneurs_female_sharks.png",
+       plot = equity_diff_female_entrepreneurs_female_sharks,
+       width = 8,
+       height = 6,
+       units = "in"
+)
 
 
-# female entrepreneurs difference in equity female sharks 
-# median_equity_diff_female_entrepreneurs_female_sharks <- female_entrepreneurs_female_sharks |> 
-#   filter(total_deal_equity > 0) |> 
-#   summarise(median_value = median(equity_difference), 
-#             median_label = str_c("Median Equity Difference: ", median_value, "%"))
-# 
-# equity_diff_female_entrepreneurs_female_sharks <-
-#   female_entrepreneurs_female_sharks |> 
-#   filter(total_deal_equity > 0) |> 
-#   ggplot(aes(x = equity_difference, fill = pitchers_gender)) +
-#   geom_histogram(binwidth = 5, color = "white", show.legend = FALSE) +
-#   coord_cartesian(xlim = c(-50, 50), ylim = c(0, 95)) +
-#   geom_vline(data = median_equity_diff_female_entrepreneurs_female_sharks, 
-#              aes(xintercept = median_value), 
-#              color = "red") +
-#   geom_text(aes(x = 5 , y = 70, label = "Median Equity Difference: 5%"),
-#             vjust = 1.25,
-#             size = 3,
-#             angle = 90
-#   ) +
-#   theme_light() +
-#   labs(
-#     x = "Equity Difference (in %)",
-#     title = "Difference in Equity for Female Entrepreneurs with Female Sharks on Shark Tank (US)",
-#     subtitle = "Typically 5% more equity given than initially offered.",
-#     caption = "Source: Thirumani et al",
-#     y = "Count"
-#   )
-# 
-# ggsave(filename = "plots/equity_diff_female_entrepreneurs_female_sharks.png",
-#        plot = equity_diff_female_entrepreneurs_female_sharks,
-#        width = 8,
-#        height = 6,
-#        units = "in"
-# )
-# 
-# 
-# # female entrepreneurs difference in equity male sharks 
-# median_equity_diff_female_entrepreneurs_male_sharks <- female_entrepreneurs_male_sharks |> 
-#   filter(total_deal_equity > 0) |> 
-#   summarise(median_value = median(equity_difference), 
-#             median_label = str_c("Median Equity: ", median_value, "%"))
-# 
-# equity_diff_female_entrepreneurs_male_sharks <-
-#   female_entrepreneurs_male_sharks |> 
-#   filter(total_deal_equity > 0) |> 
-#   ggplot(aes(x = equity_difference, fill = pitchers_gender)) +
-#   geom_histogram(binwidth = 5, color = "white", show.legend = FALSE) +
-#   coord_cartesian(xlim = c(-50, 50), ylim = c(0, 110)) +
-#   geom_vline(data = median_equity_diff_female_entrepreneurs_male_sharks, 
-#              aes(xintercept = median_value), 
-#              color = "red") +
-#   geom_text(aes(x = 5 , y = 90, label = "Median Equity Difference: 5%"),
-#             vjust = 1.25,
-#             size = 3,
-#             angle = 90
-#   ) +
-#   theme_light() +
-#   labs(
-#     x = "Equity Difference (in %)",
-#     y = "Count",
-#     title = "Difference in Equity for Female Entrepreneurs with Male Sharks on Shark Tank (US)",
-#     subtitle = "Typically 5% more equity given than initially offered.",
-#     caption = "Source: Thirumani et al"
-#   )
-# 
-# ggsave(filename = "plots/equity_diff_female_entrepreneurs_male_sharks.png",
-#        plot = equity_diff_female_entrepreneurs_male_sharks,
-#        width = 8,
-#        height = 6,
-#        units = "in"
-# )
-# 
-# # female entrepreneurs difference in valuation female sharks 
-# median_valuation_diff_female_entrepreneurs_female_sharks <- female_entrepreneurs_female_sharks |> 
-#   filter(deal_valuation > 0) |> 
-#   summarize(median_value = median(valuation_difference), 
-#             median_label = str_c("Median Valuation: ", format(round(median_value, -3), scientific = FALSE)))
-# 
-# 
-# valuation_diff_female_entrepreneurs_female_sharks_plot <-
-#   female_entrepreneurs_female_sharks |> 
-#   filter(total_deal_equity > 0) |> 
-#   ggplot(aes(x = equity_difference, fill = pitchers_gender)) +
-#   geom_histogram(binwidth = 5, color = "white", show.legend = FALSE) +
-#   coord_cartesian(xlim = c(-25, 50), ylim = c(0, 110)) +
-#   geom_vline(data = median_equity_diff_female_entrepreneurs_male_sharks, 
-#              aes(xintercept = median_value), 
-#              color = "red") +
-#   geom_text(aes(x = 5 , y = 75, label = "Median Valuation Difference: -333000"),
-#             vjust = 1.25,
-#             size = 3,
-#             angle = 90
-#   ) +
-#   theme_light() +
-#   labs(
-#     x = "Valuation Difference (in USD)",
-#     y = "Count",
-#     title = "Difference in Valuation for Female Entrepreneurs with Female Sharks on Shark Tank (US)",
-#     subtitle = "Typical difference in valuation is -333000 USD.",
-#     caption = "Source: Thirumani et al"
-#   )
-# 
-# ggsave(filename = "plots/valuation_diff_female_entrepreneurs_female_sharks_plot.png",
-#        plot = valuation_diff_female_entrepreneurs_female_sharks_plot,
-#        width = 8,
-#        height = 6,
-#        units = "in"
-# )
-# 
-# # female entrepreneurs difference in valuation male sharks 
-# median_valuation_diff_female_entrepreneurs_male_sharks <- female_entrepreneurs_male_sharks |> 
-#   filter(total_deal_amount > 0) |> 
-#   summarize(median_value = median(valuation_difference), 
-#             median_label = str_c("Median Valuation: ", format(round(median_value, -3), scientific = FALSE)))
-# 
-# valuation_diff_female_entrepreneurs_male_sharks_plot <-
-#   female_entrepreneurs_male_sharks |> 
-#   filter(total_deal_amount > 0) |> 
-#   ggplot(aes(x = valuation_difference, fill = pitchers_gender)) +
-#   geom_histogram(binwidth = 1000000, color = "white", show.legend = FALSE) +
-#   coord_cartesian(xlim = c(-10000000, 5000000), ylim = c(0, 110)) +
-#   geom_vline(aes(xintercept = -500000), 
-#              color = "red") +
-#   geom_text(aes(x = 5 , y = 75, label = "Median Valuation Difference: -500000"),
-#             vjust = - 3,
-#             size = 3,
-#             angle = 90
-#   ) +
-#   theme_light() +
-#   labs(
-#     x = "Valuation Difference (in USD)",
-#     y = "Count",
-#     title = "Difference in Valuation for Female Entrepreneurs with Male Sharks on Shark Tank (US)",
-#     subtitle = "Typical difference in valuation is -500000 USD.",
-#     caption = "Source: Thirumani et al"
-#   )
-# 
-# ggsave(filename = "plots/valuation_diff_female_entrepreneurs_male_sharks_plot.png",
-#        plot = valuation_diff_female_entrepreneurs_male_sharks_plot,
-#        width = 8,
-#        height = 6,
-#        units = "in"
-# )
+# female entrepreneurs difference in equity male sharks
+median_equity_diff_female_entrepreneurs_male_sharks <- male_sharks |>
+  filter(pitchers_gender == "Female") |>
+  filter(total_deal_equity > 0) |>
+  summarise(median_value = median(equity_difference),
+            median_label = str_c("Median Equity: ", median_value, "%"))
+
+equity_diff_female_entrepreneurs_male_sharks <-
+  male_sharks |>
+  filter(pitchers_gender == "Female") |>
+  filter(total_deal_equity > 0) |>
+  ggplot(aes(x = equity_difference, fill = pitchers_gender)) +
+  geom_histogram(binwidth = 5, color = "white", show.legend = FALSE) +
+  coord_cartesian(xlim = c(-50, 50), ylim = c(0, 90)) +
+  geom_vline(data = median_equity_diff_female_entrepreneurs_male_sharks,
+             aes(xintercept = median_value),
+             color = "red") +
+  geom_text(aes(x = 5 , y = 60, label = "Median Equity Difference: 5%"),
+            vjust = 1.25,
+            size = 3,
+            angle = 90
+  ) +
+  theme_light() +
+  labs(
+    x = "Equity Difference (in %)",
+    y = "Deals",
+    title = "Difference in Equity for Female Entrepreneurs with Male Sharks on Shark Tank (US)",
+    subtitle = "Typically 5% more equity given than initially offered.",
+    caption = "Source: Thirumani et al"
+  )
+
+ggsave(filename = "plots/equity_diff_female_entrepreneurs_male_sharks.png",
+       plot = equity_diff_female_entrepreneurs_male_sharks,
+       width = 8,
+       height = 6,
+       units = "in"
+)
+
+# female entrepreneurs difference in valuation female sharks
+median_valuation_diff_female_entrepreneurs_female_sharks <- female_sharks |>
+  filter(pitchers_gender == "Female") |>
+  filter(deal_valuation > 0) |>
+  summarize(median_value = median(valuation_difference),
+            median_label = str_c("Median Valuation: ", format(round(median_value, -3), scientific = FALSE)))
+
+
+valuation_diff_female_entrepreneurs_female_sharks_plot <-
+  female_sharks |>
+  filter(pitchers_gender == "Female") |>
+  filter(deal_valuation > 0) |>
+  ggplot(aes(x = valuation_difference, fill = pitchers_gender)) +
+  geom_histogram(binwidth = 1000000, color = "white", show.legend = FALSE) +
+  coord_cartesian(xlim = c(-7500000, 7500000), ylim = c(0, 110)) +
+  geom_vline(data = median_equity_diff_female_entrepreneurs_male_sharks,
+             aes(xintercept = median_value),
+             color = "red") +
+  geom_text(aes(x = 5 , y = 70, label = "Median Valuation Difference: -333000"),
+            vjust = 2.5,
+            size = 3,
+            angle = 90) +
+  theme_light() +
+  labs(
+    x = "Valuation Difference (in USD)",
+    y = "Deals",
+    title = "Difference in Valuation for Female Entrepreneurs with Female Sharks on Shark Tank (US)",
+    subtitle = "Typical difference in valuation is -333000 USD.",
+    caption = "Source: Thirumani et al"
+  )
+
+ggsave(filename = "plots/valuation_diff_female_entrepreneurs_female_sharks_plot.png",
+       plot = valuation_diff_female_entrepreneurs_female_sharks_plot,
+       width = 8,
+       height = 6,
+       units = "in"
+)
+
+# female entrepreneurs difference in valuation male sharks
+median_valuation_diff_female_entrepreneurs_male_sharks <- male_sharks |>
+  filter(pitchers_gender == "Female") |>
+  filter(total_deal_amount > 0) |>
+  summarize(median_value = median(valuation_difference),
+            median_label = str_c("Median Valuation: ", format(round(median_value, -3), scientific = FALSE)))
+
+valuation_diff_female_entrepreneurs_male_sharks_plot <-
+  male_sharks |>
+  filter(pitchers_gender == "Female") |>
+  filter(total_deal_amount > 0) |>
+  ggplot(aes(x = valuation_difference, fill = pitchers_gender)) +
+  geom_histogram(binwidth = 500000, color = "white", show.legend = FALSE) +
+  coord_cartesian(xlim = c(-5000000, 500000), ylim = c(0, 110)) +
+  geom_vline(aes(xintercept = -500000),
+             color = "red") +
+  geom_text(aes(x = -500000, y = 75, label = "Median Valuation Difference: -500000"),
+            vjust = -1,
+            size = 3,
+            angle = 90
+  ) +
+  theme_light() +
+  labs(
+    x = "Valuation Difference (in USD)",
+    y = "Deals",
+    title = "Difference in Valuation for Female Entrepreneurs with Male Sharks on Shark Tank (US)",
+    subtitle = "Typical difference in valuation is -500000 USD.",
+    caption = "Source: Thirumani et al"
+  )
+
+ggsave(filename = "plots/valuation_diff_female_entrepreneurs_male_sharks_plot.png",
+       plot = valuation_diff_female_entrepreneurs_male_sharks_plot,
+       width = 8,
+       height = 6,
+       units = "in"
+)
 ### do female sharks prefer to invest in female dominated industries vs male sharks?----
 
 # note:
@@ -394,13 +399,6 @@ ggsave(filename = "plots/freq_invest_women_plot_by_shark.png",
 # fashion/beauty has a high number of women (still more men though)
 # health/wellness has a high number of women (still more men though)
 
-female_sharks <- shark_tank_us |> 
-  filter(total_deal_amount > 0) |> 
-  filter(barbara_corcoran_invested == TRUE | lori_greiner_invested == TRUE | guest_gender == "F")
-
-male_sharks <- shark_tank_us |> 
-  filter(total_deal_amount > 0) |> 
-  filter(mark_cuban_invested == TRUE | robert_herjavec_invested == TRUE | daymond_john_invested == TRUE | kevin_o_leary_invested == TRUE| guest_gender == "M")
 
 # female sharks industries preferred 
 industries_preferred_female_sharks_plot <- female_sharks |> 
