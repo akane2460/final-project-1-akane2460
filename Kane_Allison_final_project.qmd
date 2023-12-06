@@ -63,32 +63,59 @@ The bias in gender-representation in Shark Tank (US) could have additional effec
 
 @fig-5 shows that generally on  deals are made in about 60% of pitches from Season 1-14 of Shark Tank (US). However, this frequency of deals made might change based on gender.
 
-![Frequency of Deals Made by Entrepreneur Gender](plots/gender_freq_of_investments_plot.png)
+
+
+![Frequency of Deals Made by Entrepreneur Gender](plots/gender_freq_of_investments_plot.png){#fig-6}
+
+
 According to @fig-6, female entrepreneurs receive deals *more* often than their male counterparts, approximately 64% and 57% of the time respectively. Mixed gender entrepreneur teams actually make deals more than both female and male entrepreneurs (65% of the time). This imbalance in number of deals made might reflect that women-led and mixed-team led businesses are simply underrepresented on Shark Tank. Since male-led teams are represented more often, they might be more likely to be rejected, lowering their ratio of successful to unsuccessful pitches. This higher rejection rate for male entrepreneurs might also reflect different deal-making strategies that are to be explored further.
 
 
-![Frequency of Deals Made by Industry](plots/industry_investment_frequency_plot.png)
+
+
+![Frequency of Deals Made by Industry](plots/industry_investment_frequency_plot.png){#fig-7}
+
+
 According to @fig-7, Automotive, Lifestyle/Home and Uncertain/Other industries seem to make deals most often, making deals 77%, 67% and 67% of the time. One of these industries--Lifestyle/Home--has a strong representation of female entrepreneurs. However, the Automotive industry lacks representation of any female entrepreneurs despite making deals the most often out of any industry.
 
 ### Requested Investment, Equity and Valuation
 
 Before a deal is made on Shark Tank, entrepreneurs have to pitch their business and their requested investment, offered equity, and estimated valuation of their business. 
 
-![Typical Investment Requested](plots/investments_asked_plot.png)
+
+
+![Typical Investment Requested](plots/investments_asked_plot.png){#fig-8}
+
+
 According to @fig-8, the typical investment requested on Shark Tank (US) is approximately 200,000 USD. However, there is slight variation in the requested investment's distribution, with the most requested 100,000,000 USD and the least 40,000 USD. The distribution is skewed right somewhat as well. 
-![Typical Investment Requested by Gender](plots/gender_investments_asked_plot.png)
+
+
+![Typical Investment Requested by Gender](plots/gender_investments_asked_plot.png){#fig-9}
+
+
 In analyzing how requested investment on Shark Tank (US) varies by gender, @fig-9 shows that male entrepreneurs and mixed gender entrepreneur teams typically request 50,000 USD more than their female entrepreneur counterparts. Female entrepreneurs also request 50,000 USD less than the general population. This difference in requested investment might be explained by different equities offered or different typical valuations of their businesses that are to be analyzed. 
 
-![Typical Equity Offered](plots/equity_asked_plot.png)
+
+![Typical Equity Offered](plots/equity_asked_plot.png){#fig-10}
+
+
 @fig-10 shows the typical offered equity during a pitch on Shark Tank (US) is approximately 10 percent. There is some slight variation, with the most offered being 100 percent (indicating the business owner would like to be bought out) and lease offered being 1 percent. The distribution of equity offered is skewed right, with a peak at approximately 10 percent. It is important to investigate, however, if this offered equity is uniform across all genders.
 
-![Typical Equity Offered by Gender](plots/gender_equity_asked_plot.png)
+
+![Typical Equity Offered by Gender](plots/gender_equity_asked_plot.png){#fig-11}
+
+
 According to @fig-11, the typical offered equity during a pitch on Shark Tank (US) for female entrepreneurs is 12%, while the typical offered equity for both male and mixed gender entrepreneur teams is 10%. Female entrepreneurs typically offer 2% more in equity than both the general population and their male and mixed gender entrepreneur counterparts. The general distribution of offered equity appears to be the same across all genders, with a peak around the median equity offered and a slight right skew. Given that female entrepreneurs both offer more equity and request less in investment, it is likely that they undervalue their businesses compared to male and mixed team entrepreneurs. 
 
-![Typical Valuation Requested Initially](plots/valuation_requested_plot.png)
+
+![Typical Valuation Requested Initially](plots/valuation_requested_plot.png){#fig-12}
+
+
 The typical initial valuation requested on Shark Tank is approximately 1,500,000 USD, according to @fig-12. The distribution of the requested valuation is skewed somewhat right with a peak slightly below this typical valuation. The greatest valuation requested is approximately 100,000,000 USD, while the lowest is approximately 40,000 USD. Given the differences in requested investment and equity offered across entrepreneur gender, it is expected that this requested valuation should differ for female, male and mixed gender entrepreneur teams.
 
-![Typical Initial Valuation Requested by Gender](plots/gender_valuation_requested_plot.png)
+![Typical Initial Valuation Requested by Gender](plots/gender_valuation_requested_plot.png){#fig-13}
+
+
 According to @fig-13, businesses run by female entrepreneurs are valued typically at 1,000,000 USD, while male-run businesses are valued at 1,666,667 USD and mixed gender-run businesses are valued at 2,000,000 USD. The distributions of these businesses are similar, each with a right skew and a peak slightly below the median valuation. The range of valuations requested are somewhat similar, with male-run businesses having a lowest requested valuation value of 40,000 USD and highest of 100,000,000 USD. Female-run businesses have 85,714 USD and 25,000,000 USD respectively. Mixed-gender teams have 100,000 USD and 25,000,000 USD respectively.
 
 Overall, it is clear that female entrepreneurs typically request less in investment, offer more in equity and value their businesses less than their male and mixed-gender team entrepreneur counterparts. However, it is unclear *why* exactly. Is it because female entrepreneurs are more conservative in their assessment of their company's worth? Do male and mixed gender entrepreneurs overvalue their companies? Exploring what investment, equity and valuation these entrepreneurs receive when they make deals can provide some insight.
@@ -97,36 +124,62 @@ Overall, it is clear that female entrepreneurs typically request less in investm
 
 The investment received after a deal on Shark Tank is a strong indicator of the success of a pitch on the show. 
 
-![Typical Investment](plots/typical_investment_plot.png)
+
+![Typical Investment](plots/typical_investment_plot.png){#fig-14}
+
+
 In @fig-14, the typical investment for entrepreneurs that received deals on Shark Tank (US) is approximately 200,000 USD. The distribution of this typical investment is skewed somewhat to the right, with a peak slightly below this typical value. The greatest investment received is approximately 5,000,000 USD and least investment received is approximately 10,000 USD. 
 
-![Investments Received by Gender](plots/gender_investments_received_plot.png)
+
+![Investments Received by Gender](plots/gender_investments_received_plot.png){#fig-15}
+
 
 In @fig-15, typical investment for male entrepreneurs is approximately 50,000 USD more than for female entrepreneurs. Mixed gender entrepreneur teams receive a typical investment of 250,000 USD, greater than both female and male entrepreneurs. Female entrepreneurs receive typical investments 50,000 USD less than the general population. The distribution of the typical investments are similar across genders. Is this an instance where female entrepreurs give less equity or have lower business valuations? 
 
-![Typical Equity Received](plots/typical_equity_plot.png)
+
+![Typical Equity Received](plots/typical_equity_plot.png){#fig-16}
+
+
 According to @fig-16, for all deals made on Shark Tank (US), the typical equity received by the shark is approximately 20%, much greater than the typical equity requested, with a peak at 20% and a very slight skew to the right. The greatest equity received is approximately 100% (complete buy-out) and lowest is approximately 2%. Since the typical investment received approximately matches the typical investment requested, this discrepancy in equity received and equity offered might indicate that many sharks overvalue their businesses. This will be further explored in their valuations. 
 
-![Typical Equity Received by Gender](plots/gender_equity_received_plot.png)
+
+![Typical Equity Received by Gender](plots/gender_equity_received_plot.png){#fig-17}
+
+
 In @fig-17, it is clear that female entrepreneurs typically give more equity (25%) than the general population (20%), male entrepreneurs (20%), and mixed entrepreneur teams (22%). The distributions of these equity values are fairly similar, with peaks around the median equity values and very little skew. The highest equity given for all genders is 100%, indicating a buy-out. The lowest equity given for female entrepreneurs was 2.5%, for male entrepeneurs was 2% and for mixed gender teams was 3%. This difference in equity indicates that while female entrepreneurs receive less investment than their male counterparts, they actually give *more* equity. Additionally mixed gender teams receive much more investment than female entrepreneurs but only offer slightly less equity. This indicates that female-run businesses could be valued differently than male-run or mixed-team run businesses. Futher analysis is required.
 
-![Typical Valuation Received](plots/typical_valuation_plot.png)
+
+![Typical Valuation Received](plots/typical_valuation_plot.png){#fig-18}
+
+
 In @fig-18, the typical valuation received after a deal on Shark Tank is 1,000,000 USD. The lowest valuation received is approximately 14,286 USD and highest 36,000,000 USD. The distribution of valuation received is skewed to the right with a peak slightly below 1,000,000 USD. This differs substantially from the typical requested valuation of 1,500,000 USD, indicating that perhaps many entrepreneurs overvalue their businesses while pitching.
 
-![Typical Valuation Received By Gender](plots/gender_valuation_received_plot.png)
+
+![Typical Valuation Received By Gender](plots/gender_valuation_received_plot.png){#fig-19}
+
+
 According to @fig-19, the typical valuation received for female entrepreneurs (666,667 USD) is less than that of male entrepreneurs (1,000,000 USD) and mixed gender teams (1,035,714 USD). This is in alignment with the gender differences seen in equity (more equity given for female entrepreneurs) and investment (less investment received for female entrepreneurs). Why does this occur? Are female entrepreneurs undervaluing their businesses or do male entrepreneurs and mixed teams overvalue their businesses? Perhaps it is an instance where female entrepreneurs ask for less and therefore receive less? Exploring the differences in requested and received investment, equity and valuation for each pitch could provide some insight. 
 
 ### Pitch Success
 
 The success of a pitch can often be measured by how in line with the pitcher's expectations the investment, equity and valuation agreed upon are. Given the differences across gender with the typical requested investment, equity and valuation and typical received investment, equity and valuation, investigating how these values align or differ for each pitch is critical.
 
-![Difference in Investment Requested and Received By Gender](plots/gender_investment_difference_plot.png)
+
+![Difference in Investment Requested and Received By Gender](plots/gender_investment_difference_plot.png){#fig-20}
+
+
 In @fig-20, the typical difference in investment received and requested in USD is approximately 0 across all genders, indicating that most investments received are in line with expectations set out in the pitch. The distribution of investment differences are similar across all genders, with peaks at approximately 0 USD and some greater variation below 0 USD and very few investment differences above 0 USD. This indicates that perhaps in instances where female entrepreneurs are receiving less investment, it could be because their typical investment expectations are less than that of male entrepreneurs. However, further analysis is to be conducted on whether this lower investment amount impacts equity and valuation differences.
 
-![Difference in Equity Given and Offered By Gender](plots/gender_equity_difference_plot.png)
+
+![Difference in Equity Given and Offered By Gender](plots/gender_equity_difference_plot.png){#fig-21}
+
+
 According to @fig-21, the typical difference in equity for female entrepreneurs (5%) is approximately the same as their male counterparts (5%), indicating that they end up giving approximately 5% more equity than initially proposed. Mixed gender teams end up giving approximately 7.5% more equity than initially proposed. The distributions of equity difference are similar across all genders, with a peak slightly below the median equity difference and a fairly symmetrical distribution. Given that the differences in equity and difference in investment are similar between male and female entrepreneurs, perhaps investment and equity received differences are due to different initial expectations set forth in the pitching process.
 
-![Difference in Valuation Received and Requested by Gender](plots/gender_valuation_difference_plot.png)
+
+![Difference in Valuation Received and Requested by Gender](plots/gender_valuation_difference_plot.png){#fig-22}
+
+
 In @fig-22, the typical difference in valuation received and requested is less for female entrepreneurs (-333,000 USD) than their male entrepreneur (-502,000 USD) mixed gender team (-600,000 USD) counterparts. The distributions of the valuation difference are similar across all genders, with a slight left skew and a peak slightly above the median valuation difference. The range of valuation differences is similar across all genders, with the most positive differences being 1,2500,000, 4,000,000, and 4,000,000 USD for female, male and mixed gender entrepreneur teams respectively. The most negative differences being -13,750,000, -25,000,000, and -16,666,667 USD for female, male and mixed gender entrepreneur teams, respectively.
 These differences in typical valuation difference indicate that perhaps female entrepreneurs have a more accurate initial estimate of what their business is actually worth compared to male and mixed gender team entrepreneurs. Additionally, it could indicate that male entrepreneurs and mixed gender teams overvalue their businesses in the initial pitches. Regardless, female entrepreneurs often leave pitches with valuations more in line with their expectations than male and mixed gender teams. 
 
@@ -137,27 +190,50 @@ Individual shark behavior is important to analyze as well, understanding if they
 ### Shark Investment Frequency
 
 #### Barbara Corcoran
-![Barbara Corcoran](plots/bc_invest_frequency.png)
+
+
+![Barbara Corcoran](plots/bc_invest_frequency.png){#fig-23}
+
+
 In @fig-23, Barbara Corcoran makes deals approximately 9.3% of the time when pitched to, passing on 90.7% of pitches.
 
 #### Mark Cuban
-![Mark Cuban](plots/mc_invest_frequency.png)
+
+![Mark Cuban](plots/mc_invest_frequency.png){#fig-24}
+
+
 In @fig-24, Mark Cuban makes deals approximately 18.1% of the time when pitched to, passing on 81.9% of deals.
 
 #### Lori Greiner
-![Lori Greiner](plots/lg_invest_frequency.png)
+
+
+![Lori Greiner](plots/lg_invest_frequency.png){#fig-25}
+
+
 According to @fig-25, Lori Greiner makes deals approximately 15.6% of the time when pitched to, passing on 84.4% of deals.
 
 #### Robjert Herjavec
-![Robert Herjavec](plots/rh_invest_frequency.png)
+
+
+![Robert Herjavec](plots/rh_invest_frequency.png){#fig-26}
+
+
 In @fig-26, Robert Herjavec makes deals approximately 9.6% of the time when pitched to, passing on 90.4% of deals.
 
 #### Daymond John
-![Daymond John](plots/dj_invest_frequency.png)
+
+
+![Daymond John](plots/dj_invest_frequency.png){#fig-27}
+
+
 According to @fig-27, Daymond John makes deals approximately 8.8% of the time when pitched to, passing on 91.2% of deals.
 
 #### Kevin O'Leary
-![Kevin O'Leary](plots/kol_invest_frequency.png)
+
+
+![Kevin O'Leary](plots/kol_invest_frequency.png){#fig-28}
+
+
 In @fig-28, Kevin O'Leary makes deals approximately 9.2% of the time when pitched to, passing on 90.8% of deals.
 
 Overall, when pitched to most sharks make deals less than 10% of the time, with the exception of Mark Cuban (18.1%) and Lori Greiner (15.6%). Daymond John makes deals the least often (8.8% percent of pitches). However, of the deals made, how many of them are women-run businesses? Are male investors less likely to make deals with women? 
@@ -165,7 +241,9 @@ Overall, when pitched to most sharks make deals less than 10% of the time, with 
 ### Investment in Women-Run Businesses by Shark
 Of the deals made, it is important to investigate the proportion of them that are women-run businesses. 
 
-![Percentage of Investments Made in Women-Led Businesses by Shark](plots/freq_invest_women_plot_by_shark.png)
+
+![Percentage of Investments Made in Women-Led Businesses by Shark](plots/freq_invest_women_plot_by_shark.png){#fig-29}
+
 
 In @fig-29, it is clear that female sharks-- including female guests, Barbara Corcoran and Lori Greiner--invest in women more often than male sharks. These differences are likely not due to differences in frequency of investing. Even when compared to sharks that invest similar amounts, female sharks invest more often in female-run businesses than male sharks. 
 
@@ -173,10 +251,17 @@ In @fig-29, it is clear that female sharks-- including female guests, Barbara Co
 
 Since it is clear that female sharks invest in female-run businesses more often, can the same be said for female-dominated industries?
 
-![Industries Invested in by Female Sharks](plots/industries_preferred_female_sharks_plot.png)
 
-![Industries Invested in by Male Sharks](plots/industries_preferred_male_sharks_plot.png)
+![Industries Invested in by Female Sharks](plots/industries_preferred_female_sharks_plot.png){#fig-30}
 
+
+According to @fig-30, the industries preferred by female sharks include: Lifestyle/Home, Food and Beverage, Fashion/Beauty and Children/Education. Most of these industries are industries with greater representation of female entrepreneurs, especially Children/Education which has more female entrepreneurs than male (according to @fig-4).
+
+
+![Industries Invested in by Male Sharks](plots/industries_preferred_male_sharks_plot.png){#fig-31}
+
+
+According to @fig-31, the industries preferred by male sharks include: Food and Beverage, Lifestyle/Home, Fashion/Beauty and Fitness/Sports/Outdoors. Some of these industries are industries with greater representation of female entrepreneurs. However, the only truly female-dominated industry, Children/Education, is preferred less by male entrepreneurs than female entrepreneurs.
 
 ## Conclusions
 
