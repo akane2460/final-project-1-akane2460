@@ -8,20 +8,20 @@ library(skimr)
 library(janitor)
 
 ## Load Data ----
-shark_tank_us <- read_csv("data/raw/shark_tank_us_data.csv")
+shark_tank_us_data <- read_csv("data/raw/shark_tank_us_data.csv")
 
 # skim_without_charts(shark_tank_us)
 # head(shark_tank_us)
 
 ### Cleaning Names----
-shark_tank_us <- shark_tank_us |>
+shark_tank_us_data <- shark_tank_us_data |>
   clean_names()
 
 
 ### Pitched and Made Deals ----
 # replace NAs in `Total Deal Amount`, `Deal Valuation`,
 # `Number of sharks in deal`, `Deal Valuation `, `Investment Amount Per Shark`, `Loan` and `Equity Per Shark`
-shark_tank_us <- shark_tank_us |> 
+shark_tank_us_data <- shark_tank_us_data |> 
   mutate(
     total_deal_amount = ifelse(is.na(total_deal_amount) == TRUE, 0, total_deal_amount),
     deal_valuation = ifelse(is.na(deal_valuation) == TRUE, 0, deal_valuation),
@@ -34,7 +34,7 @@ shark_tank_us <- shark_tank_us |>
   )
 
 # clean got_deal and multiple_entrepreneurs
-shark_tank_us <- shark_tank_us |> 
+shark_tank_us_data <- shark_tank_us_data |> 
   mutate(
     got_deal = ifelse(got_deal == 1, TRUE, FALSE),
     royalty_deal = ifelse(is.na(royalty_deal) == TRUE, FALSE, TRUE)
@@ -42,7 +42,7 @@ shark_tank_us <- shark_tank_us |>
 
 
 # Multiple Entrepreneurs ----
-shark_tank_us <- shark_tank_us |> 
+shark_tank_us_data <- shark_tank_us_data |> 
   # handle the NA values first
   mutate(
     multiple_entrepreneurs = ifelse(is.na(multiple_entrepreneurs) == TRUE & is.na(entrepreneur_names) == TRUE,
@@ -60,7 +60,7 @@ shark_tank_us <- shark_tank_us |>
   )
 
 # check to see if these missed NAs are single entrepreneurs or teams
-missed_NAs <- shark_tank_us |> 
+missed_NAs <- shark_tank_us_data |> 
   filter(multiple_entrepreneurs == entrepreneur_names) |> 
   select(entrepreneur_names, multiple_entrepreneurs)
 
@@ -72,7 +72,7 @@ missed_NAs |> filter(str_detect(multiple_entrepreneurs, pattern = "^and$"))
 # all the "missed NAs" are single entrepreneurs
 
 # convert to TRUE and FALSE for multiple entrepreneur teams
-shark_tank_us <- shark_tank_us |> 
+shark_tank_us_data <- shark_tank_us_data |> 
   mutate(
     # address the missing NAs first
     multiple_entrepreneurs = ifelse(is.na(multiple_entrepreneurs) == TRUE, FALSE, multiple_entrepreneurs),
@@ -82,12 +82,12 @@ shark_tank_us <- shark_tank_us |>
 
 # remove NAs for pitcher gender
 
-shark_tank_us <- shark_tank_us |> 
+shark_tank_us_data <- shark_tank_us_data |> 
   filter(is.na(pitchers_gender) == FALSE)
 
 ### Series Regular Investors ----
 # replace NAs for each investor
-shark_tank_us <- shark_tank_us |> 
+shark_tank_us_data <- shark_tank_us_data |> 
   mutate(
     # barbara corcoran
     barbara_corcoran_investment_amount = ifelse(is.na(barbara_corcoran_investment_amount) == TRUE, 0, barbara_corcoran_investment_amount),
@@ -119,7 +119,7 @@ shark_tank_us <- shark_tank_us |>
   )
 
 ## Frequency of investing for individual investors
-shark_tank_us <- shark_tank_us |> 
+shark_tank_us_data <- shark_tank_us_data |> 
   mutate(
     # barbara corcoran
     barbara_corcoran_invested = ifelse(barbara_corcoran_investment_amount > 0, TRUE, FALSE),
@@ -142,27 +142,27 @@ shark_tank_us <- shark_tank_us |>
 
 ### Guest Names and Genders----
 # fix mistake in Daniel Lubetzsky (spelled incorrectly some places, correctly in others)
-shark_tank_us <- shark_tank_us |> 
+shark_tank_us_data <- shark_tank_us_data |> 
   mutate(
     guest_name = ifelse(guest_name == "Daniel Lubetzsky", "Daniel Lubetzky", guest_name)
   )
 
 # fix mistake in Nirv Tolia (spelled incorrectly here)
-shark_tank_us <- shark_tank_us |> 
+shark_tank_us_data <- shark_tank_us_data |> 
   mutate(
     guest_name = ifelse(guest_name == "Nirv Tolia", "Nirav Tolia", guest_name)
   )
 
 # handling the rotating guests-- what is their gender? did they invest? how much? etc.
 
-guest_names <- shark_tank_us |> 
+guest_names <- shark_tank_us_data |> 
   filter(is.na(guest_name) == FALSE) |> 
   select(guest_name) |> 
   unique()
 
 
 # guest investor genders
-shark_tank_us <- shark_tank_us |> 
+shark_tank_us_data <- shark_tank_us_data |> 
   mutate(
     guest_gender = case_when(
       guest_name == "Kevin Harrington" ~ "M",
@@ -200,7 +200,7 @@ shark_tank_us <- shark_tank_us |>
   
 
 ### creating difference in asked for vs received investment (per shark), equity (per shark), valuation variables----
-shark_tank_us <- shark_tank_us |> 
+shark_tank_us_data <- shark_tank_us_data |> 
   mutate(
     investment_difference = ifelse(got_deal == TRUE, investment_amount_per_shark - original_ask_amount, NA),
     
@@ -214,13 +214,13 @@ shark_tank_us <- shark_tank_us |>
 
 ### removing irrelevant variables ----
 
-shark_tank_us <- shark_tank_us |> 
+shark_tank_us_data <- shark_tank_us_data |> 
   select(!pitchers_city)
 
-shark_tank_us <- shark_tank_us |> 
+shark_tank_us_data <- shark_tank_us_data |> 
   select(!pitchers_state)
 
-shark_tank_us <- shark_tank_us |> 
+shark_tank_us_data <- shark_tank_us_data |> 
   select(!company_website)
 
 
