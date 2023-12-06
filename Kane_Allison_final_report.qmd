@@ -243,37 +243,84 @@ In @fig-28, Kevin O'Leary makes deals approximately 9.2% of the time when pitche
 
 Overall, when pitched to most sharks make deals less than 10% of the time, with the exception of Mark Cuban (18.1%) and Lori Greiner (15.6%). Daymond John makes deals the least often (8.8% percent of pitches). However, of the deals made, how many of them are women-run businesses? Are male investors less likely to make deals with women? 
 
+### Female Entrepreneur Pitch Success to Male and Female Sharks
+
+Understanding how male and female sharks treat female entrepreneurs might provide some insight into how unconscious gender bias might play a role in deal outcomes. 
+
+
+
+![Female Sharks Investment Difference for Female Entrepreneur](plots/investment_diff_female_entrepeneurs_female_sharks_plot.png){#fig-29}
+
+
+In @fig-29, the typical difference in investment received and requested for female entrepreneurs making deals with female sharks is approximately 0 USD, indicating that most investments received are in line with expectations set out in the pitch. The distribution of investment differences has a peak around this median investment difference, with some variation and values ranging from -375000 and 150000 USD.
+
+
+
+![Male Sharks Investment Difference for Female Entrepreneur](plots/investment_diff_female_entrepeneurs_male_sharks_plot.png){#fig-30}
+
+
+In @fig-30, the typical difference in investment received and requested for female entrepreneurs making deals with male sharks is approximately 0 USD, indicating that most investments received are in line with expectations set out in the pitch. The distribution of investment differences has a peak around this median investment difference, with some variation and values ranging from -375000 and 500000 USD. The distribution of typical difference in investment received and requested for female entrepreneurs is similar for both male and female sharks, with both indicating that most investments received are in line with expectations set out in the pitch.
+
+
+
+![Female Sharks Equity Difference for Female Entrepreneur](plots/equity_diff_female_entrepreneurs_female_sharks.png){#fig-31}
+
+
+In @fig-31, the typical difference in equity for female entrepreneurs making deals with female sharks is approximately 5%, indicating that they end up giving approximately 5% more equity than initially proposed. This distribution is fairly even, with a very slight right skew and a peak slightly below the median equity difference of 5%. This distribution contains values ranging from -13 and 40 percent.
+
+![Male Sharks Equity Difference for Female Entrepreneur](plots/equity_diff_female_entrepreneurs_male_sharks.png){#fig-32}
+
+
+In @fig-32, the typical difference in equity for female entrepreneurs making deals with male sharks is approximately 5%, indicating that they end up giving approximately 5% more equity than initially proposed. This distribution is fairly even, with a slight right skew and a peak slightly below the median equity difference of 5%. This distribution contains values ranging from -25.5 and 70 percent. This is similar to the distribution seen in @fig-31, indicating that there is no major difference between equity differences for female entrepreneurs making deals with male vs. female sharks.
+
+![Female Sharks Valuation Difference for Female Entrepreneur](plots/valuation_diff_female_entrepreneurs_female_sharks_plot.png){#fig-33}
+
+
+In @fig-33, the typical valuation difference for female entrepreneurs making deals with female sharks is approximately -333333 USD. This distribution is skewed left, with a peak slightly above the median valuation difference, and contains values ranging from -13750000 to 12500000 USD.
+
+
+![Male Sharks Valuation Difference for Female Entrepreneur](plots/valuation_diff_female_entrepreneurs_male_sharks_plot.png){#fig-34}
+
+
+In @fig-34, the typical valuation difference for female entrepreneurs making deals with male sharks is approximately -500000 USD. This distribution is skewed left, with a peak slightly above the median valuation difference, and contains values ranging from -10,714,286 to 2000000 USD. This distribution differs from @fig-33, with a wider range of values and a lower typical median valuation difference. This indicates that male sharks typically have a lower valuation of female-led businesses than their female shark counterparts.
+
+
 ### Investment in Women-Run Businesses by Shark
 Of the deals made, it is important to investigate the proportion of them that are women-run businesses. 
 
 
-![Percentage of Investments Made in Women-Led Businesses by Shark](plots/freq_invest_women_plot_by_shark.png){#fig-29}
+![Percentage of Investments Made in Women-Led Businesses by Shark](plots/freq_invest_women_plot_by_shark.png){#fig-35}
 
 
-In @fig-29, it is clear that female sharks-- including female guests, Barbara Corcoran and Lori Greiner--invest in women more often than male sharks. These differences are likely not due to differences in frequency of investing. Even when compared to sharks that invest similar amounts, female sharks invest more often in female-run businesses than male sharks. 
+In @fig-35, it is clear that female sharks-- including female guests, Barbara Corcoran and Lori Greiner--invest in women more often than male sharks. These differences are likely not due to differences in frequency of investing. Even when compared to sharks that invest similar amounts, female sharks invest more often in female-run businesses than male sharks. 
 
 ### Industries Favored by Female vs. Male Sharks
 
 Since it is clear that female sharks invest in female-run businesses more often, can the same be said for female-dominated industries?
 
 
-![Industries Invested in by Female Sharks](plots/industries_preferred_female_sharks_plot.png){#fig-30}
+![Industries Invested in by Female Sharks](plots/industries_preferred_female_sharks_plot.png){#fig-35}
 
 
-According to @fig-30, the industries preferred by female sharks include: Lifestyle/Home, Food and Beverage, Fashion/Beauty and Children/Education. Most of these industries are industries with greater representation of female entrepreneurs, especially Children/Education which has more female entrepreneurs than male (according to @fig-4).
+According to @fig-35, the industries preferred by female sharks include: Lifestyle/Home, Food and Beverage, Fashion/Beauty and Children/Education. Most of these industries are industries with greater representation of female entrepreneurs, especially Children/Education which has more female entrepreneurs than male (according to @fig-4).
 
 
-![Industries Invested in by Male Sharks](plots/industries_preferred_male_sharks_plot.png){#fig-31}
+![Industries Invested in by Male Sharks](plots/industries_preferred_male_sharks_plot.png){#fig-36}
 
 
-According to @fig-31, the industries preferred by male sharks include: Food and Beverage, Lifestyle/Home, Fashion/Beauty and Fitness/Sports/Outdoors. Some of these industries are industries with greater representation of female entrepreneurs. However, the only truly female-dominated industry, Children/Education, is preferred less by male entrepreneurs than female entrepreneurs.
+According to @fig-36, the industries preferred by male sharks include: Food and Beverage, Lifestyle/Home, Fashion/Beauty and Fitness/Sports/Outdoors. Some of these industries are industries with greater representation of female entrepreneurs. However, the only truly female-dominated industry, Children/Education, is preferred less by male entrepreneurs than female entrepreneurs.
 
 ## Conclusions
   According to this analysis, there are some differences in the experience of female and male entrepreneurs on Shark Tank (US) seasons 1-14. Female entrepreneurs are underrepresented on Shark Tank (US) and are underrepresented in most industries, only outnumbering male entrepreneurs in the Children/Education industry. Some industries lack completely in female entrepreneurs, including the Automotive, Electronics, and Liquor/Alcohol industries (see @fig-1, @fig-2, @fig-3 and @fig-4). This was expected, as female entrepreneurs are generally underrepresented across most industries outside of Shark Tank (US) and many industries that are historically aligned with STEM fields, like electronics and automotive industries, are overwhelmingly male dominated.
+  
   Deals on shark tank are made approximately 60% of the time, with female entrepreneurs and mixed gender teams making deals more frequently and male entrepreneurs less frequently (see @fig-5 and @fig-6). This was somewhat unexpected, as I anticipated female entrepreneurs might make deals less often with expected less investment from sharks. However, this difference could be attributed to male entrepreneurs turning down deals more frequently or female entrepreneurs being less likely to counter initial offers form sharks. Follow up studies could be done to determine if this is the case. Additional analyses showed that some industries with strong representation of female entrepreneurs made deals more frequently than other industries. However, the automotive industry--an industry with no female entrepreneurs represented--made deals overwhelmingly the most often (see @fig-7). 
+  
   Analysis of female, male and mixed gender entrepreneurs' initial expectations for investment, equity and valuations and their deal values showed that male entrepreneurs typically overvalue their businesses. Female entrepreneurs typically ask for and receive less investment and offer and give more equity (see @fig-8, @fig-9, @fig-10, @fig-11, @fig-12, @fig-13, @fig-14, @fig-15, @fig-16, @fig-17, @fig-18, and @fig-19). Female entrepreneurs also typically left pitches with valuations that were more in line with their initial expectations than their male or mixed gender team counterparts. This could indicate that female entrepreneurs have a more accurate understanding of their business's worth than their male or mixed gender team counterparts. 
+  
   Investments received were typically in line with initial expectations across all genders, while entrepreneurs typically gave slightly more equity than expected (see fig-20, fig-21, and fig-22). This was somewhat unexpected, as I anticipated that there might be a difference across gender how in line a deal was with initial entrepreneur expectations, perhaps with female entrepreneurs not receiving quality deals. The differences in overall investment amounts and equity amounts seen in previous figures might be a case where female entrepreneurs are asking for less investment and offering more equity than their male counterparts and, as a result, receive offers reflecting their initial expectations. Female entrepreneurs also might go about negotiations differently, driving these discrepencies across genders. Follow-up studies could be conducted to determine how often female entrepreneurs counteroffer, walk away from deals, or use sharks as leverage to enhance another deal. Additional data would be needed to conduct these studies.
-  In analysis of shark behavior, male and female sharks typically made deals at similar rates (most less than 10%). However, Lori Greiner and Mark Cuban had higher rates of deals than most other sharks (15.6% and 18.1% respectively), which was somewhat unexpected. In their interactions with female entrepreneurs, it was clear that female sharks invested in female-led businesses much more often than male entrepreneurs, even despite differences in individual shark investment frequencies (see @fig-29). Very minor differences were seen in how often male sharks invest in women-dominated industries compared to female sharks, with male sharks favoring Fitness/Sports/Outdoors over Children/Education focused businesses. This is somewhat unsurprising, as generally male and female sharks have similar industry preferences. However, Children/Education might appeal more to female sharks, or female entrepreneurs in those industries might prefer to work with female sharks more than male sharks. 
+  
+  In analysis of shark behavior, male and female sharks typically made deals at similar rates (most less than 10%). However, Lori Greiner and Mark Cuban had higher rates of deals than most other sharks (15.6% and 18.1% respectively), which was somewhat unexpected. In making deals with female entrepreneurs, male sharks were more likely to value businesses less than their ideal valuation compared to their male counterparts (see @fig-34). Additionally, in their interactions with female entrepreneurs, it was clear that female sharks invested in female-led businesses much more often than male entrepreneurs, even despite differences in individual shark investment frequencies (see @fig-35). Very minor differences were seen in how often male sharks invest in women-dominated industries compared to female sharks, with male sharks favoring Fitness/Sports/Outdoors over Children/Education focused businesses. This is somewhat unsurprising, as generally male and female sharks have similar industry preferences. However, Children/Education might appeal more to female sharks, or female entrepreneurs in those industries might prefer to work with female sharks more than male sharks. 
+  
   Moving forward, additional studies must be done to better understand this data. Additional data sources could be joined to help identify how often sharks counteroffer, walk away from offers, or encourage bidding wars. Also, further analysis could be conducted of how treatment of female entrepreneurs has changed over time. Shark Tank (US) has been on the air since 2009, indicating that it could be beneficial to see how representation of women, investment/equity/valuation trends, shark behavior and industry demographics have changes in its seasons. Additional seasons of shark tank could be added to this dataset to enhance this analysis. 
 
 ## References
@@ -289,7 +336,5 @@ There are seven instances where the pitcher's gender is not included in the data
 Other instances of missingness in variables like `Company website`, or `Pitchers State` did not pose significant issues to the analysis, as they are not as relevant.
 
 Logicals also had instances of using numbers 1 and 0 to represent `TRUE` and `FALSE`. These values were adjusted in the cleaned data to be either `TRUE` or `FALSE`.
-
-## Appendix: Additional Explorations
 
 

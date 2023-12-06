@@ -171,6 +171,17 @@ male_sharks <- shark_tank_us |>
   filter(total_deal_amount > 0) |> 
   filter(mark_cuban_invested == TRUE | robert_herjavec_invested == TRUE | daymond_john_invested == TRUE | kevin_o_leary_invested == TRUE| guest_gender == "M")
 
+# general skims of investment, equity and valuation diffs for female entrepreneurs with female sharks
+female_sharks |>
+  filter(pitchers_gender == "Female") |>
+  filter(total_deal_equity > 0) |>
+  skim_without_charts(investment_difference, equity_difference, valuation_difference)
+
+# general skims of investment, equity and valuation diffs for female entrepreneurs with male sharks
+male_sharks |>
+  filter(pitchers_gender == "Female") |>
+  filter(total_deal_equity > 0) |>
+  skim_without_charts(investment_difference, equity_difference, valuation_difference)
 
 # female entrepreneurs difference in investments female sharks
 median_investment_difference_female_entrepreneurs_female_sharks <- female_sharks |>
@@ -201,7 +212,7 @@ investment_diff_female_entrepeneurs_female_sharks_plot <-
 
 ggsave(filename = "plots/investment_diff_female_entrepeneurs_female_sharks_plot.png",
        plot = investment_diff_female_entrepeneurs_female_sharks_plot,
-       width = 8,
+       width = 9,
        height = 6,
        units = "in"
 )
@@ -235,7 +246,7 @@ investment_diff_female_entrepeneurs_male_sharks_plot <-
 
 ggsave(filename = "plots/investment_diff_female_entrepeneurs_male_sharks_plot.png",
        plot = investment_diff_female_entrepeneurs_male_sharks_plot,
-       width = 8,
+       width = 9,
        height = 6,
        units = "in"
 )
@@ -330,12 +341,11 @@ valuation_diff_female_entrepreneurs_female_sharks_plot <-
   filter(pitchers_gender == "Female") |>
   filter(deal_valuation > 0) |>
   ggplot(aes(x = valuation_difference, fill = pitchers_gender)) +
-  geom_histogram(binwidth = 1000000, color = "white", show.legend = FALSE) +
-  coord_cartesian(xlim = c(-7500000, 7500000), ylim = c(0, 110)) +
-  geom_vline(data = median_equity_diff_female_entrepreneurs_male_sharks,
-             aes(xintercept = median_value),
+  geom_histogram(binwidth = 250000, color = "white", show.legend = FALSE) +
+  coord_cartesian(xlim = c(-1500000, 1500000), ylim = c(0, 110)) +
+  geom_vline(aes(xintercept = -333000),
              color = "red") +
-  geom_text(aes(x = 5 , y = 70, label = "Median Valuation Difference: -333000"),
+  geom_text(aes(x = -333000, y = 70, label = "Median Valuation Difference: -333000"),
             vjust = 2.5,
             size = 3,
             angle = 90) +
