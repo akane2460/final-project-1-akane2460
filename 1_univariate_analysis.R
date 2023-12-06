@@ -263,7 +263,7 @@ frequency_plot <-
   theme_light() +
   labs(
     x = "",
-    y = "Count",
+    y = "Deals",
     title = "Frequency of deals made on Shark Tank (US)",
     subtitle = "Deals are made approximately 60% and not made 40% of the time.",
     caption = "Source: Thirumani et al"
@@ -301,7 +301,7 @@ bc_invest_frequency <- shark_tank_us |>
   theme_light() +
   labs(
     x = "",
-    y = "Count",
+    y = "Deals",
     title = "Frequency of deals made by Barbara Corcoran on Shark Tank (US)",
     subtitle = "When pitched to, Corcoran makes deals less than 10% of the time.",
     caption = "Source: Thirumani et al"
@@ -337,7 +337,7 @@ mc_invest_frequency <- shark_tank_us |>
   theme_light() +
   labs(
     x = "",
-    y = "Count",
+    y = "Deals",
     title = "Frequency of deals made by Mark Cuban on Shark Tank (US)",
     subtitle = "When pitched to, Cuban makes deals nearly 20% of the time.",
     caption = "Source: Thirumani et al"
@@ -372,7 +372,7 @@ lg_invest_frequency <- shark_tank_us |>
   theme_light() +
   labs(
     x = "",
-    y = "Count",
+    y = "Deals",
     title = "Frequency of deals made by Lori Greiner on Shark Tank (US)",
     subtitle = "When pitched to, Greiner makes deals approximately 15% of the time.",
     caption = "Source: Thirumani et al"
@@ -407,7 +407,7 @@ rh_invest_frequency <- shark_tank_us |>
   theme_light() +
   labs(
     x = "",
-    y = "Count",
+    y = "Deals",
     title = "Frequency of deals made by Robert Herjavec on Shark Tank (US)",
     subtitle = "When pitched to, Herjavec makes deals less than 10% of the time.",
     caption = "Source: Thirumani et al"
@@ -442,7 +442,7 @@ dj_invest_frequency <- shark_tank_us |>
   theme_light() +
   labs(
     x = "",
-    y = "Count",
+    y = "Deals",
     title = "Frequency of deals made by Daymond John on Shark Tank (US)",
     subtitle = "When pitched to, John makes deals approximately 9% of the time.",
     caption = "Source: Thirumani et al"
@@ -477,7 +477,7 @@ kol_invest_frequency <- shark_tank_us |>
   theme_light() +
   labs(
     x = "",
-    y = "Count",
+    y = "Deals",
     title = "Frequency of deals made by Kevin O'Leary on Shark Tank (US)",
     subtitle = "When pitched to, O'Leary makes deals approximately 9% of the time.",
     caption = "Source: Thirumani et al"
