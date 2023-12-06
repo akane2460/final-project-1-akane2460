@@ -39,6 +39,7 @@ gender_freq_of_investments_plot <- shark_tank_us |>
   annotate(geom = "text", x = 2, y = .97, label = "43.5%") +
   annotate(geom = "text", x = 3, y = .97, label = "34.6%") +
   scale_fill_manual(name = "Deal Made?", values = frequency_colors, labels = c("No Deal", "Deal")) +
+  theme_light() +
   labs(
     x = "Pitcher's Gender",
     y = "",

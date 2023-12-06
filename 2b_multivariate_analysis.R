@@ -6,6 +6,7 @@
 library(tidyverse)
 library(skimr)
 library(janitor)
+library(knitr)
 
 ## Load Data ----
 shark_tank_us <- read_csv("data/shark_tank_us.csv")
@@ -158,7 +159,6 @@ ggsave(filename = "plots/freq_invest_women_plot_by_shark.png",
        height = 6,
        units = "in"
 )
-
 
 ### how are these female entrepreneurs treated by female vs. male sharks----
 

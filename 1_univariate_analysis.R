@@ -10,7 +10,7 @@ library(janitor)
 ## Load Data ----
 shark_tank_us <- read_csv("data/shark_tank_us.csv")
 
-# male/female/mixed team ratio
+# male/female/mixed team ratio ----
 gender_colors <- c("Male" = "#5484FF", "Female" = "#EC837D", "Mixed Team" = "#11B642")
 
 gender_ratios_plot <- shark_tank_us |> 
@@ -445,41 +445,6 @@ dj_invest_frequency <- shark_tank_us |>
 
 ggsave(filename = "plots/dj_invest_frequency.png",
        plot = dj_invest_frequency,
-       width = 6,
-       height = 4,
-       units = "in"
-)
-
-# kevin o leary
-shark_tank_us |>
-  summarize(
-    kol_deals_made = sum(kevin_o_leary_invested == TRUE),
-    kol_deals_passed = sum(kevin_o_leary_invested == FALSE),
-    kol_total_pitches = n(),
-    kol_pct_made = kol_deals_made / kol_total_pitches,
-    kol_pct_passed = kol_deals_passed / kol_total_pitches,
-  )
-
-# how often kevin o'leary invests when someone pitches
-kol_invest_frequency <- shark_tank_us |> 
-  ggplot(aes(x = kevin_o_leary_invested, fill = kevin_o_leary_invested)) +
-  geom_bar() +
-  scale_fill_manual(name = "Deal Made?", values = frequency_colors, labels = c("No Deal", "Deal")) +
-  annotate(geom = "text", x = 2, y = 145, label = "9.2%", fontface = 2) +
-  annotate(geom = "text", x = 1, y = 1190, label = "90.8%", fontface = 2) +
-  scale_x_discrete(labels =  c("No Deal", "Deal")) +
-  coord_cartesian(ylim = c(0, 1250)) +
-  theme_light() +
-  labs(
-    x = "",
-    y = "Count",
-    title = "Frequency of deals made by Kevin O'Leary on Shark Tank (US)",
-    subtitle = "When pitched to, O'Leary makes deals approximately 9% of the time.",
-    caption = "Source: Thirumani et al"
-  )
-
-ggsave(filename = "plots/kol_invest_frequency.png",
-       plot = kol_invest_frequency,
        width = 6,
        height = 4,
        units = "in"
