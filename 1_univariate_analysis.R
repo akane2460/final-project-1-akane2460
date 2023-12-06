@@ -20,7 +20,7 @@ gender_ratios_plot <- shark_tank_us |>
   theme_light() +
   labs(
     x = "Pitcher's Gender",
-    y = "Count",
+    y = "Number of Businesses",
     title = "Shark Tank Entrepreneur Teams by Gender",
     subtitle = "There are substantially more male entrepreneurs and all male teams than female entrepreneurs and mixed teams.",
     caption = "Source: Thirumani et al",
@@ -46,7 +46,7 @@ businesses_represented_plot <-
   theme(axis.text.x = element_text(angle = 50, hjust = 1, size = 7)) +
   labs(
     x = "Type of Business",
-    y = "Count",
+    y = "Number of Businesses",
     title = "Shark Tank Types of Businesses and Industries",
     subtitle = "The most represented industries are Food/Beverage, Fashion/Beauty, and Lifestyle/Home.",
     caption = "Source: Thirumani et al",
@@ -77,7 +77,7 @@ investments_asked_plot <-
   coord_cartesian(xlim = c(0, 1000000)) +
   labs(
     x = "Investment Requested (USD)",
-    y = "Count", 
+    y = "Pitches", 
     title = "Typical Requested Investment on Shark Tank (US)",
     subtitle = "The typical investment requested originally is approximately 200,000 USD",
     caption = "Source: Thirumani et al"
@@ -103,8 +103,8 @@ equity_asked_plot <-
   theme_light() +
   labs(
     x = "Equity Originally Offered (in %)",
-    y = "Count",
-    title = "Typical Originally Offered Equity (in %) on Shark Tank",
+    y = "Pitches",
+    title = "Typical Originally Offered Equity (in %) on Shark Tank (US)",
     subtitle = "The typical equity offered is approximately 10 percent",
     caption = "Source: Thirumani et al"
   )
@@ -132,8 +132,8 @@ valuation_requested_plot <-
   coord_cartesian(xlim = c(0, 10000000)) +
   labs(
     x = "Valuation Requested (USD)",
-    y = "Count",
-    title = "Typical Business Valuation Requested on Shark Tank",
+    y = "Pitches",
+    title = "Typical Business Valuation Requested on Shark Tank (US)",
     subtitle = "The typical valuation requested is approximately 1,500,000 USD",
     caption = "Source: Thirumani et al"
   )
@@ -165,9 +165,9 @@ typical_investment_plot <-
   coord_cartesian(xlim = c(0, 1000000)) +
   labs(
     x = "Typical Investment Received",
-    y = "Count",
-    title = "Typical Investment Received on Shark Tank",
-    subtitle = "The typical investment received is approximately 200,000 USD",
+    y = "Deals",
+    title = "Typical Investment Received on Shark Tank (US)",
+    subtitle = "The typical investment received is approximately 200,000 USD.",
     caption = "Source: Thirumani et al"
   )
 
@@ -192,10 +192,10 @@ typical_equity_plot <-
   annotate("text", x = 15, y = 125, label = "Median Equity", angle = 90, size = 3) +
   theme_light() +
   labs(
-    x = "Typical Equity Received (in %)",
-    y = "Count",
-    title = "Typical Equity Received (in %) on Shark Tank",
-    subtitle = "The typical equity received is approximately 20 percent",
+    x = "Typical Equity Given (in %)",
+    y = "Deals",
+    title = "Typical Equity Given (in %) on Shark Tank (US)",
+    subtitle = "The typical equity received is approximately 20 percent.",
     caption = "Source: Thirumani et al"
   )
 
@@ -223,8 +223,8 @@ typical_valuation_plot <-
   coord_cartesian(xlim = c(0, 10000000), ylim = c(0, 225)) +
   labs(
     x = "Valuation Requested (USD)",
-    y = "Count",
-    title = "Typical Business Valuation Received on Shark Tank",
+    y = "Deals",
+    title = "Typical Business Valuation Received on Shark Tank (US)",
     subtitle = "The typical valuation received is approximately 1,000,000 USD",
     caption = "Source: Thirumani et al"
   )
@@ -309,7 +309,7 @@ bc_invest_frequency <- shark_tank_us |>
   
 ggsave(filename = "plots/bc_invest_frequency.png",
        plot = bc_invest_frequency,
-       width = 6,
+       width = 7,
        height = 4,
        units = "in"
 )

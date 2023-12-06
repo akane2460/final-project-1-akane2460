@@ -86,8 +86,8 @@ gender_investments_asked_plot <-
             aes(x = median_value , y = 105, label = "Median Investment \nRequested"), vjust = 1.25, size = 2.5, angle = 90) +
   labs(
     x = "Investment Requested (USD)",
-    y = "Count", 
-    title = "Typical Requested Investment on Shark Tank",
+    y = "Pitches",
+    title = "Typical Requested Investment on Shark Tank (US)",
     subtitle = "The typical investment requested by all male and mixed teams is approximately 50,000 greater than female teams",
     caption = "Source: Thirumani et al"
   ) 
@@ -127,8 +127,8 @@ gender_equity_asked_plot <-
   theme_light() +
   labs(
     x = "Equity Originally Offered (in %)",
-    y = "Count",
-    title = "Typical Originally Offered Equity (in %) on Shark Tank",
+    y = "Pitches",
+    title = "Typical Originally Offered Equity (in %) on Shark Tank (US)",
     subtitle = "Female teams typically offer 2% more equity than male and mixed teams.",
     caption = "Source: Thirumani et al"
   )
@@ -169,8 +169,8 @@ gender_valuation_requested_plot <-
   coord_cartesian(xlim = c(0, 10000000)) +
   labs(
     x = "Valuation Requested (USD)",
-    y = "Count",
-    title = "Typical Business Valuation Requested on Shark Tank By Gender",
+    y = "Pitches",
+    title = "Typical Business Valuation Requested By Gender on Shark Tank (US)",
     subtitle = "Female run businesses are initially valued over 600,000 USD less than male-run businesses.",
     caption = "Source: Thirumani et al"
   )
@@ -217,7 +217,7 @@ gender_investments_received_plot <-
   labs(
     x = "Investment Received (USD)",
     y = "Deals", 
-    title = "Typical Requested Investment on Shark Tank",
+    title = "Typical Requested Investment on Shark Tank (US)",
     subtitle = "The typical investment received by all male teams is approximately 50,000 greater than female teams",
     caption = "Source: Thirumani et al"
   ) 
@@ -263,7 +263,7 @@ gender_equity_received_plot <-
   labs(
     x = "Equity Received (in %)",
     y = "Deals",
-    title = "Typical Received Equity (in %) on Shark Tank",
+    title = "Typical Received Equity (in %) on Shark Tank (US)",
     subtitle = "Female teams typically give 5% more equity than male teams.",
     caption = "Source: Thirumani et al"
   )
@@ -307,7 +307,7 @@ gender_valuation_received_plot <-
   labs(
     x = "Valuation Received (USD)",
     y = "Deals",
-    title = "Typical Business Valuation Received on Shark Tank By Gender",
+    title = "Typical Business Valuation Received By Gender on Shark Tank (US)",
     subtitle = "Female run businesses are valued over 40,000 USD less than male-run businesses.",
     caption = "Source: Thirumani et al"
   )
@@ -463,7 +463,7 @@ industries_of_women_plot <- shark_tank_us |>
   theme(axis.text.x = element_text(angle = 50, hjust = 1, size = 7)) +
   labs(
     x = "Type of Business",
-    y = "Count",
+    y = "Number of Businesses",
     title = "Shark Tank Types of Businesses and Industries Run by All-Female Teams",
     subtitle = "The most represented industries are Food/Beverage, Fashion/Beauty, Children/Education and Lifestyle/Home.",
     caption = "Source: Thirumani et al",
