@@ -281,6 +281,7 @@ ggsave(filename = "plots/frequency_plot.png",
 
 # barbara corcoran
 shark_tank_us |>
+  filter(barbara_corcoran_present == TRUE) |> 
   summarize(
     bc_deals_made = sum(barbara_corcoran_invested == TRUE),
     bc_deals_passed = sum(barbara_corcoran_invested == FALSE),
@@ -291,19 +292,20 @@ shark_tank_us |>
 
 # how often barbara invests when someone pitches
 bc_invest_frequency <- shark_tank_us |> 
+  filter(barbara_corcoran_present == TRUE) |> 
   ggplot(aes(x = barbara_corcoran_invested, fill = barbara_corcoran_invested)) +
   geom_bar() +
   scale_fill_manual(name = "Deal Made?", values = frequency_colors, labels = c("No Deal", "Deal")) +
-  annotate(geom = "text", x = 2, y = 150, label = "9.3%", fontface = 2) +
-  annotate(geom = "text", x = 1, y = 1200, label = "90.7%", fontface = 2) +
+  annotate(geom = "text", x = 2, y = 110, label = "17.2%", fontface = 2) +
+  annotate(geom = "text", x = 1, y = 440, label = "82.8%", fontface = 2) +
   scale_x_discrete(labels =  c("No Deal", "Deal")) +
-  coord_cartesian(ylim = c(0, 1250)) +
+  coord_cartesian(ylim = c(0, 600)) +
   theme_light() +
   labs(
     x = "",
     y = "Deals",
     title = "Frequency of deals made by Barbara Corcoran on Shark Tank (US)",
-    subtitle = "When pitched to, Corcoran makes deals less than 10% of the time.",
+    subtitle = "When pitched to, Corcoran makes deals 17.2% of the time.",
     caption = "Source: Thirumani et al"
   )
   
@@ -317,6 +319,7 @@ ggsave(filename = "plots/bc_invest_frequency.png",
 
 # mark cuban
 shark_tank_us |>
+  filter(mark_cuban_present == TRUE) |> 
   summarize(
     mc_deals_made = sum(mark_cuban_invested == TRUE),
     mc_deals_passed = sum(mark_cuban_invested == FALSE),
@@ -327,13 +330,14 @@ shark_tank_us |>
 
 # how often mark cuban invests when someone pitches
 mc_invest_frequency <- shark_tank_us |> 
+  filter(mark_cuban_present == TRUE) |> 
   ggplot(aes(x = mark_cuban_invested, fill = mark_cuban_invested)) +
   geom_bar() +
   scale_fill_manual(name = "Deal Made?", values = frequency_colors, labels = c("No Deal", "Deal")) +
-  annotate(geom = "text", x = 2, y = 265, label = "18.1%", fontface = 2) +
-  annotate(geom = "text", x = 1, y = 1075, label = "81.9%", fontface = 2) +
+  annotate(geom = "text", x = 2, y = 175, label = "19.6%", fontface = 2) +
+  annotate(geom = "text", x = 1, y = 680, label = "80.4%", fontface = 2) +
   scale_x_discrete(labels =  c("No Deal", "Deal")) +
-  coord_cartesian(ylim = c(0, 1250)) +
+  coord_cartesian(ylim = c(0, 800)) +
   theme_light() +
   labs(
     x = "",
@@ -352,6 +356,7 @@ ggsave(filename = "plots/mc_invest_frequency.png",
 
 # lori greiner
 shark_tank_us |>
+  filter(lori_greiner_present == TRUE) |> 
   summarize(
     lg_deals_made = sum(lori_greiner_invested == TRUE),
     lg_deals_passed = sum(lori_greiner_invested == FALSE),
@@ -362,19 +367,20 @@ shark_tank_us |>
 
 # how often lori greiner invests when someone pitches
 lg_invest_frequency <- shark_tank_us |> 
+  filter(lori_greiner_present == TRUE) |> 
   ggplot(aes(x = lori_greiner_invested, fill = lori_greiner_invested)) +
   geom_bar() +
   scale_fill_manual(name = "Deal Made?", values = frequency_colors, labels = c("No Deal", "Deal")) +
-  annotate(geom = "text", x = 2, y = 230, label = "15.6%", fontface = 2) +
-  annotate(geom = "text", x = 1, y = 1100, label = "84.4%", fontface = 2) +
+  annotate(geom = "text", x = 2, y = 145, label = "19.2%", fontface = 2) +
+  annotate(geom = "text", x = 1, y = 565, label = "80.8%", fontface = 2) +
   scale_x_discrete(labels =  c("No Deal", "Deal")) +
-  coord_cartesian(ylim = c(0, 1250)) +
+  coord_cartesian(ylim = c(0, 700)) +
   theme_light() +
   labs(
     x = "",
     y = "Deals",
     title = "Frequency of deals made by Lori Greiner on Shark Tank (US)",
-    subtitle = "When pitched to, Greiner makes deals approximately 15% of the time.",
+    subtitle = "When pitched to, Greiner makes deals nearly 20% of the time.",
     caption = "Source: Thirumani et al"
   )
 
@@ -387,6 +393,7 @@ ggsave(filename = "plots/lg_invest_frequency.png",
 
 # robert herjavec
 shark_tank_us |>
+  filter(robert_herjavec_present == TRUE) |> 
   summarize(
     rh_deals_made = sum(robert_herjavec_invested == TRUE),
     rh_deals_passed = sum(robert_herjavec_invested == FALSE),
@@ -397,19 +404,20 @@ shark_tank_us |>
 
 # how often robert herjavec invests when someone pitches
 rh_invest_frequency <- shark_tank_us |> 
+  filter(robert_herjavec_present == TRUE) |> 
   ggplot(aes(x = robert_herjavec_invested, fill = robert_herjavec_invested)) +
   geom_bar() +
   scale_fill_manual(name = "Deal Made?", values = frequency_colors, labels = c("No Deal", "Deal")) +
-  annotate(geom = "text", x = 2, y = 150, label = "9.6%", fontface = 2) +
-  annotate(geom = "text", x = 1, y = 1175, label = "90.4%", fontface = 2) +
+  annotate(geom = "text", x = 2, y = 110, label = "11.5%", fontface = 2) +
+  annotate(geom = "text", x = 1, y = 715, label = "88.5%", fontface = 2) +
   scale_x_discrete(labels =  c("No Deal", "Deal")) +
-  coord_cartesian(ylim = c(0, 1250)) +
+  coord_cartesian(ylim = c(0, 800)) +
   theme_light() +
   labs(
     x = "",
     y = "Deals",
     title = "Frequency of deals made by Robert Herjavec on Shark Tank (US)",
-    subtitle = "When pitched to, Herjavec makes deals less than 10% of the time.",
+    subtitle = "When pitched to, Herjavec makes deals less than 12% of the time.",
     caption = "Source: Thirumani et al"
   )
 
@@ -422,6 +430,7 @@ ggsave(filename = "plots/rh_invest_frequency.png",
 
 # daymond john
 shark_tank_us |>
+  filter(daymond_john_present == TRUE) |> 
   summarize(
     dj_deals_made = sum(daymond_john_invested == TRUE),
     dj_deals_passed = sum(daymond_john_invested == FALSE),
@@ -432,19 +441,20 @@ shark_tank_us |>
 
 # how often daymond john invests when someone pitches
 dj_invest_frequency <- shark_tank_us |> 
+  filter(daymond_john_present == TRUE) |> 
   ggplot(aes(x = daymond_john_invested, fill = daymond_john_invested)) +
   geom_bar() +
   scale_fill_manual(name = "Deal Made?", values = frequency_colors, labels = c("No Deal", "Deal")) +
-  annotate(geom = "text", x = 2, y = 145, label = "8.8%", fontface = 2) +
-  annotate(geom = "text", x = 1, y = 1200, label = "91.2%", fontface = 2) +
+  annotate(geom = "text", x = 2, y = 102, label = "14.8%", fontface = 2) +
+  annotate(geom = "text", x = 1, y = 522, label = "85.2%", fontface = 2) +
   scale_x_discrete(labels =  c("No Deal", "Deal")) +
-  coord_cartesian(ylim = c(0, 1250)) +
+  coord_cartesian(ylim = c(0, 650)) +
   theme_light() +
   labs(
     x = "",
     y = "Deals",
     title = "Frequency of deals made by Daymond John on Shark Tank (US)",
-    subtitle = "When pitched to, John makes deals approximately 9% of the time.",
+    subtitle = "When pitched to, John makes deals approximately 15% of the time.",
     caption = "Source: Thirumani et al"
   )
 
@@ -457,6 +467,7 @@ ggsave(filename = "plots/dj_invest_frequency.png",
 
 # kevin o leary
 shark_tank_us |>
+  filter(kevin_o_leary_present == TRUE) |> 
   summarize(
     kol_deals_made = sum(kevin_o_leary_invested == TRUE),
     kol_deals_passed = sum(kevin_o_leary_invested == FALSE),
@@ -467,13 +478,14 @@ shark_tank_us |>
 
 # how often kevin o'leary invests when someone pitches
 kol_invest_frequency <- shark_tank_us |> 
+  filter(kevin_o_leary_present == TRUE) |> 
   ggplot(aes(x = kevin_o_leary_invested, fill = kevin_o_leary_invested)) +
   geom_bar() +
   scale_fill_manual(name = "Deal Made?", values = frequency_colors, labels = c("No Deal", "Deal")) +
-  annotate(geom = "text", x = 2, y = 145, label = "9.2%", fontface = 2) +
-  annotate(geom = "text", x = 1, y = 1190, label = "90.8%", fontface = 2) +
+  annotate(geom = "text", x = 2, y = 100, label = "9.1%", fontface = 2) +
+  annotate(geom = "text", x = 1, y = 800, label = "90.9%", fontface = 2) +
   scale_x_discrete(labels =  c("No Deal", "Deal")) +
-  coord_cartesian(ylim = c(0, 1250)) +
+  coord_cartesian(ylim = c(0, 900)) +
   theme_light() +
   labs(
     x = "",
@@ -490,7 +502,5 @@ ggsave(filename = "plots/kol_invest_frequency.png",
        units = "in"
 )
 
-
-### Investor Deal Quality----
 
 
