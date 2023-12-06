@@ -178,7 +178,6 @@ Since it is clear that female sharks invest in female-run businesses more often,
 ![Industries Invested in by Male Sharks](plots/industries_preferred_male_sharks_plot.png)
 
 
-
 ## Conclusions
 
 State conclusions or insights. Were you surprised by things you found or were they as expected? Why? This is a great place for future work, new research questions, and next steps.
@@ -187,11 +186,6 @@ State conclusions or insights. Were you surprised by things you found or were th
 
 Thirumani, S., Rehman, A.U., and Molagoda, J., 2023, Shark Tank US dataset, https://www.kaggle.com/datasets/thirumani/shark-tank-us-dataset
 
-## Appendix: technical info — if needed
+## Appendix: Extra Explorations
 
-A place to share complex and important technical steps that may highly impact explorations, but the details are too technical to share in main body of the report.
-
-## Appendix: extra explorations — if needed
-
-Useful in cases where there are an over-abundance of explorations and they are not useful in the main body of the report or they are uninteresting, but still think readers should have access to them for reference.
 
