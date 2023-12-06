@@ -16,6 +16,7 @@ shark_tank_us <- read_csv("data/shark_tank_us.csv")
 ### which sharks invest in female entrepreneurs more often----
 
 bc_freq_invest_women_summary <- shark_tank_us |> 
+  filter(barbara_corcoran_present == TRUE) |> # for series regular sharks must account for different number of appearances
   filter(barbara_corcoran_invested == TRUE) |> 
   summarize(
     shark_name = "Barbara Corcoran",
@@ -30,6 +31,7 @@ bc_freq_invest_women_summary <- shark_tank_us |>
   arrange(desc(pct_women))
 
 mc_freq_invest_women_summary <- shark_tank_us |> 
+  filter(mark_cuban_present == TRUE) |>
   filter(mark_cuban_invested == TRUE) |> 
   summarize(
     shark_name = "Mark Cuban",
@@ -44,6 +46,7 @@ mc_freq_invest_women_summary <- shark_tank_us |>
   arrange(desc(pct_women))
 
 lg_freq_invest_women_summary <- shark_tank_us |> 
+  filter(lori_greiner_present == TRUE) |>
   filter(lori_greiner_invested == TRUE) |> 
   summarize(
     shark_name = "Lori Greiner",
@@ -58,6 +61,7 @@ lg_freq_invest_women_summary <- shark_tank_us |>
   arrange(desc(pct_women))
 
 rh_freq_invest_women_summary <- shark_tank_us |> 
+  filter(robert_herjavec_present == TRUE) |>
   filter(robert_herjavec_invested == TRUE) |> 
   summarize(
     shark_name = "Robert Herjavec",
@@ -72,6 +76,7 @@ rh_freq_invest_women_summary <- shark_tank_us |>
   arrange(desc(pct_women))
 
 dj_freq_invest_women_summary <- shark_tank_us |> 
+  filter(daymond_john_present == TRUE) |>
   filter(daymond_john_invested == TRUE) |> 
   summarize(
     shark_name = "Daymond John",
@@ -86,6 +91,7 @@ dj_freq_invest_women_summary <- shark_tank_us |>
   arrange(desc(pct_women))
 
 kol_freq_invest_women_summary <- shark_tank_us |> 
+  filter(kevin_o_leary_present == TRUE) |> 
   filter(kevin_o_leary_invested == TRUE) |> 
   summarize(
     shark_name = "Kevin O'Leary",
@@ -141,7 +147,7 @@ freq_invest_women_summary_by_shark <-
   arrange(desc(pct_women))
 
 freq_invest_women_plot_by_shark <- freq_invest_women_summary_by_shark |> 
-  ggplot(aes(reorder(x = shark_name, desc(pct_women)), y = pct_women, fill = reorder(x = shark_name, desc(pct_women)))) +
+  ggplot(aes(reorder(x = shark_name, desc(pct_women)), y = pct_women, fill = reorder(x = shark_name, desc(pct_women)))) + # reordering so that can see clearly the order of who invests most in women to least 
   geom_col() +
   theme_light() +
   theme(axis.text.x = element_text(angle = 50, hjust = 1, size = 7)) +

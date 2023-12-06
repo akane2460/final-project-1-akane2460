@@ -200,14 +200,14 @@ Individual shark behavior is important to analyze as well, understanding if they
 ![Barbara Corcoran](plots/bc_invest_frequency.png){#fig-23}
 
 
-In @fig-23, Barbara Corcoran makes deals approximately 9.3% of the time when pitched to, passing on 90.7% of pitches.
+In @fig-23, Barbara Corcoran makes deals approximately 17.2% of the time when pitched to, passing on 82.8% of pitches.
 
 #### Mark Cuban
 
 ![Mark Cuban](plots/mc_invest_frequency.png){#fig-24}
 
 
-In @fig-24, Mark Cuban makes deals approximately 18.1% of the time when pitched to, passing on 81.9% of deals.
+In @fig-24, Mark Cuban makes deals approximately 19.6% of the time when pitched to, passing on 80.4% of deals.
 
 #### Lori Greiner
 
@@ -215,7 +215,7 @@ In @fig-24, Mark Cuban makes deals approximately 18.1% of the time when pitched 
 ![Lori Greiner](plots/lg_invest_frequency.png){#fig-25}
 
 
-According to @fig-25, Lori Greiner makes deals approximately 15.6% of the time when pitched to, passing on 84.4% of deals.
+According to @fig-25, Lori Greiner makes deals approximately 19.2% of the time when pitched to, passing on 80.8% of deals.
 
 #### Robjert Herjavec
 
@@ -223,7 +223,7 @@ According to @fig-25, Lori Greiner makes deals approximately 15.6% of the time w
 ![Robert Herjavec](plots/rh_invest_frequency.png){#fig-26}
 
 
-In @fig-26, Robert Herjavec makes deals approximately 9.6% of the time when pitched to, passing on 90.4% of deals.
+In @fig-26, Robert Herjavec makes deals approximately 11.5% of the time when pitched to, passing on 88.5% of deals.
 
 #### Daymond John
 
@@ -231,7 +231,7 @@ In @fig-26, Robert Herjavec makes deals approximately 9.6% of the time when pitc
 ![Daymond John](plots/dj_invest_frequency.png){#fig-27}
 
 
-According to @fig-27, Daymond John makes deals approximately 8.8% of the time when pitched to, passing on 91.2% of deals.
+According to @fig-27, Daymond John makes deals approximately 14.8% of the time when pitched to, passing on 85.2% of deals.
 
 #### Kevin O'Leary
 
@@ -239,9 +239,9 @@ According to @fig-27, Daymond John makes deals approximately 8.8% of the time wh
 ![Kevin O'Leary](plots/kol_invest_frequency.png){#fig-28}
 
 
-In @fig-28, Kevin O'Leary makes deals approximately 9.2% of the time when pitched to, passing on 90.8% of deals.
+In @fig-28, Kevin O'Leary makes deals approximately 9.1% of the time when pitched to, passing on 90.9% of deals.
 
-Overall, when pitched to most sharks make deals less than 10% of the time, with the exception of Mark Cuban (18.1%) and Lori Greiner (15.6%). Daymond John makes deals the least often (8.8% percent of pitches). However, of the deals made, how many of them are women-run businesses? Are male investors less likely to make deals with women? 
+Overall, when pitched to most sharks make deals less than 20% of the time, with Mark Cuban (19.6%) and Lori Greiner (19.2%) making deals most often. Kevin O'Leary makes deals least often (9.1%). However, of the deals made, how many of them are women-run businesses? Are male investors less likely to make deals with women? 
 
 ### Female Entrepreneur Pitch Success to Male and Female Sharks
 
@@ -330,6 +330,8 @@ Thirumani, S., Rehman, A.U., and Molagoda, J., 2023, Shark Tank US dataset, http
 ## Appendix: Technical Info 
 
 Some instances of missingness were critical for the data collection process. For example, in instances where deals were not made, some missingness was present in variables like `Total Deal Amount` (reflecting that there was no deal made). In the cleaned data, these values were adjusted to limit missingness, often replacing `NA` values with 0. 
+
+Some missingness occurred for seasons 11-14 which I am unsure of how to resolve. Each shark is listed as `NA` for their attendance. It is clear that this is an issue of missing data, not a replacement for whether or not they were present at the pitch (as there are pitches where sharks have invested that their attendance is listed as `NA` for). Upon further research, it is confirmed that this is an issue of data collection on the dataset authors' part, as all the series regular sharks appear consistently throughout seasons 11-14 (CITE SOMETHING HERE). In order to account for this missingness, only instances where a shark's attendance was listed as "TRUE" were included in their analysis. 
 
 There are seven instances where the pitcher's gender is not included in the dataset. This might be an instance where the pitcher did not identify with a binary option of gender (might identify as non-binary, genderqueer, etc.). It could also be an instance where their gender identity was not collected. Given that there are only seven of these observations, there could be limited analysis on this population can be made and, therefore, are excluded from the cleaned dataset.  
 
