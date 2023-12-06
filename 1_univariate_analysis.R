@@ -29,7 +29,7 @@ gender_ratios_plot <- shark_tank_us |>
 
 ggsave(filename = "plots/gender_ratios_plot.png",
        plot = gender_ratios_plot,
-       width = 8,
+       width = 10,
        height = 6,
        units = "in"
 )
@@ -56,7 +56,7 @@ businesses_represented_plot <-
 ggsave(filename = "plots/businesses_represented_plot.png",
        plot = businesses_represented_plot,
        width = 8,
-       height = 10,
+       height = 8,
        units = "in"
 )
 
@@ -103,6 +103,7 @@ equity_asked_plot <-
   theme_light() +
   labs(
     x = "Equity Originally Offered (in %)",
+    y = "Count",
     title = "Typical Originally Offered Equity (in %) on Shark Tank",
     subtitle = "The typical equity offered is approximately 10 percent",
     caption = "Source: Thirumani et al"
@@ -131,6 +132,7 @@ valuation_requested_plot <-
   coord_cartesian(xlim = c(0, 10000000)) +
   labs(
     x = "Valuation Requested (USD)",
+    y = "Count",
     title = "Typical Business Valuation Requested on Shark Tank",
     subtitle = "The typical valuation requested is approximately 1,500,000 USD",
     caption = "Source: Thirumani et al"
@@ -163,6 +165,7 @@ typical_investment_plot <-
   coord_cartesian(xlim = c(0, 1000000)) +
   labs(
     x = "Typical Investment Received",
+    y = "Count",
     title = "Typical Investment Received on Shark Tank",
     subtitle = "The typical investment received is approximately 200,000 USD",
     caption = "Source: Thirumani et al"
@@ -190,6 +193,7 @@ typical_equity_plot <-
   theme_light() +
   labs(
     x = "Typical Equity Received (in %)",
+    y = "Count",
     title = "Typical Equity Received (in %) on Shark Tank",
     subtitle = "The typical equity received is approximately 20 percent",
     caption = "Source: Thirumani et al"
@@ -219,6 +223,7 @@ typical_valuation_plot <-
   coord_cartesian(xlim = c(0, 10000000), ylim = c(0, 225)) +
   labs(
     x = "Valuation Requested (USD)",
+    y = "Count",
     title = "Typical Business Valuation Received on Shark Tank",
     subtitle = "The typical valuation received is approximately 1,000,000 USD",
     caption = "Source: Thirumani et al"
