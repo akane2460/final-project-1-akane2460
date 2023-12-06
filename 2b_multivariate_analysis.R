@@ -144,6 +144,7 @@ freq_invest_women_plot_by_shark <- freq_invest_women_summary_by_shark |>
   ggplot(aes(reorder(x = shark_name, desc(pct_women)), y = pct_women, fill = reorder(x = shark_name, desc(pct_women)))) +
   geom_col() +
   theme(axis.text.x = element_blank()) +
+  theme_light() +
   labs(
     x = "Shark",
     y = "Percent of Investments in Female-Led Businesses",
