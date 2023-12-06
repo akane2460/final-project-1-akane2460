@@ -1,7 +1,7 @@
 ---
 title: "Girl Power? Investment Trends for Female Entrepreneurs on Shark Tank (US)"
 subtitle: |
-  | Final Project 
+  | Executive Summary
   | Data Science 1 with R (STAT 301-1)
 author: "Allison Kane"
 date: today
@@ -29,5 +29,27 @@ from: markdown+emoji
 
 :::
 
+## Purpose:
+
+In this exploration of the dataset `shark_tank_us_data`^[ [Thirumani, S., Rehman, A.U., and Molagoda, J., 2023, Shark Tank US dataset, https://www.kaggle.com/datasets/thirumani/shark-tank-us-dataset](https://www.kaggle.com/datasets/thirumani/shark-tank-us-dataset) ], the different representations and deal-making trends of female entrepreneurs, male entrepreneurs and mixed gender entrepreneur teams were analyzed. Women generally face greater barriers when starting businesses, holding leadership positions and entering male-dominated industries. Shark Tank (US) provides some insight into how the experiences female entrepreneurs differs from that of their male and mixed gender team counterparts in a controlled, reality-TV setting. Critical factors analyzed include how represented female entrepreneurs are on the show, how their initial expectations and deals made align, and how they are treated differently by male and female sharks. 
+
+## Key points:
 
 
+![Gender Ratios](plots/gender_ratios_plot.png)
+- Female entrepreneurs are represented far less in the show, reflecting general population trends of women being underrepresented in positions of authority, especially in business settings. Female-led businesses, despite being underrepresented, still outnumber mixed gender teams. 
+
+
+![Industry Leadership Gender Representation](plots/women_dominated_industries_plot.png)
+
+- Female entrepreneurs are outnumbered by male entrepreneurs in all industries except one: Children/Education. Some industries completely lack female entrepreneurs, including Automotive, Electronics and Liquor/Alcohol. Liquor/Alcohol has the most unbalanced gender representation of all industries, with 100% male entrepreneurs represented and no mixed gender teams or female entrepreneurs.
+
+![Difference in Valuation Received and Requested by Gender](plots/gender_valuation_difference_plot.png)
+
+- Female entrepreneurs typically ask for less investment, offer more equity and smaller valuations and, therefore, receive them. However, compared to male their male counterparts, female entrepreneurs often receive deals more in line with their initial expectations, especially in their valuations. This indicates that female entrepreneurs might have a more accurate gague of how much their business is truly worth. This also indicates that male entrepreneurs could enter pitches with more overvalued businesses to provide more room for negotiations. 
+
+- When investigating shark behavior 
+
+## Major Issues
+
+## Summary

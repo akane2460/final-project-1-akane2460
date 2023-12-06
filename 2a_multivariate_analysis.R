@@ -508,7 +508,7 @@ ggplot(aes(x = industry, fill = factor(pitchers_gender, levels = c("Mixed Team",
     title = "Gender Representation in All Industries Featured on Shark Tank (US)",
     subtitle = "Women are most represented in Children/Education, Fashion/Beauty and Health/Wellness.",
     caption = "Source: Thirumani et al",
-    fill = "Industry"
+    fill = "Gender"
   )
 
 ggsave(filename = "plots/women_dominated_industries_plot.png",
