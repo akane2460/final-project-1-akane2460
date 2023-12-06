@@ -28,7 +28,7 @@ from: markdown+emoji
 
 ## Introduction
 
-  Throughout the corporate sector, female entrepreneurs tend to face greater barriers and often have their businesses undervalued and underrepresented. Many female entrepreneurs find it difficult to break into male-dominated industries, to obtain similar investments to their male counterparts, and to receive the same respect as male entrepreneurs. Additionally, industries with greater representations of women are often viewed as less lucrative, less serious and less deserving of investment.  
+  Throughout the corporate sector, female entrepreneurs typically face greater barriers and often have their businesses undervalued and underrepresented. Many female entrepreneurs find it difficult to break into male-dominated industries, to obtain similar investments to their male counterparts, and to receive the same respect as male entrepreneurs. Additionally, industries with greater representations of women are often viewed as less lucrative, less serious and less deserving of investment.  
   
   The reality television show Shark Tank (US) broadcasts real-time deals being made between entrepreneurs pitching their businesses to a panel of investors, called sharks. The show, having run for over a decade, provides a glimpse into the business world for viewers and a wealth of information about how entrepreneurs-- both male and female-- are treated by investors.
   

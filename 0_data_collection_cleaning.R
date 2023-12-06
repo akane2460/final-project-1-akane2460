@@ -11,7 +11,6 @@ library(janitor)
 shark_tank_us_data <- read_csv("data/raw/shark_tank_us_data.csv")
 
 skim_without_charts(shark_tank_us_data)
-# head(shark_tank_us)
 
 ### Cleaning Names----
 shark_tank_us_data <- shark_tank_us_data |>

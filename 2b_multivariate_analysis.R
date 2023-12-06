@@ -8,6 +8,7 @@ library(skimr)
 library(janitor)
 library(knitr)
 
+
 ## Load Data ----
 shark_tank_us <- read_csv("data/shark_tank_us.csv")
 

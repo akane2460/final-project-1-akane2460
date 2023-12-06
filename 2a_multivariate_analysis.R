@@ -455,12 +455,14 @@ gender_valuation_received_plot_blank <-
 
 deal_details_received_by_gender_merged <- gender_investments_received_plot_blank / gender_equity_received_plot_blank / gender_valuation_received_plot_blank
 
+
 ggsave(filename = "plots/deal_details_received_by_gender_merged.png",
        plot = deal_details_received_by_gender_merged ,
        width = 8,
        height = 8,
        units = "in"
 )
+
 
 # patchwork of requested and received investments, equity and valuation by gender
 

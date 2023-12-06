@@ -10,6 +10,7 @@ library(janitor)
 ## Load Data ----
 shark_tank_us <- read_csv("data/shark_tank_us.csv")
 
+
 # male/female/mixed team ratio ----
 gender_colors <- c("Male" = "#5484FF", "Female" = "#EC837D", "Mixed Team" = "#11B642")
 
