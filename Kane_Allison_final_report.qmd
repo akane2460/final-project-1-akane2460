@@ -142,13 +142,13 @@ In @fig-14, the typical investment for entrepreneurs that received deals on Shar
 In @fig-15, typical investment for male entrepreneurs is approximately 50,000 USD more than for female entrepreneurs. Mixed gender entrepreneur teams receive a typical investment of 250,000 USD, greater than both female and male entrepreneurs. Female entrepreneurs receive typical investments 50,000 USD less than the general population. The distribution of the typical investments are similar across genders. Is this an instance where female entrepreurs give less equity or have lower business valuations? 
 
 
-![Typical Equity Received](plots/typical_equity_plot.png){#fig-16}
+![Typical Equity Sharks Received](plots/typical_equity_plot.png){#fig-16}
 
 
 According to @fig-16, for all deals made on Shark Tank (US), the typical equity received by the shark is approximately 20%, much greater than the typical equity requested, with a peak at 20% and a very slight skew to the right. The greatest equity received is approximately 100% (complete buy-out) and lowest is approximately 2%. Since the typical investment received approximately matches the typical investment requested, this discrepancy in equity received and equity offered might indicate that many sharks overvalue their businesses. This will be further explored in their valuations. 
 
 
-![Typical Equity Received by Gender](plots/gender_equity_received_plot.png){#fig-17}
+![Typical Equity Sharks Received by Entrepreneur Gender](plots/gender_equity_received_plot.png){#fig-17}
 
 
 In @fig-17, it is clear that female entrepreneurs typically give more equity (25%) than the general population (20%), male entrepreneurs (20%), and mixed entrepreneur teams (22%). The distributions of these equity values are fairly similar, with peaks around the median equity values and very little skew. The highest equity given for all genders is 100%, indicating a buy-out. The lowest equity given for female entrepreneurs was 2.5%, for male entrepeneurs was 2% and for mixed gender teams was 3%. This difference in equity indicates that while female entrepreneurs receive less investment than their male counterparts, they actually give *more* equity. Additionally mixed gender teams receive much more investment than female entrepreneurs but only offer slightly less equity. This indicates that female-run businesses could be valued differently than male-run or mixed-team run businesses. Futher analysis is required.
@@ -331,7 +331,7 @@ Thirumani, S., Rehman, A.U., and Molagoda, J., 2023, Shark Tank US dataset, http
 
 Some instances of missingness were critical for the data collection process. For example, in instances where deals were not made, some missingness was present in variables like `Total Deal Amount` (reflecting that there was no deal made). In the cleaned data, these values were adjusted to limit missingness, often replacing `NA` values with 0. 
 
-Some missingness occurred for seasons 11-14 which I am unsure of how to resolve. Each shark is listed as `NA` for their attendance. It is clear that this is an issue of missing data, not a replacement for whether or not they were present at the pitch (as there are pitches where sharks have invested that their attendance is listed as `NA` for). Upon further research, it is confirmed that this is an issue of data collection on the dataset authors' part, as all the series regular sharks appear consistently throughout seasons 11-14 (CITE SOMETHING HERE). In order to account for this missingness, only instances where a shark's attendance was listed as "TRUE" were included in their analysis. 
+Some missingness occurred for seasons 11-14 which I am unsure of how to resolve. Each shark is listed as `NA` for their attendance. It is clear that this is an issue of missing data, not a replacement for whether or not they were present at the pitch (as there are pitches where sharks have invested that their attendance is listed as `NA` for during seasons 11-14). In order to account for this missingness, only instances where a shark's attendance was listed as "TRUE" were included in their individual behavior analyses. This allows a more reliable understanding of their deal-making activity when they are actually present for a pitch. 
 
 There are seven instances where the pitcher's gender is not included in the dataset. This might be an instance where the pitcher did not identify with a binary option of gender (might identify as non-binary, genderqueer, etc.). It could also be an instance where their gender identity was not collected. Given that there are only seven of these observations, there could be limited analysis on this population can be made and, therefore, are excluded from the cleaned dataset.  
 

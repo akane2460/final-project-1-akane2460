@@ -6,6 +6,7 @@
 library(tidyverse)
 library(skimr)
 library(janitor)
+library(patchwork)
 
 ## Load Data ----
 shark_tank_us <- read_csv("data/shark_tank_us.csv")
@@ -183,6 +184,75 @@ ggsave(filename = "plots/gender_valuation_requested_plot.png",
 )
 
 
+# patchwork of initial requests by gender 
+
+# remove the median text annotations to make the plots less busy in the patchwork
+
+gender_investments_asked_plot_blank <-
+  shark_tank_us |> 
+  ggplot(aes(x = original_ask_amount, fill = pitchers_gender)) +
+  geom_histogram(binwidth = 50000, color = "white", show.legend = FALSE) +
+  facet_wrap(~ pitchers_gender) +
+  scale_fill_manual(values = gender_colors) + 
+  theme_light() +
+  theme(axis.text.x = element_text(angle = 50, hjust = 1, size = 7)) +
+  coord_cartesian(xlim = c(0, 1000000)) +
+  geom_vline(data = median_investment_asked_gender, aes(xintercept = median_value), color = "red") +
+  labs(
+    x = "Investment Requested (USD)",
+    y = "Pitches",
+    title = "Typical Requested Investment on Shark Tank (US)",
+    subtitle = "The typical investment requested by all male and mixed teams is approximately 50,000 greater than female teams",
+    caption = "Source: Thirumani et al"
+  ) 
+
+gender_equity_asked_plot_blank <-
+  shark_tank_us |> 
+  ggplot(aes(x = original_offered_equity, fill = pitchers_gender)) +
+  geom_histogram(binwidth = 5, color = "white", show.legend = FALSE) +
+  facet_wrap(~ pitchers_gender) +
+  coord_cartesian(xlim = c(0, 50)) +
+  geom_vline(data = median_equity_offered_gender, 
+             aes(xintercept = median_value), 
+             color = "red") +
+  theme_light() +
+  labs(
+    x = "Equity Originally Offered (in %)",
+    y = "Pitches",
+    title = "Typical Originally Offered Equity (in %) on Shark Tank (US)",
+    subtitle = "Female teams typically offer 2% more equity than male and mixed teams.",
+    caption = "Source: Thirumani et al"
+  )
+
+gender_valuation_requested_plot_blank <-
+  shark_tank_us |> 
+  ggplot(aes(x = valuation_requested, fill = pitchers_gender)) +
+  geom_histogram(binwidth = 500000, color = "white", show.legend = FALSE) +
+  facet_wrap(~ pitchers_gender) +
+  geom_vline(data = median_valuation_requested_gender, 
+             aes(xintercept = median_value), 
+             color = "red") +
+  scale_fill_manual(values = gender_colors) + 
+  theme_light() +
+  theme(axis.text.x = element_text(angle = 50, hjust = 1, size = 7)) +
+  coord_cartesian(xlim = c(0, 10000000)) +
+  labs(
+    x = "Valuation Requested (USD)",
+    y = "Pitches",
+    title = "Typical Business Valuation Requested By Gender on Shark Tank (US)",
+    subtitle = "Female run businesses are initially valued over 600,000 USD less than male-run businesses.",
+    caption = "Source: Thirumani et al"
+  )
+
+initial_asks_by_gender_merged <- gender_investments_asked_plot_blank / gender_equity_asked_plot_blank / gender_valuation_requested_plot_blank
+
+ggsave(filename = "plots/initial_asks_by_gender_merged.png",
+       plot = initial_asks_by_gender_merged,
+       width = 10,
+       height = 8,
+       units = "in"
+)
+
 ### typical investments, equity, and valuation received by gender----
 
 # typical investments received by gender
@@ -217,7 +287,7 @@ gender_investments_received_plot <-
   labs(
     x = "Investment Received (USD)",
     y = "Deals", 
-    title = "Typical Requested Investment on Shark Tank (US)",
+    title = "Typical Received Investment by Gender on Shark Tank (US)",
     subtitle = "The typical investment received by all male teams is approximately 50,000 greater than female teams",
     caption = "Source: Thirumani et al"
   ) 
@@ -263,10 +333,11 @@ gender_equity_received_plot <-
   labs(
     x = "Equity Received (in %)",
     y = "Deals",
-    title = "Typical Received Equity (in %) on Shark Tank (US)",
+    title = "Typical Received Equity (in %) by Gender on Shark Tank (US)",
     subtitle = "Female teams typically give 5% more equity than male teams.",
     caption = "Source: Thirumani et al"
   )
+
 
 ggsave(filename = "plots/gender_equity_received_plot.png",
        plot = gender_equity_received_plot,
@@ -319,6 +390,89 @@ ggsave(filename = "plots/gender_valuation_received_plot.png",
        units = "in"
 )
 
+
+# patchwork of received investments, equity and valuation by gender
+
+# remove the median text annotations to make the plots less busy in the patchwork
+
+gender_investments_received_plot_blank <-
+  shark_tank_us |> 
+  filter(total_deal_amount > 0) |> 
+  ggplot(aes(x = total_deal_amount, fill = pitchers_gender)) +
+  geom_histogram(binwidth = 100000, color = "white", show.legend = FALSE) +
+  facet_wrap(~ pitchers_gender) +
+  scale_fill_manual(values = gender_colors) +
+  theme_light() +
+  theme(axis.text.x = element_text(angle = 50, hjust = 1, size = 7)) +
+  coord_cartesian(xlim = c(0, 1250000)) +
+  geom_vline(data = median_investment_received_gender, aes(xintercept = median_value), color = "red") +
+  labs(
+    x = "Investment Received (USD)",
+    y = "Deals", 
+    title = "Typical Received Investment by Gender on Shark Tank (US)",
+    subtitle = "The typical investment received by all male teams is approximately 50,000 greater than female teams",
+    caption = "Source: Thirumani et al"
+  ) 
+
+gender_equity_received_plot_blank <-
+  shark_tank_us |> 
+  filter(total_deal_equity > 0) |> 
+  ggplot(aes(x = total_deal_equity, fill = pitchers_gender)) +
+  geom_histogram(binwidth = 5, color = "white", show.legend = FALSE) +
+  facet_wrap(~ pitchers_gender) +
+  coord_cartesian(xlim = c(0, 100), ylim = c(0, 95)) +
+  geom_vline(data = median_equity_received_gender, 
+             aes(xintercept = median_value), 
+             color = "red") +
+  theme_light() +
+  labs(
+    x = "Equity Received (in %)",
+    y = "Deals",
+    title = "Typical Received Equity (in %) by Gender on Shark Tank (US)",
+    subtitle = "Female teams typically give 5% more equity than male teams.",
+    caption = "Source: Thirumani et al"
+  )
+
+gender_valuation_received_plot_blank <-
+  shark_tank_us |> 
+  ggplot(aes(x = deal_valuation, fill = pitchers_gender)) +
+  geom_histogram(binwidth = 500000, color = "white", show.legend = FALSE) +
+  facet_wrap(~ pitchers_gender) +
+  geom_vline(data = median_valuation_received_gender, 
+             aes(xintercept = median_value), 
+             color = "red") +
+  scale_fill_manual(values = gender_colors) + 
+  theme_light() +
+  theme(axis.text.x = element_text(angle = 50, hjust = 1, size = 7)) +
+  coord_cartesian(xlim = c(0, 5000000)) +
+  labs(
+    x = "Valuation Received (USD)",
+    y = "Deals",
+    title = "Typical Business Valuation Received By Gender on Shark Tank (US)",
+    subtitle = "Female run businesses are valued over 40,000 USD less than male-run businesses.",
+    caption = "Source: Thirumani et al"
+  )
+
+deal_details_received_by_gender_merged <- gender_investments_received_plot_blank / gender_equity_received_plot_blank / gender_valuation_received_plot_blank
+
+ggsave(filename = "plots/deal_details_received_by_gender_merged.png",
+       plot = deal_details_received_by_gender_merged ,
+       width = 8,
+       height = 8,
+       units = "in"
+)
+
+# patchwork of requested and received investments, equity and valuation by gender
+
+merged_deal_requests_and_received_by_gender <- (initial_asks_by_gender_merged | deal_details_received_by_gender_merged)
+
+
+ggsave(filename = "plots/merged_deal_requests_and_received_by_gender.png",
+       plot = merged_deal_requests_and_received_by_gender,
+       width = 18,
+       height = 10,
+       units = "in"
+)
 
 ### quality of investment----
 

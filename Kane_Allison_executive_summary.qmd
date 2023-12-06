@@ -31,25 +31,56 @@ from: markdown+emoji
 
 ## Purpose:
 
-In this exploration of the dataset `shark_tank_us_data`^[ [Thirumani, S., Rehman, A.U., and Molagoda, J., 2023, Shark Tank US dataset, https://www.kaggle.com/datasets/thirumani/shark-tank-us-dataset](https://www.kaggle.com/datasets/thirumani/shark-tank-us-dataset) ], the different representations and deal-making trends of female entrepreneurs, male entrepreneurs and mixed gender entrepreneur teams were analyzed. Women generally face greater barriers when starting businesses, holding leadership positions and entering male-dominated industries. Shark Tank (US) provides some insight into how the experiences female entrepreneurs differs from that of their male and mixed gender team counterparts in a controlled, reality-TV setting. Critical factors analyzed include how represented female entrepreneurs are on the show, how their initial expectations and deals made align, and how they are treated differently by male and female sharks. 
+  In this exploration of the dataset `shark_tank_us_data`^[ [Thirumani, S., Rehman, A.U., and Molagoda, J., 2023, Shark Tank US dataset, https://www.kaggle.com/datasets/thirumani/shark-tank-us-dataset](https://www.kaggle.com/datasets/thirumani/shark-tank-us-dataset) ], the different representations and deal-making trends of female entrepreneurs, male entrepreneurs and mixed gender entrepreneur teams were analyzed. Women generally face greater barriers when starting businesses, holding leadership positions and entering male-dominated industries. Shark Tank (US) provides some insight into how the experiences female entrepreneurs differs from that of their male and mixed gender team counterparts in a controlled, reality-TV setting. Critical factors analyzed include how represented female entrepreneurs are on the show, how their initial expectations and deals made align, and how they are treated differently by male and female sharks. 
 
 ## Key points:
 
+  In this exploration, it was determined that in some instances, mostly representation, female entrepreneurs were disadvantaged compared to their male counterparts on Shark Tank (US).  
 
-![Gender Ratios](plots/gender_ratios_plot.png)
-- Female entrepreneurs are represented far less in the show, reflecting general population trends of women being underrepresented in positions of authority, especially in business settings. Female-led businesses, despite being underrepresented, still outnumber mixed gender teams. 
+### Representation
+
+  Female entrepreneurs are represented far less in Shark Tank (US), reflecting general population trends of women being underrepresented in positions of authority, especially in business settings. Female-led businesses, despite being underrepresented, still outnumber mixed gender teams (@fig-1).
+  
+  
+
+![Gender Ratios](plots/gender_ratios_plot.png){#fig-1}
+This imbalanced gender representation is to be expected, as women typically experience greater barriers to entry for positions of authority and success, especially for female entrepreneurs.
 
 
-![Industry Leadership Gender Representation](plots/women_dominated_industries_plot.png)
+Additionally, female entrepreneurs are outnumbered by male entrepreneurs in all industries except one: *Children/Education*. Other industries with better gender representation include Fashion/Beauty and Health/Wellness. However, these industries still see male entrepreneurs outnumbering female and mixed gender team counterparts. Some industries completely lack female entrepreneurs, including Automotive, Electronics and Liquor/Alcohol. Liquor/Alcohol has the *most unbalanced* gender representation of all industries, with 100% male entrepreneurs represented and no mixed gender teams or female entrepreneurs (@fig-2).
 
-- Female entrepreneurs are outnumbered by male entrepreneurs in all industries except one: Children/Education. Some industries completely lack female entrepreneurs, including Automotive, Electronics and Liquor/Alcohol. Liquor/Alcohol has the most unbalanced gender representation of all industries, with 100% male entrepreneurs represented and no mixed gender teams or female entrepreneurs.
 
-![Difference in Valuation Received and Requested by Gender](plots/gender_valuation_difference_plot.png)
+![Industry Leadership Gender Representation](plots/women_dominated_industries_plot.png){#fig-2}
 
-- Female entrepreneurs typically ask for less investment, offer more equity and smaller valuations and, therefore, receive them. However, compared to male their male counterparts, female entrepreneurs often receive deals more in line with their initial expectations, especially in their valuations. This indicates that female entrepreneurs might have a more accurate gague of how much their business is truly worth. This also indicates that male entrepreneurs could enter pitches with more overvalued businesses to provide more room for negotiations. 
+The imbalance in gender representation is not surprising, as female entrepreneurs are typically outnumbered by male entrepreneurs, especially in male-dominated industries. Industries typically associated with women or being female-dominated industries--like Children/Education--typically have better representation of women.
 
-- When investigating shark behavior 
 
-## Major Issues
+### Pitch Success
+
+
+
+
+Female entrepreneurs typically ask for less investment, offer more equity and smaller valuations and, therefore, receive less investment, give more equity and receive smaller valuations (see A)
+
+
+
+
+However, compared to male their male counterparts, female entrepreneurs often receive deals more in line with their initial expectations, especially in their valuations (@fig-3). This indicates that female entrepreneurs might have a more accurate understanding of how much their business is truly worth. This also indicates that male entrepreneurs could enter pitches with more overvalued businesses to provide more flexibility for negotiation. 
+
+
+
+![Difference in Valuation Received and Requested by Gender](plots/gender_valuation_difference_plot.png){fig-3}
+
+ These results are somewhat surprising 
+
+![Percentage of Investments Made in Women-Led Businesses by Shark](plots/freq_invest_women_plot_by_shark.png)
+
+- When investigating individual shark behavior, it is clear that female sharks and guests tend to invest in women more often than male sharks and male guests.
+
+
+
+## Dataset Issues
+
+
 
 ## Summary
