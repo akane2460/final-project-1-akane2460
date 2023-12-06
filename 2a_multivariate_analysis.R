@@ -319,19 +319,19 @@ ggsave(filename = "plots/gender_valuation_received_plot.png",
 
 # difference in investments by gender
 shark_tank_us |> 
-  filter(total_deal_amount > 0) |> 
+  filter(total_deal_amount > 0) |> # only including deals made
   group_by(pitchers_gender) |> 
   skim_without_charts(investment_difference)
 
 median_investment_difference_gender <- shark_tank_us |> 
-  filter(total_deal_amount > 0) |> 
+  filter(total_deal_amount > 0) |> # only including deals made
   group_by(pitchers_gender) |> 
   summarise(median_value = median(investment_difference), 
             median_label = str_c("Median Difference: $", format(median_value, scientific = FALSE)))
 
 gender_investment_difference_plot <-
   shark_tank_us |> 
-  filter(total_deal_amount > 0) |> 
+  filter(total_deal_amount > 0) |> # only including deals made
   ggplot(aes(x = investment_difference, fill = pitchers_gender)) +
   geom_histogram(binwidth = 25000, color = "white", show.legend = FALSE) +
   facet_wrap(~ pitchers_gender) +
@@ -359,19 +359,19 @@ ggsave(filename = "plots/gender_investment_difference_plot.png",
 
 # difference in equity by gender
 shark_tank_us |> 
-  filter(total_deal_equity > 0) |> 
+  filter(total_deal_equity > 0) |> # only including deals made
   group_by(pitchers_gender) |> 
   skim_without_charts(equity_difference)
 
 median_equity_difference_gender <- shark_tank_us |> 
-  filter(total_deal_equity > 0) |> 
+  filter(total_deal_equity > 0) |> # only including deals made
   group_by(pitchers_gender) |> 
   summarise(median_value = median(equity_difference), 
             median_label = str_c("Median Equity: \n", median_value, "%"))
 
 gender_equity_difference_plot <-
   shark_tank_us |> 
-  filter(total_deal_equity > 0) |> 
+  filter(total_deal_equity > 0) |> # only including deals made
   ggplot(aes(x = equity_difference, fill = pitchers_gender)) +
   geom_histogram(binwidth = 5, color = "white", show.legend = FALSE) +
   facet_wrap(~ pitchers_gender) +
@@ -403,18 +403,19 @@ ggsave(filename = "plots/gender_equity_difference_plot.png",
 
 # difference in valuation by gender
 shark_tank_us |> 
-  filter(deal_valuation > 0) |> 
+  filter(deal_valuation > 0) |> # only including deals made
   group_by(pitchers_gender) |> 
   skim_without_charts(valuation_difference) 
 
 median_valuation_difference_gender <- shark_tank_us |> 
-  filter(deal_valuation > 0) |> 
+  filter(deal_valuation > 0) |> # only including deals made
   group_by(pitchers_gender) |> 
   summarise(median_value = median(valuation_difference), 
             median_label = str_c("Median Valuation: ", format(round(median_value, -3), scientific = FALSE)))
 
 gender_valuation_difference_plot <-
   shark_tank_us |> 
+  filter(deal_valuation > 0) |> # only including deals made
   ggplot(aes(x = valuation_difference, fill = pitchers_gender)) +
   geom_histogram(binwidth = 250000, color = "white", show.legend = FALSE) +
   facet_wrap(~ pitchers_gender) +
@@ -433,7 +434,7 @@ gender_valuation_difference_plot <-
   labs(
     x = "Valuation Received (USD)",
     title = "Typical Difference of Valuation Received and Valuation Requested by Gender on Shark Tank (US)",
-    subtitle = "Female run businesses are valued over 40,000 USD less than male-run businesses.",
+    subtitle = "Female run businesses receive valuations $169,000 closer to their expectations than male entrepreneurs.",
     caption = "Source: Thirumani et al"
   )
 
