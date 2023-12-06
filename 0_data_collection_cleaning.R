@@ -10,13 +10,12 @@ library(janitor)
 ## Load Data ----
 shark_tank_us_data <- read_csv("data/raw/shark_tank_us_data.csv")
 
-# skim_without_charts(shark_tank_us)
+skim_without_charts(shark_tank_us_data)
 # head(shark_tank_us)
 
 ### Cleaning Names----
 shark_tank_us_data <- shark_tank_us_data |>
   clean_names()
-
 
 ### Pitched and Made Deals ----
 # replace NAs in `Total Deal Amount`, `Deal Valuation`,

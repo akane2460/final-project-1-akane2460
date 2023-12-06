@@ -1,0 +1,71 @@
+---
+title: "Progress Memo 1"
+subtitle: |
+  | Final Project 
+  | Data Science 1 with R (STAT 301-1)
+author: "Allison Kane"
+date: today
+
+format:
+  html:
+    toc: true
+    embed-resources: true
+    
+execute:
+  echo: false
+  warning: false
+
+from: markdown+emoji 
+---
+
+::: {.callout-tip icon=false}
+
+## Github Repo Link
+
+[Allison Kane Final Project Repo Link](https://github.com/stat301-1-2023-fall/final-project-1-akane2460.git)
+
+:::
+
+## Data source
+
+The data to be analyzed is information from seasons 1-14 of the US series of the reality TV show *Shark Tank*^[ [Thirumani, S., Rehman, A.U., and Molagoda, J., 2023, Shark Tank US dataset, https://www.kaggle.com/datasets/thirumani/shark-tank-us-dataset](https://www.kaggle.com/datasets/thirumani/shark-tank-us-dataset) ], a show where entrepreneurs pitch their emerging businesses to a panel of investors called *sharks*. This dataset includes information about the entrepreneurs, their businesses, and their deals with the sharks. 
+
+## Why this data
+
+In investigating this data, I intend to find if there are differences between the investment and pitching trends of female and male entrepreneurs and sharks. Outside of reality TV, female entrepreneurs tend to face greater barriers and often have their businesses undervalued. Industries typically thought to be female-dominated or feminine are often less respected. In this dataset, I specifically aim to investigate if female entrepreneurs receive investment as often as male entrepreneurs, if that investment aligns with their initial demands, which sharks invest in female entrepreneurs more often, and if specific sharks undervalue businesses started by women compared to men. 
+
+## Data quality & complexity check
+
+```{r}
+#| label: data quality check
+
+library(tidyverse)
+library(skimr)
+
+shark_tank_us_data <- read_csv("data/raw/shark_tank_us_data.csv")
+
+# skim_without_charts(shark_tank_us)
+
+head(shark_tank_us_data)
+```
+
+In this dataset, there are 50 variables, 13 of which are categorical and 37 of which are numeric. There are 1274 observations, corresponding to each entrepreneur's pitch in an episode of Shark Tank^[The values obtained in this section were found in the output from `skim_without_charts(shark_tank_us)`].
+
+In this data, there are some missingness issues. Specifically, 509 observations lack `Total Deal Amount`, `Deal Valuation`, `Number of sharks in deal`, `Investment Amount Per Shark`, and `Equity Per Shark` indicating that they did not receive a deal from any of the sharks. 407 observations are missing `Multiple Entrepreneurs`, indicating that there is one entrepreneur that is pitching the business. 1199 observations are missing `Royalty Deal`, indicating that if they received an investment it did not include a royalty deal on the product with the shark. 1222 observations are missing a `Loan`, indicating that if they received an investment it did not include a loan from the shark. For variables describing if the sharks were present (i.e. `Barbara Corcoran Present`, `Mark Cuban Present`, etc.), there is an approximate 70% complete rate, indicating that each shark is not present in about 30% of pitches. Finally, each shark (and guest) has two variables describing their specific investment amount and equity, with the number of observations missing these variables indicating the number of pitches that the shark did not invest in. Barbara Corcoran is missing in 1154 pitches, Mark Cuban is missing in 1044 pitches, Lori Greiner is missing in 1075 pitches, Robert Herjavec is missing in 1153 pitches, Daymond John is missing in 1163 pitches, Kevin O'Leary is missing in 1157 pitches. 
+
+Additionally, the pitcher's city, state, average age (indicating the average age if there are multiple pitchers or individual's age if there is a solo pitcher), and name are missing 772, 528, 936, and 495 times, respectively. These missingness issues are less by the dataset's design and more a reflection of the dataset's failure to collect all information about the entrepreneurs who are pitching. `Company website` is missing 758 times, indicating that they either do not have a website or the website was not collected. `Guest Name` is missing 1169 times, likely indicating that there was no guest shark on the show during that pitch. Pitcher's `gender` is a critical aspect for this analysis and does not have significant missigness issues, being collected 99% of the time. The `Business Description` and `Industry` are both critical to this analysis and do not have any missingness issues.
+
+## Potential data issues
+
+There are potential issues in this dataset, particularly missingness issues. Specifically, in the dataset when specific investments do not occur, they are left as *NA*. However, in cleaning the data, I might find that replacing these *NA* values with **0** to indicate that 0 dollars were invested for that specific variable. 
+
+Additionally, there are missingness issues with the sharks' attendance for each pitch. Generally in the dataset, if a shark is not present they are listed as *NA* for their respective attendance variable. It might be better to change this variable structure to read *TRUE* when the shark is present and *FALSE* when they are not. 
+
+The dataset will need to undergo cleaning prior to making any analyses. The names of the variables specifically will need to be cleaned using the `clean_names()` function in the `janitor` package.
+
+Additional time may be needed to examine the differences between pitches by solo entrepreneurs compared to teams and how gender might play a role in their perceived competence or the perceived value of their business. The behavior of sharks will also need to be investigated, determining if female sharks invest differently than their male counterparts. Finally, handling guest sharks might take more time, as their presence rotates each episode, so their individual activity will not reveal much about the trends I wish to investigate. These guests could be included in broader analyses, like investigating if female sharks invest more often in female entrepreneurs compared to male sharks.
+
+## Misc
+
+There are seven instances where the pitcher's gender is not included in the dataset. This might be an instance where the pitcher did not identify with a binary option of gender (might identify as non-binary, genderqueer, etc.). It could also be an instance where their gender identity was not collected. I can potentially investigate to see which is the case and how that might impact investment opportunities. However, given that there are only seven of these observations, there could be limited conclusions to be made. 
+
